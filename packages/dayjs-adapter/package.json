@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/dayjs-adapter",
-  "version": "0.1.5-beta.0",
+  "version": "0.1.6-beta.0",
   "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
   "description": "@use-date-input - dayjs adapter",
   "license": "MIT",
@@ -18,10 +18,9 @@
   "bugs": {
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
-  "main": "dist/index.js",
   "module": "src/index.js",
   "dependencies": {
-    "@use-date-input/common": "^0.1.5-beta.0"
+    "@use-date-input/common": "^0.1.6-beta.0"
   },
   "peerDependencies": {
     "dayjs": ">=1.8.24"
