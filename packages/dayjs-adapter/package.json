@@ -1,9 +1,10 @@
 {
   "name": "@use-date-input/dayjs-adapter",
   "version": "0.1.5-beta.0",
-  "author": "Mark Tate",
+  "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
   "description": "@use-date-input - dayjs adapter",
   "license": "MIT",
+  "main": "dist/index.js",
   "keywords": [
     "adapter",
     "useDateInput",
