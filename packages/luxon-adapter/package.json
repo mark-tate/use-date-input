@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/luxon-adapter",
-  "version": "0.1.0-beta.0",
+  "version": "0.1.1-beta.0",
   "author": "Mark Tate",
   "description": "@use-date-input - luxon adapter",
   "license": "MIT",
@@ -21,7 +21,7 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "dependencies": {
-    "@use-date-input/common": "^0.1.0",
+    "@use-date-input/common": "^0.1.1-beta.0",
     "undefined": "/Users/mark/Documents/dev/use-date-input/packages/common"
   },
   "peerDependencies": {
