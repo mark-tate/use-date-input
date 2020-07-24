@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/moment-adapter",
-  "version": "0.1.4-beta.0",
+  "version": "0.1.5-beta.0",
   "author": "Mark Tate",
   "description": "@use-date-input - moment adapter",
   "license": "MIT",
@@ -21,7 +21,7 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "dependencies": {
-    "@use-date-input/common": "^0.1.4-beta.0"
+    "@use-date-input/common": "^0.1.5-beta.0"
   },
   "peerDependencies": {
     "moment": ">=2.24.0"
