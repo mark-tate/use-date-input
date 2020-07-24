@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/date-fns-adapter",
-  "version": "0.1.1-beta.0",
+  "version": "0.1.2-beta.0",
   "author": "Mark Tate",
   "description": "@use-date-input - date-fns adapter",
   "license": "MIT",
