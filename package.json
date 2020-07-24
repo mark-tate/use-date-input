@@ -1,0 +1,83 @@
+{
+  "name": "use-date-input-monorepo",
+  "version": "0.1.0-beta.0",
+  "private": true,
+  "author": "Mark Tate",
+  "description": "A React library (including useDateInput/useDateRange hooks) to help compose a Date Picker/Calendar around your components",
+  "license": "MIT",
+  "keywords": [
+    "calendar",
+    "date",
+    "datepicker",
+    "date-picker",
+    "date-input",
+    "date-range",
+    "hook",
+    "input",
+    "useDateInput",
+    "useDateRange",
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mark-tate/use-date-input.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mark-tate/use-date-input/issues"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/preset-react": "^7.10.1",
+    "@babel/runtime": "^7.10.2",
+    "@material-ui/core": "^4.9.10",
+    "@material-ui/icons": "^4.9.1",
+    "@rollup/plugin-babel": "^5.0.3",
+    "@rollup/plugin-commonjs": "^13.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.1",
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/addon-links": "^5.3.19",
+    "@storybook/addons": "^5.3.19",
+    "@storybook/preset-create-react-app": "^3.1.1",
+    "@storybook/react": "^5.3.19",
+    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/react": "^10.4.3",
+    "@welldone-software/why-did-you-render": "^4.0.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-jest-dom": "^1.1.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.16.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lerna": "^3.22.0",
+    "prettier": "^1.18.2",
+    "regenerator-runtime": "^0.13.5",
+    "rollup": "^2.13.1",
+    "rollup-plugin-filesize": "^9.0.0",
+    "rollup-plugin-terser": "^6.1.0",
+    "rollup-plugin-visualizer": "^4.0.4"
+  },
+  "scripts": {
+    "build": "lerna exec --parallel -- rollup -c ../../config/rollup/rollup.config.js",
+    "build-storybook": "build-storybook -s public",
+    "clean": "lerna exec -- rimraf dist coverage",
+    "lint": "lerna run --stream lint -- --fix",
+    "prettier": "lerna run prettier --stream",
+    "storybook": "start-storybook -p 9009 -s public",
+    "test": "lerna run test --stream"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

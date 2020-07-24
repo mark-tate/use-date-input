@@ -1,0 +1,50 @@
+{
+  "name": "@use-date-input/date-fns-adapter",
+  "version": "0.1.0-beta.0",
+  "author": "Mark Tate",
+  "description": "@use-date-input - date-fns adapter",
+  "license": "MIT",
+  "keywords": [
+    "adapter",
+    "useDateInput",
+    "useDateRange"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mark-tate/use-date-input.git",
+    "directory": "packages/luxon-adapter"
+  },
+  "bugs": {
+    "url": "https://github.com/mark-tate/use-date-input/issues"
+  },
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "dependencies": {
+    "@use-date-input/common": "^0.1.0",
+    "undefined": "/Users/mark/Documents/dev/use-date-input/packages/common"
+  },
+  "peerDependencies": {
+    "date-fns": ">=2.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c ../../config/rollup/rollup.config.js",
+    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "test": "jest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true,
+            "experimentalObjectRestSpread": true
+        }
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": [
+        "plugin:jest-dom/recommended",
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "prettier/react",
+        "plugin:prettier/recommended"
+    ],
+    "plugins": ["react", "react-hooks", "prettier"],
+    "rules": {
+        "no-console": "warn",
+        "no-eval": "error",
+        "prettier/prettier": "error",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn"
+    }
+}

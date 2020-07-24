@@ -1,0 +1,77 @@
+{
+  "name": "@use-date-input/core",
+  "version": "0.1.0-beta.0",
+  "author": "Mark Tate",
+  "description": "@use-date-input - Core component and hooks",
+  "license": "MIT",
+  "keywords": [
+    "calendar",
+    "date",
+    "datepicker",
+    "date-picker",
+    "date-input",
+    "date-range",
+    "hook",
+    "input",
+    "useDateInput",
+    "useDateRange",
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mark-tate/use-date-input.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/mark-tate/use-date-input/issues"
+  },
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "dependencies": {
+    "@popperjs/core": "^2.4.2",
+    "@seznam/compose-react-refs": "1.0.4",
+    "@use-date-input/common": "^0.1.0",
+    "clsx": "^1.0.2",
+    "prop-types": "^15.7.2",
+    "react-focus-lock": "^2.2.1",
+    "react-popper": "^2.2.3",
+    "react-transition-group": "^4.3.0",
+    "styled-components": "5.1.0",
+    "undefined": "/Users/mark/Documents/dev/use-date-input/packages/common",
+    "use-debounce": "^3.4.0"
+  },
+  "devDependencies": {
+    "date-fns": "^2.12.0",
+    "dayjs": "^1.8.24",
+    "luxon": "^1.23.0",
+    "moment": "^2.24.0"
+  },
+  "peerDependencies": {
+    "@use-date-input/adapters": "^0.1.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "styled-components": ">=5.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "test": "jest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
