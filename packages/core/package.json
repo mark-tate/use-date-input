@@ -54,8 +54,7 @@
     "styled-components": ">=5.1.0"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "scripts": {
     "build": "rollup -c",
@@ -74,6 +73,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "gitHead": "80d58a499c25d1f350e14487b486e2c98f46c13c"
+  }
 }

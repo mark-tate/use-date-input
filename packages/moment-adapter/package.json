@@ -28,8 +28,7 @@
     "moment": ">=2.24.0"
   },
   "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "access": "public"
   },
   "scripts": {
     "build": "rollup -c ../../config/rollup/rollup.config.js",
@@ -48,6 +47,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "gitHead": "80d58a499c25d1f350e14487b486e2c98f46c13c"
+  }
 }
