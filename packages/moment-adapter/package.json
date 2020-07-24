@@ -5,8 +5,11 @@
   "description": "@use-date-input - moment adapter",
   "license": "MIT",
   "main": "dist/index.js",
+  "jsnext:main": "dist/index.esm.js",
+  "module": "dist/index.esm.js",
   "keywords": [
     "adapter",
+    "use-date-input",
     "useDateInput",
     "useDateRange",
     "moment"
@@ -19,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
-  "module": "src/index.js",
   "dependencies": {
     "@use-date-input/common": "^0.1.6-beta.0"
   },
