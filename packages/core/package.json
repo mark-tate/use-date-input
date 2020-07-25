@@ -59,6 +59,7 @@
   "files": [
     "dist/index*.js"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
