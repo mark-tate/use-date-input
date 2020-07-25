@@ -31,6 +31,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "files": [
+    "dist/index*.js"
+  ],
   "scripts": {
     "build": "rollup -c ../../config/rollup/rollup.config.js",
     "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
