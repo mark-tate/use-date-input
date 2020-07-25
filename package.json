@@ -74,6 +74,8 @@
     "clean": "lerna exec -- rimraf dist coverage",
     "lint": "lerna run --stream lint -- --fix",
     "prettier": "lerna run prettier --stream",
+    "publish:git": "lerna version prepatch --conventional-commits --conventional-prerelease --preid beta",
+    "publish": "lerna publish from-git",
     "storybook": "start-storybook -p 9009 -s public",
     "test": "lerna run test --stream"
   },
