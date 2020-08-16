@@ -43,8 +43,11 @@ export const ClickOutside = forwardRef(function ClickOutside(
 });
 
 ClickOutside.propTypes = {
+  /** children to monitor for click outside events */
   children: PropTypes.node,
+  /** Callback called when the mouse is clicked outside */
   onClickOutside: PropTypes.func,
+  /** List of additional elements to ignore mouse clicks */
   whitelistRefs: PropTypes.array
 };
 

@@ -44,12 +44,20 @@ const Calendar = forwardRef(function Calendar(props, ref) {
   );
 });
 
+Calendar.defaultProps = {
+  allowRange: false,
+  clickOutsideWhiteList: [],
+  numOfColumns: 1,
+  numOfVisibleMonths: 1,
+  weekOffset: 0
+};
+
 Calendar.propTypes = {
   /** Date API adapter */
   adapter: PropTypes.func,
-  /** The initial value for whether to enable dateRange selections */
+  /**  When `true` will select a date range */
   allowRange: PropTypes.bool,
-  /** Array of refs to white-list upon click outside */
+  /** Array of refs to ignore clicks, when determining whether the user clicked outside the Calendar */
   clickOutsideWhiteList: PropTypes.array,
   /** The initial selectedDate (for un-controlled use-case) */
   initialSelectedDate: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
@@ -57,11 +65,13 @@ Calendar.propTypes = {
   initialVisibleFromMonth: PropTypes.object,
   /** Callback to set days as disabled
    *  @param day - Date to check
+   *  @returns true when disabled
    */
   isDayDisabled: PropTypes.func,
   /** Callback to determine whether the current selection is valid
    *  @param day - startDate
    *  @param day - endDate
+   *  @returns true when valid
    */
   isRangeValid: PropTypes.func,
   /** Reducer(s), to override default state */

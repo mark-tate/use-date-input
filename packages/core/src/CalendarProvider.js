@@ -243,6 +243,7 @@ CalendarProvider.defaultProps = {
   allowRange: false,
   clickOutsideWhiteList: [],
   components: {},
+  initialEnableKeyboardNavigation: false,
   numOfColumns: 1,
   numOfVisibleMonths: 1
 };
@@ -255,6 +256,8 @@ CalendarProvider.propTypes = {
   allowRange: PropTypes.bool,
   /** Calendar children */
   children: PropTypes.node,
+  /** Array of elements to ignore, when determining a click outside, used to link elements, like date inputs  */
+  clickOutsideWhiteList: PropTypes.array,
   /** Custom Component overrides */
   components: PropTypes.shape({
     AnimatedGroup: PropTypes.elementType,
@@ -267,13 +270,18 @@ CalendarProvider.propTypes = {
     Week: PropTypes.elementType,
     WeekHeader: PropTypes.elementType
   }),
+  /** Initial state of keyboard navigation */
   initialEnableKeyboardNavigation: PropTypes.bool,
+  /** Initial selected date */
   initialSelectedDate: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  /** Initial visible month */
   initialVisibleFromMonth: PropTypes.object,
   /** Day is disabled callback */
   isDayDisabled: PropTypes.func,
   /** Date range is valid callback */
   isRangeValid: PropTypes.func,
+  /** Number of columns */
+  numOfColumns: PropTypes.number,
   /** Number of visible months */
   numOfVisibleMonths: PropTypes.number,
   /** Selected date change handler */

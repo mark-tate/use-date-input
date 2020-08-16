@@ -76,42 +76,43 @@ const Day = forwardRef(function Day(
 });
 
 Day.propTypes = {
-  /** Active cursor type, based on last user selection, defines any visible range **/
+  /** Active cursor type, based on last user selection, defines any visible range */
   activeCursor: PropTypes.oneOf(["keyboard", "mouse"]),
-  /** Day label **/
+  /** Day label */
   children: PropTypes.node,
+  /** Class name of root element */
   className: PropTypes.string,
-  /** Day object **/
+  /** Day object */
   day: PropTypes.object,
-  /** Flag indicating whether the day is disabled **/
+  /** Flag indicating whether the day is disabled */
   disabled: PropTypes.bool,
-  /** Flag indicating whether the date is the end date **/
+  /** Flag indicating whether the date is the end date */
   isEndDate: PropTypes.bool,
-  /** Flag indicating whether the day is the keyboard cursor **/
+  /** Flag indicating whether the day is the keyboard cursor */
   isKeyboardCursor: PropTypes.bool,
-  /** Flag indicating whether the day is focused **/
+  /** Flag indicating whether the day is focused */
   isFocused: PropTypes.bool,
-  /** Flag indicating whether the date is between start and end of range **/
+  /** Flag indicating whether the date is between start and end of range */
   isMidRange: PropTypes.bool,
-  /** Flag indicating whether the day is the mouse cursor **/
+  /** Flag indicating whether the day is the mouse cursor */
   isMouseCursor: PropTypes.bool,
-  /** Flag indicating whether the mouse cursor defines a valid range **/
+  /** Flag indicating whether the mouse cursor defines a valid range */
   isMouseCursorValid: PropTypes.bool,
-  /** Is outside of the current month that is being rendered **/
+  /** Is outside of the current month that is being rendered */
   isOutsideOfMonth: PropTypes.bool,
-  /** Flag indicating whether the date is the start date **/
+  /** Flag indicating whether the date is the start date */
   isStartDate: PropTypes.bool,
-  /** Flag indicating whether the date is today **/
+  /** Flag indicating whether the date is today */
   isToday: PropTypes.bool,
-  /** Callback called when mouse leaves a Day **/
+  /** Callback called when mouse leaves a Day */
   onMouseOutDate: PropTypes.func,
-  /** Callback called when mouse is over a Day **/
+  /** Callback called when mouse is over a Day */
   onMouseOverDate: PropTypes.func,
-  /** Callback called on date select **/
+  /** Callback called on date select */
   onSelectDate: PropTypes.func,
   /** The tab index */
   tabIndex: PropTypes.number,
-  /** The tab index */
+  /** Callback to format a date, usd by aria labels */
   toFormattedDate: PropTypes.func
 };
 

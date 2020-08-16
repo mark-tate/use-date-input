@@ -63,9 +63,13 @@ function AnimatedMonthGroup({
   );
 }
 AnimatedMonthGroup.propTypes = {
+  /** Children */
   children: PropTypes.element,
+  /** Ref to the first column */
   firstColumnRef: PropTypes.object,
+  /** Ref to the MonthGroup */
   groupRef: PropTypes.object,
+  /** Visible from date, used to control animation between columns and MonthGroup */
   visibleFromDate: PropTypes.object
 };
 

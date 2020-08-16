@@ -41,12 +41,16 @@ describe.only("given MonthGroup", () => {
 
     it("passes the ref to the DOM", () => {
       const ref = React.createRef();
-      render(<MonthGroup ref={ref} visibleFromDate={createDate("2019-08-02")}/>);
+      render(
+        <MonthGroup ref={ref} visibleFromDate={createDate("2019-08-02")} />
+      );
       expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
 
     it("renders a month group", () => {
-      const { getByText, getAllByTestId } = render(<MonthGroup visibleFromDate={createDate("2019-08-02")}/>);
+      const { getByText, getAllByTestId } = render(
+        <MonthGroup visibleFromDate={createDate("2019-08-02")} />
+      );
       const rows = getAllByTestId("month-group-row");
       expect(getByText("August")).toBeInTheDocument();
       expect(rows.length).toEqual(2);

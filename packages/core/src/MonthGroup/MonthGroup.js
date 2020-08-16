@@ -145,7 +145,9 @@ const MonthGroup = forwardRef(function MonthGroup(
   );
 });
 MonthGroup.propTypes = {
+  /** Class name of root element */
   className: PropTypes.string,
+  /** Visible from date */
   visibleFromDate: PropTypes.object
 };
 
