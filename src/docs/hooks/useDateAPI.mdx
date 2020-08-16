@@ -1,0 +1,37 @@
+---
+name: useDateAPI
+route: /useDateAPI
+---
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { useDateAPI, Calendar, CalendarProvider} from '@use-date-input/core';
+import { formatNames } from '@use-date-input/common';
+import dateAdapter from '@use-date-input/date-fns-adapter';
+
+# useDateAPI
+
+`useDateAPI` is a hook which will provide the dateAPI to any child of `CalendarProvider`.
+
+<Playground>
+{() => {
+    const [selectedDate, setSelectedDate] = useState();
+    const DateLabel = ({ selectedDate }) => {
+        const { format, getDateFormat } = useDateAPI();
+        let dateLabel = 'Select A Date';
+        if (selectedDate) {
+            const formatter = getDateFormat(formatNames.ARIA_DAY_LABEL);
+            dateLabel = format(selectedDate, formatter);
+        }
+        return (<p>{dateLabel}</p>);
+    };
+    return (
+        <CalendarProvider
+            adapter={dateAdapter}
+            onCalendarChange={setSelectedDate}
+        > 
+            <DateLabel selectedDate={selectedDate}/>
+            <Calendar />
+        </CalendarProvider>
+    );
+}}
+</Playground>

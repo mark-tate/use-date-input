@@ -1,0 +1,30 @@
+---
+name: Day
+route: /day
+---
+# Day
+
+The `Day` components renders a calendar day, based on the current `Calendar` state.
+
+## Props 
+| Prop Name | Type | Is Required | Default Value | Description |
+|-|-|-|-|-|
+| activeCursor| `string`| optional| | Active cursor type, based on last user selection, defines any visible range |
+| children| `node`| optional| | Day label |
+| className| `string`| optional| | Class name of root element |
+| day| `object`| optional| | Day object |
+| disabled| `bool`| optional| | Flag indicating whether the day is disabled |
+| isEndDate| `bool`| optional| | Flag indicating whether the date is the end date |
+| isFocused| `bool`| optional| | Flag indicating whether the day is focused |
+| isKeyboardCursor| `bool`| optional| | Flag indicating whether the day is the keyboard cursor |
+| isMidRange| `bool`| optional| | Flag indicating whether the date is between start and end of range |
+| isMouseCursor| `bool`| optional| | Flag indicating whether the day is the mouse cursor |
+| isMouseCursorValid| `bool`| optional| | Flag indicating whether the mouse cursor defines a valid range |
+| isOutsideOfMonth| `bool`| optional| | Is outside of the current month that is being rendered |
+| isStartDate| `bool`| optional| | Flag indicating whether the date is the start date |
+| isToday| `bool`| optional| | Flag indicating whether the date is today |
+| onMouseOutDate| `func`| optional| | Callback called when mouse leaves a Day |
+| onMouseOverDate| `func`| optional| | Callback called when mouse is over a Day |
+| onSelectDate| `func`| optional| | Callback called on date select |
+| tabIndex| `number`| optional| | The tab index|
+| toFormattedDate| `func`| optional| | Callback to format a date, usd by aria labels|

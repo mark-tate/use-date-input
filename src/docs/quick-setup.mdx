@@ -1,0 +1,119 @@
+---
+name: Getting Started
+route: /getting-started
+---
+
+## Quick Setup
+
+`use-date-input` can be used with any of the popular date frameworks with an adapter.
+
+- <a href="https://date-fns.org/" target="__blank__">date-fns</a>
+- <a href="https://day.js.org/" target="__blank__">dayjs</a>
+- <a href="https://moment.github.io/luxon/" target="__blank__">luxon</a>
+- <a href="https://momentjs.com/" target="__blank__">moment</a>
+
+Ensure you have added both the date framework and the corresponsing `use-date-input` adapter.
+
+### For date-fns users
+
+```
+yarn add date-fns 
+yarn add @use-date-input/core
+yarn add @use-date-input/date-fns-adapter 
+yarn add styled-components 
+```
+
+### For dayjs users
+
+```
+yarn add dayjs 
+yarn add @use-date-input/core
+yarn add @use-date-input/dayjs-adapter 
+yarn add styled-components 
+```
+
+### For luxon users
+
+```
+yarn add luxon 
+yarn add @use-date-input/core
+yarn add @use-date-input/luxon-adapter 
+yarn add styled-components 
+```
+
+### For moment users
+
+```
+yarn add moment 
+yarn add @use-date-input/core
+yarn add @use-date-input/moment-adapter 
+yarn add styled-components 
+```
+
+## Using the Components without Hooks
+
+A very basic example of `Calendar` component.
+
+```javascript
+import { Calendar } from '@use-date-input/core';
+
+function oneMonthCalendar() {
+    const handleChange = newSelectedDate => console.log('calendar changed selected date', newSelectedDate);
+    return (<Calendar adapter={dateAdapter} onChange={handleChange}/>);
+}
+```
+
+### Basic Date Input Example  
+
+A very basic example of `useDateInput` hook, linking an HTML `input` and the `Calendar` component.
+
+```javascript
+import React, { useRef, useState } from 'react';
+import { useDateInput } from "./index.esm";
+import dateFnsAdapter from "./index.esm";
+import { parse } from 'date-fns';
+
+const defaultParseDate = value => parse(value, 'dd/MM/yyyy', new Date());
+
+function oneMonthDateInput() {
+    const [date, setDate] = useState('');
+    const actions = useRef();
+
+    const handleInputChange = event => {
+        const { value } = event.target;
+        console.log('input changed to', value);
+        setDate(event.target.value);
+    };
+
+    const handleCalendarChange = newSelectedDate => {
+        console.log('calendar changed selected date', newSelectedDate);
+        const { dateAPI } = actions.current;
+        setDate(dateAPI.format(newSelectedDate, 'dd/MM/yyyy'));
+    };
+
+    const {
+        Calendar,
+        CalendarProvider,
+        getCalendarProviderProps,
+        getInputProps
+    } = useDateInput({
+        actions,
+        parse: defaultParseDate
+    });
+
+    return (
+        <>
+            <input {...getInputProps({ onChange: handleInputChange })} value={date} />
+            <CalendarProvider
+                {...getCalendarProviderProps({
+                    adapter: dateFnsAdapter,
+                    onCalendarChange: handleCalendarChange,
+                })}
+            >
+                <Calendar />
+            </CalendarProvider>
+        </>
+    );
+}
+```
+

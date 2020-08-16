@@ -1,0 +1,233 @@
+---
+name: Date Frameworks
+route: /date-frameworks
+---
+import {
+    Calendar
+} from "@use-date-input/core";
+import { Playground } from "docz";
+import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import dayjsAdapter from "@use-date-input/dayjs-adapter";
+import luxonAdapter from "@use-date-input/luxon-adapter";
+import momentAdapter from "@use-date-input/moment-adapter"
+
+# Date Frameworks
+
+`use-date-input` provides an adapter API so that it can work with any date frameworks.
+
+To keep the bundle size low and to let the user manage dependencies, the provided adapters  
+require peer dependencies to specify the date API.
+
+The adapter interface is provided to `use-date-input` components through the `adapter` prop.
+
+Adapters have been created for all the popular Date frameworks
+
+- <a href="https://date-fns.org/" target="__blank__">date-fns</a>
+- <a href="https://day.js.org/" target="__blank__">dayjs</a>
+- <a href="https://moment.github.io/luxon/" target="__blank__">luxon</a>
+- <a href="https://momentjs.com/" target="__blank__">moment</a>
+- ... or write your own
+
+##  With date-fns
+
+Install the dependencies with
+
+```shell script
+yarn add @date-fns
+yarn add @use-date-input/date-fns-adapter
+```
+OR
+
+```shell script
+npm install -s @date-fns
+npm install -s @use-date-input/date-fns-adapter
+```
+
+Import the adapter into your component
+
+```javascript
+import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+```
+
+Use the `adapter` prop with the `use-date-input` components.
+
+<Playground>
+{ () => {
+        return (
+            <Calendar
+                adapter={dateFnsAdapter}
+                numOfColumns={2}
+                numOfVisibleMonths={2}
+            />
+        );
+    }
+}
+</Playground>
+
+##  With dayjs
+
+Install the dependencies with
+
+```shell script
+yarn add @dayjs
+yarn add @use-date-input/dayjs-adapter
+```
+OR
+
+```shell script
+npm install -s @dayjs
+npm install -s @use-date-input/dayjs-adapter
+```
+
+Import the adapter into your component
+
+```javascript
+import dayjsAdapter from "@use-date-input/dayjs-adapter";
+```
+
+Use the `adapter` prop with the `use-date-input` components.
+
+<Playground>
+{ () => {
+        return (
+            <Calendar
+                adapter={dayjsAdapter}
+                numOfColumns={2}
+                numOfVisibleMonths={2}
+            />
+        );
+    }
+}
+</Playground>
+
+##  With luxon
+
+Install the dependencies with
+
+```shell script
+yarn add @luxon
+yarn add @use-date-input/luxon-adapter
+```
+OR
+
+```shell script
+npm install -s @luxon
+npm install -s @use-date-input/luxon-adapter
+```
+
+Import the adapter into your component
+
+```javascript
+import luxonAdapter from "@use-date-input/dayjs-adapter";
+```
+
+Use the `adapter` prop with the `use-date-input` components.
+
+<Playground>
+{ () => {
+        return (
+            <Calendar
+                adapter={luxonAdapter}
+                numOfColumns={2}
+                numOfVisibleMonths={2}
+            />
+        );
+    }
+}
+</Playground>
+
+##  With moment
+
+Install the dependencies with
+
+```shell script
+yarn add @moment
+yarn add @use-date-input/moment-adapter
+```
+OR
+
+```shell script
+npm install -s @moment
+npm install -s @use-date-input/moment-adapter
+```
+
+Import the adapter into your component
+
+```javascript
+import momentAdapter from "@use-date-input/moment-adapter";
+```
+
+Use the `adapter` prop with the `use-date-input` components.
+
+<Playground>
+{ () => {
+        return (
+            <Calendar
+                adapter={momentAdapter}
+                numOfColumns={2}
+                numOfVisibleMonths={2}
+            />
+        );
+    }
+}
+</Playground>
+
+##  Week Offset
+
+Date frameworks use different week offsets, so you can customize on `use-date-input` components through the use of the `weekOffset` prop
+
+<Playground>
+{ () => {
+        return (
+            <Calendar
+                adapter={luxonAdapter}
+                numOfColumns={2}
+                numOfVisibleMonths={2}
+                weekOffset={6}
+            />
+        );
+    }
+}
+</Playground>
+
+##  Write Your Own Adapter
+
+To write your own adapter or customize the existing adapters, you need to build this interface and provide it
+through the `adapter` prop.
+
+```javascript
+const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
+  addDays,
+  addMonths,
+  addWeeks,
+  addYears,
+  createDate,
+  daysInMonth,
+  dayOfWeek,
+  diffInDays,
+  diffInMonths,
+  endOfMonth,
+  endOfWeek,
+  endOfYear,
+  format,
+  getDateFormat,
+  isAfter,
+  isBefore,
+  isSameDay,
+  isSameMonth,
+  isValid:
+  set,
+  startOfMonth,
+  startOfWeek,
+  startOfYear,
+  subtractDays,
+  subtractMonths,
+  subtractWeeks,
+  subtractYears
+});
+```
+
+For the most part this is just, mapping these callbacks to the equivalent date framework call.  
+  
+For further details, refer to the provided adapters to see an example in code.
+[dayjs](https://github.com/mark-tate/use-date-input/blob/master/packages/date-fns-adapter/src/index.js)

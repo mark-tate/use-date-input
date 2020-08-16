@@ -1,0 +1,201 @@
+---
+name: Calendar
+route: /calendar
+---
+import styled from "styled-components";
+import { useState } from "react";
+import { Playground } from "docz";
+import {
+  default as Calendar,
+} from "@/core/src/Calendar";
+import {
+  Day
+} from "@use-date-input/core";
+import isWeekend from "date-fns/isWeekend";
+import { createDate, dateAdapter } from "../../gatsby-theme-docz/createDate";
+import getDay from "date-fns/getDay";
+import eachDayOfInterval from "date-fns/eachDayOfInterval";
+
+# Calendar
+
+A`Calendar` can be used inline on a page and is also used by the `useDateInput` and `useDateRangeInput` hooks.  
+  
+Alternatively you could use to compose your own date picker components.
+
+## Props
+
+| Prop Name | Type | Is Required | Default Value | Description |
+|-|-|-|-|-|
+| adapter| `func`| optional| | Date API adapter|
+| allowRange| `bool`| optional| `false`| When `true` will select a date range|
+| clickOutsideWhiteList| `array`| optional| `[]`| Array of refs to ignore clicks, when determining whether the user clicked outside the Calendar|
+| initialSelectedDate| `object or array`| optional| | The initial selectedDate (for un-controlled use-case)|
+| initialVisibleFromMonth| `object`| optional| | The initial visible from calendar month (unless date is set)|
+| isDayDisabled| `func`| optional| | Callback to set days as disabled   @param day - Date to check        @returns true when disabled|
+| isRangeValid| `func`| optional| | Callback to determine whether the current selection is valid   @param day - startDate    @param day - endDate        @returns true when valid|
+| numOfColumns| `number`| optional| `1`| Number of columns|
+| numOfVisibleMonths| `number`| optional| `1`| Number of visible months|
+| onChange| `func`| optional| | Selected date change handler|
+| onStateChange| `func`| optional| | State change handler|
+| reducers| `array of funcs`| optional| | Reducer(s), to override default state|
+| theme| `object`| optional| | Theme|
+| weekOffset| `number`| optional| `0`| Start of week offset from date API's default|
+
+## Single Date
+
+By default the `Calendar` will select single dates.
+
+<Playground>
+    <Calendar 
+        adapter={dateAdapter} 
+        numOfColumns={4} 
+        numOfVisibleMonths={12} 
+    />
+</Playground>
+
+## Date Range
+
+Using the `allowRange` prop the `Calendar` will select date ranges.
+
+<Playground>
+    <Calendar 
+        adapter={dateAdapter}
+        allowRange
+        numOfColumns={4}
+        numOfVisibleMonths={12}
+    />
+</Playground>
+
+## Setting Initial State
+
+The basic component operates as un-controlled, although the reducer pattern enables you to control the final state.  
+This example shows the basic use-case of the initial state.
+
+<Playground>
+{() => {
+    const handleChange = selectedDate => {
+        console.log("changed selected date", selectedDate);
+    };
+    return (
+    <Calendar
+        adapter={dateAdapter}
+        initialSelectedDate={createDate("2020-02-20")}
+        initialVisibleFromMonth={createDate("2020-02-01")}
+        numOfVisibleMonths={12}
+        numOfColumns={3}
+        onChange={handleChange}
+    />
+    );
+}
+}
+</Playground>
+
+## Custom Day Renderers
+
+Add your own renderers for `Day`, to render specific date states with your own styles, using the `ccomponents` prop.  
+
+<Playground>
+{() => {
+    /** Add your own renderer(s) for Days to show your required state */
+    function JustWeekdaysRenderer(props) {
+        const disableWeekendProps = isWeekend(props.day) && {
+            disabled: true,
+            day: undefined
+        };
+        return <Day {...props} {...disableWeekendProps} />;
+    }
+    const handleChange = selectedDate => {
+        console.log("changed selected date", selectedDate);
+    };
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            allowRange
+            components={{
+            Day: JustWeekdaysRenderer
+            }}
+            onChange={handleChange}
+            numOfVisibleMonths={12}
+            numOfColumns={4}
+            weekOffset={1}
+        />
+    );
+    }
+}
+</Playground>
+
+## Block dates
+
+Block out dates using a custom renderer and the `isDayDisabled` prop.  
+
+<Playground>
+{() => {
+    const UnavailableDay = styled(Day)(props => ({
+        background: 'url("/public/cross.svg")',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom 6px right 5px",
+        backgroundSize: "50% 50%, auto"
+    }));
+    const isMonday = (date) => getDay(date) === 1;
+    function BlockoutMondaysRenderer(props) {
+        if (getDay(props.day) === 1) {
+            return (
+                <span style={{ cursor: "not-allowed" }}>
+                    <UnavailableDay {...props} disabled />
+                </span>
+            );
+        }
+        return <Day {...props} />;
+    }
+    return (
+    <Calendar
+        adapter={dateAdapter}
+        components={{
+            Day: BlockoutMondaysRenderer
+        }}
+        isDayDisabled={isMonday}
+        numOfVisibleMonths={12}
+        numOfColumns={4}
+        weekOffset={1}
+    />);
+    }
+}
+</Playground>
+
+## Validate Date Ranges
+
+Validate date ranges with your own rules using the `isRangeValid` prop.  
+
+<Playground>
+{() => {
+  /** Add your own validators to validate ranges */
+    const doesNotOverlapWeekendValidator = (startDate, endDate) => {
+        if (!startDate || !endDate || startDate === endDate) {
+            return true;
+        }
+        const overlapsWeekend = eachDayOfInterval({
+            start: startDate,
+            end: endDate
+        }).some(interval => {
+            return isWeekend(interval);
+        });
+        return !overlapsWeekend;
+    };
+    const handleChange = selectedDate => {
+        console.log("changed selected date", selectedDate);
+    };
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            allowRange
+            isRangeValid={doesNotOverlapWeekendValidator}
+            onChange={handleChange}
+            numOfVisibleMonths={12}
+            numOfColumns={4}
+            weekOffset={1}
+        />
+    );
+  }
+}
+</Playground>
+

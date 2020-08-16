@@ -25,3 +25,6 @@ yarn-error.log*
 
 # IDEA
 workspace.xml
+
+# Docz site
+.docz/*

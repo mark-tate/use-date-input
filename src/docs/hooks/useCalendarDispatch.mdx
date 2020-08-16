@@ -1,0 +1,66 @@
+---
+name: useCalendarDispatch
+route: /useCalendarDispatch
+---
+import { Playground } from 'docz'
+import { calendarActions, useCalendarDispatch, Calendar, CalendarProvider} from '@use-date-input/core';
+import dateAdapter from '@use-date-input/date-fns-adapter';
+
+# useCalendarDispatch
+
+`useCalendarDispatch` returns the configured reducers dispatcher, along with a helper API for common actions. 
+
+```javascript
+const {
+    dispatch,
+    mouseClickOutside,
+    navigateNext,
+    navigatePrevious,
+    selectDate,
+    setAnimating,
+    setEnableKeyboardNavigation,
+    setKeyboardCursor,
+    setMouseCursor,
+    setEndDate,
+    setStartDate,
+    setOpen,
+    setKeyPress,
+    setVisibleFromDate
+} = useCalendarDispatch();
+```
+
+## Using the dispatcher
+
+<Playground>
+{() => {
+    const MyPanel = () => {
+        const { dispatch } = useCalendarDispatch();
+        const handleClick = () => dispatch({ type: calendarActions.navigateNext });
+        return (<button onClick={handleClick}>Dispatch 'navigateNext'</button>);
+    };
+    return (
+        <CalendarProvider adapter={dateAdapter}> 
+            <MyPanel/>
+            <Calendar/>
+        </CalendarProvider>
+    );
+}}
+</Playground>
+
+## Using the helper API
+
+<Playground>
+{() => {
+    const MyPanel = () => {
+        const { navigateNext } = useCalendarDispatch();
+        const handleClick = () =>navigateNext();
+        return (<button onClick={handleClick}>navigateNext</button>);
+    };
+    return (
+        <CalendarProvider adapter={dateAdapter}> 
+            <MyPanel/>
+            <Calendar/>
+        </CalendarProvider>
+    );
+}}
+</Playground>

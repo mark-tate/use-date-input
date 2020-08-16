@@ -1,0 +1,149 @@
+---
+name: Localization
+route: /localization
+---
+import {
+    Calendar
+} from "@use-date-input/core";
+import { Playground } from "docz";
+import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import dayjsAdapter from "@use-date-input/dayjs-adapter";
+import luxonAdapter from "@use-date-input/luxon-adapter";
+import momentAdapter from "@use-date-input/moment-adapter";
+import { dummy_zhcn }  from "dayjs/locale/zh-cn";
+import { dummy_es }  from "moment/locale/es";
+import { dummy_engb } from "moment/locale/en-gb";
+import { ru } from "date-fns/locale";
+
+# Localization
+
+Localization is provided by adding a `format` callback to your date adapter.  
+
+The `format` function uses the date frameworks' localization to format dates.
+
+The signature of `format` is
+
+```javascript
+format(date, formatName)
+```
+
+- `date` is the date object to format
+- `formatName` is an identifier for the formatted date required
+
+##  Format Names
+
+For convenience the format names can be imported from `@use-date-input/core`
+
+```javascript
+import { formatNames } from `@use-date-input/core`
+```
+
+To change the text returned for a locale or too customize the labels, then modify the default `format`
+function provided by your adapter.
+
+The full list of `formatName` values
+
+| Format Name | Description |
+| ------- | ---------- |
+| ARIA_DAY_LABEL | Returns aria label for day component |
+| ARIA_START_LABEL | Returns aria label for start of range |
+| ARIA_END_LABEL | Returns aria label for end of range |
+| ISO | Returns date in ISO format |
+| HEADER | Returns header label |
+| DAY | Returns day label |
+| DAY_OF_WEEK_FULL | Returns day of week full label |
+| DAY_OF_WEEK_ABBREVIATED | Returns day of week short label |
+| MONTH | Returns month index |
+| MONTH_ABBREVIATED | Returns month short label |
+| MONTH_FULL | Returns month full label |
+| YEAR | Returns year |
+
+##  Date-Fns with a Russian locale
+
+As shown here, where we use `Date-Fns` to create a Russian calendar.
+
+<Playground>
+{ () => {
+        const russianDateFnsAdapter = adapterArgs => {
+            const dateFnsAPI = dateFnsAdapter(adapterArgs);
+            return {
+                ...dateFnsAPI,
+                format: (date, formatStr) => dateFnsAPI.format(date, formatStr, { locale: ru })
+            };
+        };
+        return (
+            <Calendar
+                adapter={russianDateFnsAdapter}
+                numOfColumns={3}
+                numOfVisibleMonths={12}
+            />
+        );
+    }
+}
+</Playground>
+
+##  Dayjs with a Chinese locale
+
+<Playground>
+{ () => {
+        const chineseDayJSAdapter = adapterArgs => {
+            const dayjsAPI = dayjsAdapter(adapterArgs);
+            return {
+                ...dayjsAPI,
+                createDate: dateArgs => dayjsAPI.createDate(dateArgs).locale("zh-cn")
+            };
+        };
+        return (
+            <Calendar
+                adapter={chineseDayJSAdapter}
+                numOfColumns={3}
+                numOfVisibleMonths={12}
+            />
+        );
+    }
+}
+</Playground>
+
+##  Luxon with a French locale
+
+<Playground>
+{ () => {
+        const frenchLuxonAdapter = adapterArgs => {
+          const luxonAPI = luxonAdapter(adapterArgs);
+          return {
+            ...luxonAPI,
+            createDate: date => luxonAPI.createDate(date).setLocale("fr")
+          };
+        };
+        return (
+            <Calendar
+                adapter={frenchLuxonAdapter}
+                numOfColumns={3}
+                numOfVisibleMonths={12}
+            />
+        );
+    }
+}
+</Playground>
+
+##  Moment with a Spanish locale
+
+<Playground>
+{ () => {
+        const spanishMomentAdapter = adapterArgs => {
+          const momentAPI = momentAdapter(adapterArgs);
+          return {
+            ...momentAPI,
+            createDate: dateArgs => momentAPI.createDate(dateArgs).locale("es")
+          };
+        };
+        return (
+            <Calendar
+                adapter={spanishMomentAdapter}
+                numOfColumns={3}
+                numOfVisibleMonths={12}
+            />
+        );
+    }
+}
+</Playground>

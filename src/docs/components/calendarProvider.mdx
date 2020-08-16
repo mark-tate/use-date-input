@@ -1,0 +1,42 @@
+---
+name: CalendarProvider
+route: /calendarProvider
+---
+import {
+  CalendarProvider
+} from "@/core/src/CalendarProvider";
+
+# CalendarProvider
+
+A `CalendarProvider` creates a Context required to link a `Calendar` with other components.
+
+Used in conjunction with `useDateInput/useDateRangeInput` hooks, a`CalendarProvider` creates a Context required to link  
+a `Calendar` with other components.
+ 
+Pass the props returned by `getCalendarProviderProps` to `CalendarProvider` to wire the `Calendar` and input controls to
+each other.
+
+Refer to the `useDateInput` and `useDateRange` documentation for examples.
+
+
+## Props 
+| Prop Name | Type | Is Required | Default Value | Description |
+|-|-|-|-|-|
+| actions| `object`| optional| | Imperative actions API|
+| adapter| `func`| optional| | Date API adapter|
+| allowRange| `bool`| optional| `false`| Allow date range|
+| children| `node`| optional| | Calendar children|
+| clickOutsideWhiteList| `array`| optional| `[]`| Array of elements to ignore, when determining a click outside, used to link elements, like date inputs|
+| components| `object`| optional| `{}`| Custom Component overrides|
+| initialEnableKeyboardNavigation| `bool`| optional| `false`| Initial state of keyboard navigation|
+| initialSelectedDate| `object or array`| optional| | Initial selected date|
+| initialVisibleFromMonth| `object`| optional| | Initial visible month|
+| isDayDisabled| `func`| optional| | Day is disabled callback|
+| isRangeValid| `func`| optional| | Date range is valid callback|
+| numOfColumns| `number`| optional| `1`| Number of columns|
+| numOfVisibleMonths| `number`| optional| `1`| Number of visible months|
+| onCalendarChange| `func`| optional| | Selected date change handler|
+| onStateChange| `func`| optional| | State change handler|
+| reducer| `func`| optional| | Reducer, to externalize control of state|
+| weekOffset| `number`| optional| | Start of week offset from date API's default|
+~                                                                                                

@@ -1,0 +1,39 @@
+---
+name: useCalendarProps
+route: /useCalendarProps
+---
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { useDateAPI, useCalendarProps, Calendar, CalendarProvider} from '@use-date-input/core';
+import { formatNames } from '@use-date-input/common';
+import dateAdapter from '@use-date-input/date-fns-adapter';
+
+# useCalendarProps
+
+`useCalendarProps` is a hook which will provide the props provided to `CalendarProvider`.
+
+<Playground>
+{() => {
+    const [selectedDate, setSelectedDate] = useState();
+    const DateLabel = ({ selectedDate }) => {
+        const { format, getDateFormat } = useDateAPI();
+        const props = useCalendarProps();
+        let dateLabel = 'Select A Date';
+        if (selectedDate) {
+            const formatter = getDateFormat(formatNames.ARIA_DAY_LABEL);
+            dateLabel = format(selectedDate, formatter);
+        }
+        return (<><i>{props.myExtraLabel}</i><p>{dateLabel}</p></>);
+    };
+    return (
+        <CalendarProvider
+            adapter={dateAdapter}
+            onCalendarChange={setSelectedDate}
+            myExtraLabel={"Add any additonal props you need and access them with useCalendarProps"}
+        > 
+            <DateLabel selectedDate={selectedDate}/>
+            <Calendar />
+        </CalendarProvider>
+    );
+}}
+</Playground>

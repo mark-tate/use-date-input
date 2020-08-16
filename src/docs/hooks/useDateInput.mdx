@@ -1,0 +1,123 @@
+---
+name: useDateInput
+route: /useDateInput
+---
+import { useCallback, useRef, useState } from 'react'
+import { Playground, Props } from 'docz'
+import { useDateInput, Popper } from '@use-date-input/core';
+import dateAdapter from '@use-date-input/date-fns-adapter';
+import { parse, isValid } from 'date-fns';
+
+# useDateInput
+
+`useDateInput` is a hook which will provide the props required to compose together a `Calendar`
+with an `input` component of your choice.
+
+You could  use an HTML `input`, or an `Input` or `Formfield` from your favourite UI framework, or even your own component.
+
+A simple example of use is
+
+```javascript
+const {
+    Calendar,
+    CalendarProvider,
+    getCalendarProviderProps,
+    getInputProps,
+    getPopperProps,
+} = useDateInput();
+```  
+
+- `Calendar` is the calendar component.
+- `CalendarProvider` is the context which wires all the UI components together, you can use it in your own components
+to manage state
+-  `getCalendarProviderProps` is a callback which provides the props for `CalendarProvider`
+-  `getInputProps` is a callback which provides the props for your Input UI Element.
+-  `getPopperProps` is an callback which provides the props for any Popper UI Element.  
+
+Popper's are a portal which are only needed if you are open the Calendar from another component.   
+ie. an Input when clicked display the Calendar in a portal, which overlays the rest of the page.  
+
+When your `input` and `Calendar` are composed together by `useDateInput` it should look like this
+
+<Playground >
+  {() => {
+    const [date, setDate] = useState('');
+    const actions = useRef();
+    const handleInputChange = event => {
+        const { value } = event.target;
+        console.log('input changed to', value);
+        setDate(event.target.value);
+    };
+    const handleCalendarChange = value => {
+        console.log('calendar changed selected date', value);
+        const { dateAPI } = actions.current;
+        setDate(dateAPI.format(value, 'dd/MM/yyyy'));
+    };
+    const {
+        Calendar,
+        CalendarProvider,
+        getCalendarProviderProps,
+        getInputProps,
+        getPopperProps
+    } = useDateInput({
+        actions,
+        parse: value => parse(value, 'dd/MM/yyyy', new Date())
+    });
+    return (
+        <>
+            <input {...getInputProps({ onChange: handleInputChange })} value={date} />
+            <CalendarProvider
+                {...getCalendarProviderProps({
+                    adapter: dateAdapter,
+                    onCalendarChange: handleCalendarChange
+                })}
+            >
+                <Popper {...getPopperProps()}>
+                    <Calendar />
+                </Popper>
+            </CalendarProvider>
+        </>
+    );
+    }
+}
+</Playground>
+
+## Actions 
+
+`useDateInput` provides an imperative API for the controlled state, use-case.
+
+Pass a ref to `useDateInput` and it will be assigned an impertive API of state and helpers.
+
+```javascript
+const {
+    Calendar,
+    CalendarProvider,
+    getCalendarProviderProps,
+    getInputProps,
+    getPopperProps,
+} = useDateInput({
+    actions
+});
+```
+
+The imperative API takes the form.
+
+```javascript
+actions.current = {
+    createDate, 
+    dispatch,
+    mouseClickOutside,
+    navigateNext,
+    navigatePrevious,
+    selectDate,
+    setAnimating,
+    setEnableKeyboardNavigation,
+    setKeyboardCursor,
+    setMouseCursor,
+    setEndDate,
+    setStartDate,
+    setOpen,
+    setKeyPress,
+    setVisibleFromDate
+}
+```

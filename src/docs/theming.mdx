@@ -1,0 +1,188 @@
+---
+name: Theming
+route: /theming
+---
+import { useDocs, Link, Playground } from 'docz'
+import styled from "styled-components";
+import {
+  Day
+} from "@use-date-input/core";
+import {
+  Calendar
+} from "@use-date-input/core";
+import getDay from "date-fns/getDay";
+import eachDayOfInterval from "date-fns/eachDayOfInterval";
+import { dateAdapter } from "../gatsby-theme-docz/createDate";
+import sampleTheme from "../../stories/sampleTheme";
+
+# Theming
+
+## Approach
+
+Your theme is your own brand, so Calendar comes with just minimal layout styles.  
+
+Multiple theming options allow you to theme the UI to match your own brand.   
+
+- At a high level you can override/extend the default style of the default components.
+
+- At a low level you can override/replace the default components.
+
+From this to 
+
+<Playground>
+  <Calendar adapter={dateAdapter} numOfColumns={2} numOfVisibleMonths={2} />
+</Playground>
+
+to this
+
+<Playground>
+  <Calendar adapter={dateAdapter} numOfColumns={2} numOfVisibleMonths={2} theme={sampleTheme}/>
+</Playground>
+
+## How to create a theme
+
+Built upon [styled-components]("https://styled-components.com") each part of the Calendar is 
+themable by overriding/etending the default style.  
+
+The full list of styles names that are themable are 
+
+```
+|__ Root  
+    |__ Header  
+    |__ MonthGroup  
+        |__ Month  
+            |__ MonthHeader  
+                |__ MonthTitle  
+                |__ YearTitle  
+                |__ PreviousButton  
+                |__ NextButton  
+                |__ WeekHeader  
+                |__ Week  
+                    |__ DayOfWeek  
+                    |__ Day  
+```
+<br/>  
+If you want to style existing components then create a new theme to override the default styles, using the `theme` prop.  
+
+```javascript
+import React from 'react';
+import dateAdapter from "./index.esm";
+import { Calendar } from "./index.esm";
+
+const yourTheme = {
+    Root: { /* Overidden component style */ },
+    Header: {},
+    MonthGroup: {},
+    Month: {},
+    MonthHeader: {},
+    MonthTitle: {},
+    YearTitle: {},
+    PreviousButton: {},
+    NextButton: {},
+    Week: {},
+    WeekHeader: {},
+    DayOfWeek: {},
+    Day: {}
+};
+
+export const ThemedCalendar = () => {
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            theme={yourTheme}
+        />
+    );
+};
+```
+<br/>
+If using `input` controls with the hooks, then simply style the elements before using the `use-date-input` hooks to
+link them to the `Calendar`.
+
+## How to replace UI components
+
+The full list of components names that are replaceable
+
+```
+|__ Root  
+    |__ Header  
+    |__ MonthGroup  
+        |__ AnimatedMonthGroup  
+            |__ AnimatedGroup  
+                |__ Month  
+                    |__ MonthHeader  
+                        |__ WeekHeader  
+                        |__ Week  
+                            |__ DayOfWeek  
+                            |__ Day  
+```
+<br/>
+If you want to extend/replace components then redefine those components via their name, using the `components` prop.  
+
+```javascript
+import React from 'react';
+import dateAdapter from "../packages/date-fns-adapter";
+import { Calendar } from "../packages/core";
+
+const yourComponents = {
+    Root: props => { /* Overidden component */ },
+    Header: props => {},
+    AnimatedMonthGroup: props => {},
+    AnimatedGroup: props => {},
+    MonthGroup: props => {},
+    Month: props => {},
+    MonthHeader: props => {},
+    Week: props => {},
+    WeekHeader: props => {},
+    DayOfWeek: props => {},
+    Day: props => {}
+};
+
+export const ThemedCalendar = () => {
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            components={yourComponents}
+        />
+    );
+};
+``` 
+<br/>
+
+
+To extend the UI style or behaviour of the default components, you can provide your own implementation of each component.   
+   
+For instance, if you want to style days with your own state (such as blocked or un-available), then you simply replace or  
+extend the current `Day` component
+
+<Playground>
+{() => {
+    const UnavailableDay = styled(Day)(props => ({
+        background: 'url("/public/cross.svg")',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom 6px right 5px",
+        backgroundSize: "50% 50%, auto"
+    }));
+    const isMonday = (date) => getDay(date) === 1;
+    function BlockoutMondaysRenderer(props) {
+        if (getDay(props.day) === 1) {
+            return (
+                <span style={{ cursor: "not-allowed" }}>
+                    <UnavailableDay {...props} disabled />
+                </span>
+            );
+        }
+        return <Day {...props} />;
+    }
+    return (
+    <Calendar
+        adapter={dateAdapter}
+        components={{
+            Day: BlockoutMondaysRenderer
+        }}
+        isDayDisabled={isMonday}
+        numOfVisibleMonths={2}
+        numOfColumns={2}
+    />);
+    }
+}
+</Playground>
