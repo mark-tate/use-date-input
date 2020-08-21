@@ -44,6 +44,7 @@ export default {
       menu: []
     },
   ],
+  base: 'use-date-input',
   dest: './docs',
   propsParser: false,
   src: './src'
