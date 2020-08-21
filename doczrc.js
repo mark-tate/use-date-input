@@ -44,6 +44,7 @@ export default {
       menu: []
     },
   ],
+  dest: './docs',
   propsParser: false,
   src: './src'
 };
