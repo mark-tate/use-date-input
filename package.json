@@ -27,8 +27,10 @@
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
   "dependencies": {
+    "docz": "^2.3.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "gatsby-theme-docz": "2.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -72,6 +74,9 @@
     "build": "lerna exec --parallel -- rollup -c ../../config/rollup/rollup.config.js",
     "build-storybook": "build-storybook -s public",
     "clean": "lerna exec -- rimraf dist coverage",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "docz:serve": "docz build && docz serve",
     "lint": "lerna run --stream lint -- --fix",
     "prettier": "lerna run prettier --stream",
     "publish:git": "lerna version prepatch --conventional-commits --conventional-prerelease --preid beta",

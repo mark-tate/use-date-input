@@ -1,0 +1,36 @@
+---
+name: useCalendarState
+route: /useCalendarState
+---
+import { useState } from 'react';
+import { Playground } from 'docz'
+import { useDateAPI, useCalendarState, Calendar, CalendarProvider} from '@use-date-input/core';
+import { formatNames } from '@use-date-input/common';
+import dateAdapter from '@use-date-input/date-fns-adapter';
+
+# useCalendarState
+
+`useCalendarState` is a hook which will provide the current state of your components.
+
+<Playground>
+{() => {
+    const DateLabel = () => {
+        const { format, getDateFormat } = useDateAPI();
+        const { startDate:selectedDate } = useCalendarState();
+        let dateLabel = 'Select A Date';
+        if (selectedDate) {
+            const formatter = getDateFormat(formatNames.ARIA_DAY_LABEL);
+            dateLabel = format(selectedDate, formatter);
+        }
+        return (<p>{dateLabel}</p>);
+    };
+    return (
+        <CalendarProvider
+            adapter={dateAdapter}
+        > 
+            <DateLabel/>
+            <Calendar />
+        </CalendarProvider>
+    );
+}}
+</Playground>

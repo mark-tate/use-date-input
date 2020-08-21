@@ -36,7 +36,7 @@ const Month = forwardRef(function Month({ className, month }, ref) {
 Month.propTypes = {
   /** Class name of root element */
   className: PropTypes.string,
-  /** Month object */
+  /** Month */
   month: PropTypes.object
 };
 

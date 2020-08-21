@@ -15,7 +15,10 @@ describe("given MonthGroup", () => {
     const ref = React.createRef();
     render(
       <TestUtils>
-        <CustomisableMonthGroup ref={ref} visibleFromDate={createDate("2019-09-03")}/>
+        <CustomisableMonthGroup
+          ref={ref}
+          visibleFromDate={createDate("2019-09-03")}
+        />
       </TestUtils>
     );
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
@@ -24,7 +27,9 @@ describe("given MonthGroup", () => {
   it("can be overriden with a custom component", () => {
     const TestComponent = () => "TEST CUSTOM COMPONENT";
     setComponents({ MonthGroup: TestComponent });
-    const { getByText } = render(<CustomisableMonthGroup visibleFromDate={createDate("2019-09-03")}/>);
+    const { getByText } = render(
+      <CustomisableMonthGroup visibleFromDate={createDate("2019-09-03")} />
+    );
     expect(getByText("TEST CUSTOM COMPONENT")).toBeInTheDocument();
   });
 });

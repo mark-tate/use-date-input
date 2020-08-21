@@ -103,9 +103,9 @@ const Week = forwardRef(function Week({ className, days, parentMonth }, ref) {
 Week.propTypes = {
   /** Class name of root element */
   className: PropTypes.string,
-  /** Array of dates to render **/
+  /** Array of dates to render */
   days: PropTypes.array,
-  /** parentMonth **/
+  /** parentMonth */
   parentMonth: PropTypes.object
 };
 

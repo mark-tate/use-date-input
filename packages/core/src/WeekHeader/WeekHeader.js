@@ -32,7 +32,7 @@ const WeekHeader = forwardRef(function WeekHeader({ className }, ref) {
 });
 
 WeekHeader.propTypes = {
-  /* Classname */
+  /** Class name of root element */
   className: PropTypes.string
 };
 

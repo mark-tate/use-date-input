@@ -14,7 +14,7 @@ export const DayOfWeek = forwardRef(function DayOfWeek(
 DayOfWeek.propTypes = {
   /** Day of week node */
   children: PropTypes.node,
-  /* Classname */
+  /** Class name of root element */
   className: PropTypes.string,
   /** Day of week expanded label */
   description: PropTypes.string

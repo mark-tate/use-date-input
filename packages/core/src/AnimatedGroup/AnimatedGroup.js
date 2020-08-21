@@ -50,14 +50,23 @@ AnimatedGroup.defaultProps = {
 };
 
 AnimatedGroup.propTypes = {
+  /** Children */
   children: PropTypes.node,
+  /** Class name of root element */
   className: PropTypes.string,
+  /** Duration of animation in msecs */
   durationMsecs: PropTypes.number,
-  direction: PropTypes.string,
+  /** Direction of animation */
+  direction: PropTypes.oneOf(["forward", "back"]),
+  /** Pixel movement required */
   movement: PropTypes.number,
+  /** Number of columns visible */
   numOfColumns: PropTypes.number,
+  /** Callback called onEnter */
   onEnter: PropTypes.func,
+  /** Callback called onExited */
   onExited: PropTypes.func,
+  /** Key for animation */
   transitionKey: PropTypes.string
 };
 
