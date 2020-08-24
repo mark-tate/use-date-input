@@ -1,44 +1,54 @@
 import styled from "styled-components";
 
 export const StyledYearTitle = styled.span(props => {
-  const getComponentOverrides = props.theme.getCalendarOverrides("YearTitle");
+  const componentOverrides =
+    props.theme && props.theme.getCalendarOverrides
+      ? props.theme.getCalendarOverrides("YearTitle")(props)
+      : {};
   return {
     alignSelf: "center",
-    ...getComponentOverrides(props)
+    ...componentOverrides
   };
 });
 
 export const StyledPreviousButton = styled.button(props => {
-  const getComponentOverrides = props.theme.getCalendarOverrides(
-    "PreviousButton"
-  );
+  const componentOverrides =
+    props.theme && props.theme.getCalendarOverrides
+      ? props.theme.getCalendarOverrides("PreviousButton")(props)
+      : {};
   return {
     marginLeft: "5px",
     "::before": {
       content: "'<'"
     },
-    ...getComponentOverrides(props)
+    ...componentOverrides
   };
 });
 
 export const StyledNextButton = styled.button(props => {
-  const getComponentOverrides = props.theme.getCalendarOverrides("NextButton");
+  const componentOverrides =
+    props.theme && props.theme.getCalendarOverrides
+      ? props.theme.getCalendarOverrides("NextButton")(props)
+      : {};
   return {
     marginRight: "5px",
     "::before": {
       content: "'>'"
     },
-    ...getComponentOverrides(props)
+    ...componentOverrides
   };
 });
 
 export function withStyledHeader(component) {
   const StyledComponent = styled(component)(props => {
-    const getComponentOverrides = props.theme.getCalendarOverrides("Header");
+    const componentOverrides =
+      props.theme && props.theme.getCalendarOverrides
+        ? props.theme.getCalendarOverrides("Header")(props)
+        : {};
     return {
       display: "flex",
       justifyContent: "space-between",
-      ...getComponentOverrides(props)
+      ...componentOverrides
     };
   });
   return StyledComponent;

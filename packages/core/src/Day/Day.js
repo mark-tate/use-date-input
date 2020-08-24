@@ -78,8 +78,6 @@ const Day = forwardRef(function Day(
 Day.propTypes = {
   /** Active cursor type, based on last user selection, defines any visible range */
   activeCursor: PropTypes.oneOf(["keyboard", "mouse"]),
-  /** Day label */
-  children: PropTypes.node,
   /** Class name of root element */
   className: PropTypes.string,
   /** Day object */
@@ -113,7 +111,7 @@ Day.propTypes = {
   /** The tab index */
   tabIndex: PropTypes.number,
   /** Callback to format a date, usd by aria labels */
-  toFormattedDate: PropTypes.func
+  toFormattedDate: PropTypes.func.isRequired
 };
 
 export default Day;

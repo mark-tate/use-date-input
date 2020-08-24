@@ -57,7 +57,6 @@ function AnimatedMonthGroup({
       durationMsecs={numOfColumns * 400}
       transitionKey={key}
       movement={movement}
-      numOfColumns={numOfColumns}
       {...rest}
     />
   );
@@ -66,11 +65,11 @@ AnimatedMonthGroup.propTypes = {
   /** Children */
   children: PropTypes.element,
   /** Ref to the first column */
-  firstColumnRef: PropTypes.object,
+  firstColumnRef: PropTypes.object.isRequired,
   /** Ref to the MonthGroup */
-  groupRef: PropTypes.object,
+  groupRef: PropTypes.object.isRequired,
   /** Visible from date, used to control animation between columns and MonthGroup */
-  visibleFromDate: PropTypes.object
+  visibleFromDate: PropTypes.object.isRequired
 };
 
 export default AnimatedMonthGroup;

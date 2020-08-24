@@ -2,11 +2,46 @@
 name: Popper
 route: /popper
 ---
-# Popper
+import { useState } from 'react';
+import { Playground } from "docz";
+import { CalendarProvider, Popper } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
+import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
 
+## Popper
+`Popper` is an optional component that has been provided to help build datepickers which open within an overlay (portal).
+
+The hooks, [useDateInput](https://mark-tate.github.io/use-date-input/useDateInput) and [useDateRange](https://mark-tate.github.io/use-date-input/useDateRangeInput) support an optional popper that you must render yourself and then apply the `getPopperProps` to.   
+For further examples of this Popper in use with the `use-date-input` hooks, refer to [useDateInput](https://mark-tate.github.io/use-date-input/useDateInput) and [useDateRange](https://mark-tate.github.io/use-date-input/useDateRangeInput).
+
+Otherwise, you can use your own favourite Popper implementation in place of `Popper`.
+
+## Example
+<Playground>
+{() => {
+    const [ open, setOpen ] = useState(false);
+    const [ anchorRef, setAnchorRef ] = useState(null);
+    function handleOpenClick() {
+        setOpen(!open);
+    }
+    return (
+        <>
+            <DemoButton onClick={handleOpenClick} ref={setAnchorRef}>{open ? 'close' : 'open'}</DemoButton>
+            <CalendarProvider adapter={dateAdapter}>
+                <Popper anchorEl={anchorRef} open={open} placement={"bottom-start"}>
+                    <AddYourComponentHere/>
+                </Popper>
+            </CalendarProvider>
+        </>
+    );
+}}
+</Playground>
+
+## Props
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
-| anchorEl| `func or object`| optional| | Anchor element ref|
+| anchorEl| `func or object`| required| | Anchor element ref|
 | children| `node`| optional| | Popper content|
 | clickOutsideWhiteList| `array`| optional| | Click outside white list, will not close the Popper, if clicked *|
 | onClickOutside| `func`| optional| | Callback on click outside *|

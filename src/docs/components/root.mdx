@@ -2,11 +2,55 @@
 name: Root
 route: /root
 ---
-# Root
+import { Playground } from "docz";
+import { Calendar, CalendarProvider, Root } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
+import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
 
+# Root
 The `Root` component is the root component of the `Calendar`.
+
+`Root` enables you to re-compose the Calendar with additional UI elements, such as shortcut lists or additional branding.
+Refer to [Composition](https://mark-tate.github.io/use-date-input/composition).
+
+## Example
+<Playground>
+{() => {
+    function MyRoot(props) {
+        return (
+             <>
+                <div style={{ display: "flex" }}>
+                    <AddYourComponentHere/>
+                    <Root {...props}/>
+                </div>
+             </>
+        );
+    }
+    return (
+        <CalendarProvider adapter={dateAdapter} components={{Root: MyRoot}}>
+            <Calendar/>
+        </CalendarProvider>
+    );
+}}
+</Playground>
 
 ## Props
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | className| `string`| optional| | Class name of root element|
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { Root } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableMonthRoot } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  

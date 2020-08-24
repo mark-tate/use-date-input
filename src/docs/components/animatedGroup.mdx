@@ -2,19 +2,81 @@
 name: AnimatedGroup
 route: /animatedGroup
 ---
-# AnimatedGroup
+import { useState } from 'react';
+import Button from '@material-ui/core/Button';
+import { Playground } from "docz";
+import { AnimatedGroup } from "@use-date-input/core";
+import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
+import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
 
-The `AnimatedGroup` component animates it's children.
+# AnimatedGroup
+The `AnimatedGroup` component animates it's children by the specified `movement` in `direction` for `durationMsecs`.
+
+In the default implementation, `AnimatedGroup` scrolls it's children, `forward` or `back`.
+
+## Example
+<Playground>
+{() => {
+    const [ direction, setDirection ] = useState();
+    const [ key, setKey ] = useState();
+    function generateUID() {
+      return Math.random()
+        .toString(36)
+        .replace(/[^a-z]+/g, "")
+        .substr(2, 10);
+    }
+    function handleForwardClick() {
+        setDirection('forward');
+        setKey(generateUID());
+    }
+    function handleBackClick() {
+        setDirection('back');
+        setKey(generateUID());
+    }
+    return (
+        <>
+            <DemoButtonBar>
+                <DemoButton onClick={handleForwardClick} variant="contained" color="primary">Back</DemoButton>
+                <DemoButton onClick={handleBackClick} variant="contained" color="primary">Forward</DemoButton>
+            </DemoButtonBar>
+            <div style={{ width: "200px"}}>
+                <AnimatedGroup 
+                    direction={direction} 
+                    durationMsecs={5000} movement={200} 
+                    transitionKey={key}>
+                    <AddYourComponentHere/>
+                </AnimatedGroup>
+            </div>
+        </>
+    );
+}}
+</Playground>
 
 ## Props
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | children| `node`| optional| | Children|
 | className| `string`| optional| | Class name of root element|
-| direction| `string`| optional| | Direction of animation|
+| direction| [forward, back] | optional| | Direction of animation|
 | durationMsecs| `number`| optional| `1200`| Duration of animation in msecs|
 | movement| `number`| optional| | Pixel movement required|
-| numOfColumns| `number`| optional| | Number of columns visible|
 | onEnter| `func`| optional| | Callback called onEnter|
 | onExited| `func`| optional| | Callback called onExited|
-| transitionKey| `string`| optional| | Key for animation|
+| transitionKey| `string`| required| | Key for animation|
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { AnimatedGroup } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableAnimatedGroup } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  

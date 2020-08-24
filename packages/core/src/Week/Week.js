@@ -104,9 +104,9 @@ Week.propTypes = {
   /** Class name of root element */
   className: PropTypes.string,
   /** Array of dates to render */
-  days: PropTypes.array,
+  days: PropTypes.array.isRequired,
   /** parentMonth */
-  parentMonth: PropTypes.object
+  parentMonth: PropTypes.object.isRequired
 };
 
 export default memo(Week);

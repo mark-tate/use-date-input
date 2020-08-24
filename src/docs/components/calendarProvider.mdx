@@ -7,16 +7,20 @@ import {
 } from "@/core/src/CalendarProvider";
 
 # CalendarProvider
+A `CalendarProvider` creates a Context required to link a `Calendar` with other components and holds the state of the component.  
 
-A `CalendarProvider` creates a Context required to link a `Calendar` with other components.
+To interact with the config or state created by the context, you should use the hooks provided.
 
-Used in conjunction with `useDateInput/useDateRangeInput` hooks, a`CalendarProvider` creates a Context required to link  
-a `Calendar` with other components.
+- [useDateAPI](https://mark-tate.github.io/use-date-input/useDateInput]/useDateAPI)
+- [useCalendarDispatch](https://mark-tate.github.io/use-date-input/useDateInput]/useCalendarDispatch)
+- [useCalendarProps](https://mark-tate.github.io/use-date-input/useDateInput]/useCalendarProps)
+- [useCalendarState](https://mark-tate.github.io/use-date-input/useDateInput]/useCalendarState)
+- [useDateInput](https://mark-tate.github.io/use-date-input/useDateInput]/useDateInput) 
+- [useDateRangeInput](https://mark-tate.github.io/use-date-input/useDateInput]/useDateRangeInput)
+
+You can either wrap a composition in `CalendarProvider` yourself or if using `Calendar` on it's own, then `Calendar` will create the context for you.
  
-Pass the props returned by `getCalendarProviderProps` to `CalendarProvider` to wire the `Calendar` and input controls to
-each other.
-
-Refer to the `useDateInput` and `useDateRange` documentation for examples.
+Refer to the [useDateInput](https://mark-tate.github.io/use-date-input/useDateInput) and [useDateRange](https://mark-tate.github.io/use-date-input/useDateRangeInput) documentation for examples.
 
 
 ## Props 
@@ -37,6 +41,6 @@ Refer to the `useDateInput` and `useDateRange` documentation for examples.
 | numOfVisibleMonths| `number`| optional| `1`| Number of visible months|
 | onCalendarChange| `func`| optional| | Selected date change handler|
 | onStateChange| `func`| optional| | State change handler|
-| reducer| `func`| optional| | Reducer, to externalize control of state|
+| reducers| `array of funcs`| optional| | Reducer(s), to override default state|
 | weekOffset| `number`| optional| | Start of week offset from date API's default|
-~                                                                                                
+                                                                                               

@@ -1,0 +1,174 @@
+---
+name: Composition
+route: /composition
+---
+import { useRef, useState } from 'react';
+import { Playground } from 'docz'
+import styled from "styled-components";
+import { createDateAPI, Calendar, CalendarProvider, Day, useCalendarDispatch, useCalendarState, Root } from "@use-date-input/core";
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import dateAdapter from "@use-date-input/date-fns-adapter";
+
+import getDay from "date-fns/getDay";
+
+# Composition
+
+When you want to do more than style the default components through [theming](https://mark-tate.github.io/use-date-input/theming) you can replace the default components, 
+with either your own components or use the default components to build a new composition.
+
+`CalendarProvider` provides a `components` prop to replace named components with your own version. 
+This provides several options
+
+- you can change change behavior of the default components
+- you can create new compositions of the default components with your own components
+
+Common use-cases might be to build a composition of a `Calendar` and a shortcut list or compose the `Calendar` together with other UI controls or branding.
+
+If you want to extend/replace components then redefine those components via their name, using the `components` prop.  
+
+```javascript
+import dateAdapter from "../packages/date-fns-adapter";
+import { Calendar } from "../packages/core";
+
+const myComponents = {
+    Root: props => { /* My component */ },
+    Header: props => {},
+    AnimatedMonthGroup: props => {},
+    AnimatedGroup: props => {},
+    MonthGroup: props => {},
+    Month: props => {},
+    MonthHeader: props => {},
+    Week: props => {},
+    WeekHeader: props => {},
+    DayOfWeek: props => {},
+    Day: props => {}
+};
+
+const MyCalendar = () => {
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            components={myComponents}
+        />
+    );
+};
+``` 
+   
+For instance, if you want to style days with your own state (such as blocked or un-available), then you simply replace or 
+extend the current `Day` component
+
+<Playground>
+{() => {
+    // import styled from "styled-components";
+    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import getDay from "date-fns/getDay";
+    // import { Calendar, Day } from "@use-date-input/core";
+    const MONDAY = 1;
+    const UnavailableDay = styled(Day)(props => ({
+        background: 'url("/public/cross.svg")',
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "bottom 6px right 5px",
+        backgroundSize: "50% 50%, auto"
+    }));
+    const isMonday = (date) => getDay(date) === MONDAY;
+    function BlockoutMondaysRenderer(props) {
+        if (isMonday(props.day)) {
+            return (
+                <span style={{ cursor: "not-allowed" }}>
+                    <UnavailableDay {...props} disabled />
+                </span>
+            );
+        }
+        return <Day {...props} />;
+    }
+    return (
+    <Calendar
+        adapter={dateAdapter}
+        components={{
+            Day: BlockoutMondaysRenderer
+        }}
+        isDayDisabled={isMonday}
+        numOfVisibleMonths={2}
+        numOfColumns={2}
+    />);
+    }
+}
+</Playground>
+
+Here is an example of `Calendar` composed together with components from Material-UI to create an additional list of shorcuts. 
+This example uses a hook called `useCalendarDispatch`, to access dispatch methods, allowing you to dispatch actions to the reducer 
+from your custom Root.
+
+In the example below, select a startDate, to see a Material-UI List control appear.
+
+<Playground>
+{() => {
+    // import { createDateAPI, Calendar, CalendarProvider, useCalendarDispatch, useCalendarState, Root } from "@use-date-input/core";
+    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { makeStyles } from '@material-ui/core/styles';
+    // import List from '@material-ui/core/List';
+    // import ListItem from '@material-ui/core/ListItem';
+    // import ListItemText from '@material-ui/core/ListItemText';
+    const ShortcutList = () => {
+        const dateAPI = createDateAPI({ adapter: dateAdapter });
+        const useStyles = makeStyles(theme => ({
+            root: {
+                backgroundColor: theme.palette.background.paper,
+                color: theme.palette.primary.main,
+                display: 'inline-block',
+                marginTop: '40px',
+                verticalAlign: 'top',
+                width: 150
+            }
+        }));
+        const { startDate } = useCalendarState();
+        const { setEndDate, setVisibleFromDate } = useCalendarDispatch();
+        const classes = useStyles();
+        if (!startDate) {
+            return null;
+        }
+        const createNightsSelectHandler = numOfNights => () => {
+            setEndDate(dateAPI.addDays(startDate, numOfNights));
+            setVisibleFromDate(dateAPI.startOfMonth(startDate));
+        };
+        const handleTenNights = createNightsSelectHandler(10);
+        const handleSevenNights = createNightsSelectHandler(7);
+        const handleThreeNights = createNightsSelectHandler(3);
+        return (
+            <div className={classes.root}>
+                <List component="nav" dense aria-label="date range shortcuts">
+                    <ListItem button onClick={handleTenNights}>
+                        <ListItemText primary="Stay for 10 nights" />
+                    </ListItem>
+                    <ListItem button onClick={handleSevenNights}>
+                        <ListItemText primary="Stay for 7 nights" />
+                    </ListItem>
+                    <ListItem button onClick={handleThreeNights}>
+                        <ListItemText primary="Stay for 3 nights" />
+                    </ListItem>
+                </List>
+            </div>
+        );
+    }
+    const CustomRoot = (props) => (
+        <div>
+            <ShortcutList />
+            <Root {...props} />
+        </div>
+    );
+    return (
+        <Calendar
+            adapter={dateAdapter}
+            allowRange
+            components={{
+                Root: CustomRoot
+            }}
+            numOfVisibleMonths={12}
+            numOfColumns={4}
+        />
+    );
+}}
+</Playground>

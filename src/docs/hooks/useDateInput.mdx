@@ -39,6 +39,7 @@ ie. an Input when clicked display the Calendar in a portal, which overlays the r
 
 When your `input` and `Calendar` are composed together by `useDateInput` it should look like this
 
+## Example
 <Playground >
   {() => {
     const [date, setDate] = useState('');
@@ -72,8 +73,10 @@ When your `input` and `Calendar` are composed together by `useDateInput` it shou
                     onCalendarChange: handleCalendarChange
                 })}
             >
-                <Popper {...getPopperProps()}>
-                    <Calendar />
+                <Popper {...getPopperProps({ placement: "bottom-start"})}>
+                    <div style={{ background: "#1FB6FF", padding: "10px"}}>
+                        <Calendar />
+                    </div>
                 </Popper>
             </CalendarProvider>
         </>

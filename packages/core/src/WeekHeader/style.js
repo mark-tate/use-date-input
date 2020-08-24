@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export function withStyledWeekHeader(component) {
   const StyledComponent = styled(component)(props => {
-    const getComponentOverrides = props.theme.getCalendarOverrides(
-      "WeekHeader"
-    );
+    const componentOverrides =
+      props.theme && props.theme.getCalendarOverrides
+        ? props.theme.getCalendarOverrides("WeekHeader")(props)
+        : {};
     return {
       width: "100%",
-      ...getComponentOverrides(props)
+      ...componentOverrides
     };
   });
   return StyledComponent;

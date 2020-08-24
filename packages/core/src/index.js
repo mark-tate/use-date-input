@@ -23,11 +23,22 @@ export { CustomisableWeek, default as Week } from "./Week";
 export { CustomisableWeekHeader, default as WeekHeader } from "./WeekHeader";
 export { default as CalendarWithFocusLock } from "./CalendarWithFocusLock";
 
-export * from "./reducers/calendarReducer";
-export * from "./reducers/dateInputReducer";
-export * from "./reducers/dateRangeInputReducer";
-export * from  "./reducers/dateRangeReducer";
-export * from "./reducers/singleDateReducer";
+export {
+  default as calendarReducer,
+  calendarActions,
+  cursorType
+} from "./reducers/calendarReducer";
+export {
+  default as dateInputReducer,
+  dateInputActions
+} from "./reducers/dateInputReducer";
+export {
+  default as dateRangeInputReducer,
+  dateRangeInputActions,
+  dateRangeInputType
+} from "./reducers/dateRangeInputReducer";
+export { default as dateRangeReducer } from "./reducers/dateRangeReducer";
+export { default as singleDateReducer } from "./reducers/singleDateReducer";
 
 export { default as callAll } from "./callAll";
 export { default as createCalendarModel } from "./createCalendarModel";

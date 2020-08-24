@@ -81,7 +81,7 @@ Calendar.propTypes = {
   /** Number of visible months */
   numOfVisibleMonths: PropTypes.number,
   /** Selected date change handler */
-  onChange: PropTypes.func,
+  onCalendarChange: PropTypes.func,
   /** State change handler */
   onStateChange: PropTypes.func,
   /** Theme */

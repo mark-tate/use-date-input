@@ -2,12 +2,50 @@
 name: Month
 route: /month
 ---
-# Month
+import { Playground } from "docz";
+import { Month, CalendarProvider, useDateAPI } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
 
+# Month
 The `Month` components renders a calendar month.
+
+In the default implementation, [MonthGroup](https://mark-tate.github.io/use-date-input/monthGroup) is the parent of `Month`.
+
+## Example
+<Playground>
+{() => {
+    function MonthExample() {
+        const { createDate } = useDateAPI();
+        const month = createDate();
+        return (<Month month={month} />);
+    } 
+    return (
+        <CalendarProvider adapter={dateAdapter}>
+            <MonthExample />
+        </CalendarProvider>
+    );
+}}
+</Playground>
 
 ## Props
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | className| `string`| optional| | Class name of root element|
 | month| `object`| optional| | Month |
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { Month } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableMonth } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  
+

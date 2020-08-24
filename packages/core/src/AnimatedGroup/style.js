@@ -74,5 +74,4 @@ export const withStyledGroup = GroupComponent => styled(GroupComponent)`
   position: relative;
   flex-direction: ${({ direction }) =>
     direction === "forward" ? "row-reverse" : "row"};
-  //width: 140px;
 `;

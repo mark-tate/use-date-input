@@ -2,9 +2,45 @@
 name: ClickOutside
 route: /clickOutside
 ---
-# ClickOutside
+import { useRef } from "react";
+import { Playground } from "docz";
+import { ClickOutside } from "@use-date-input/core";
+import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
 
+# ClickOutside
 The `ClickOutside` component is used to detect when the mouse is clicked outside the calendar.
+
+In the default implementation `ClickOutside` is used to determine when to close the `Calendar` when rendered inside a `Popper`. 
+Clicks within the `Calender` or on the associated inputs should not close the `Calendar` but everywhere else should.
+
+## Example
+In this example when you click the buttons they log whether or not it considers it a click outside the rendered tree. 
+In addition an allow list of refs can be provided which are also classed as not outside the renderd tree.
+
+<Playground>
+{() => {
+    const allowRef = useRef();
+    const clickOutsideAllowList=[allowRef];
+    function handleClickOutside() {
+        console.log('you clicked outside the component');
+    }
+    return (
+        <>
+            <DemoButtonBar>
+                <DemoButton>Click Outside</DemoButton>
+                <DemoButton ref={allowRef}>Click Outside (but in the allow list)</DemoButton>
+            </DemoButtonBar>
+            <ClickOutside
+                onClickOutside={handleClickOutside}
+                whitelistRefs={clickOutsideAllowList}
+            >
+                <DemoButton>Click Inside</DemoButton>
+            </ClickOutside>
+        </>
+    );
+}}
+</Playground>
 
 ## Props 
 | Prop Name | Type | Is Required | Default Value | Description |

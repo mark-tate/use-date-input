@@ -2,11 +2,42 @@
 name: Header
 route: /header
 ---
-# Header
+import { Playground } from "docz";
+import { Header, CalendarProvider } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
 
+# Header
 The `Header` component renders the `Calendar` header.
 
-## Props
+In the default implementation, [Root](https://mark-tate.github.io/use-date-input/root) is the parent of `Header`.
+By default `Header` uses the visibleFromDate and renders the current year as it's title, alongside the navigation buttons.
+
+## Example
+<Playground>
+    <CalendarProvider adapter={dateAdapter}>
+        <div style={{ width: "200px" }}>
+            <Header />
+        </div>
+    </CalendarProvider>
+</Playground>
+
+## Props 
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | className| `string`| optional| | Class name of root element|
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { Header } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableHeader } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  

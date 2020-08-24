@@ -60,14 +60,12 @@ AnimatedGroup.propTypes = {
   direction: PropTypes.oneOf(["forward", "back"]),
   /** Pixel movement required */
   movement: PropTypes.number,
-  /** Number of columns visible */
-  numOfColumns: PropTypes.number,
   /** Callback called onEnter */
   onEnter: PropTypes.func,
   /** Callback called onExited */
   onExited: PropTypes.func,
   /** Key for animation */
-  transitionKey: PropTypes.string
+  transitionKey: PropTypes.string.isRequired
 };
 
 export default AnimatedGroup;

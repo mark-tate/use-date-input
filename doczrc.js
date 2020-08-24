@@ -1,12 +1,16 @@
 export default {
-  base: '/docs',
-  title: '@useDateInput - A Composable Date Picker',
+  base: 'use-date-input',
+  title: 'use-date-input - Build Your Own Date Picker',
   editBranch: "https://github.com/mark-tate/use-date-input",
+  dest: './docs',
+  propsParser: false,
+  src: './src',
   menu: [
     "Home",
     "Getting Started",
     "State",
     "Theming",
+    "Composition",
     "Date Frameworks",
     "Localization",
     {
@@ -39,13 +43,5 @@ export default {
         { name: "useCalendarDispatch", route: "/useCalendarDispatch", menu: "Hooks" }
       ]
     },
-    {
-      name: "useDateInput",
-      menu: []
-    },
-  ],
-  base: 'use-date-input',
-  dest: './docs',
-  propsParser: false,
-  src: './src'
+  ]
 };

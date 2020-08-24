@@ -12,6 +12,9 @@ import dateAdapter from '@use-date-input/date-fns-adapter';
 
 `useCalendarProps` is a hook which will provide the props provided to `CalendarProvider`.
 
+This hook can be used to add yuor own props to the context.
+
+## Example
 <Playground>
 {() => {
     const [selectedDate, setSelectedDate] = useState();
@@ -29,7 +32,7 @@ import dateAdapter from '@use-date-input/date-fns-adapter';
         <CalendarProvider
             adapter={dateAdapter}
             onCalendarChange={setSelectedDate}
-            myExtraLabel={"Add any additonal props you need and access them with useCalendarProps"}
+            myExtraLabel={"My Calendar:"}
         > 
             <DateLabel selectedDate={selectedDate}/>
             <Calendar />

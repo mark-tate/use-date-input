@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import useForkRef from "../useForkRef";
 
 export const ClickOutside = forwardRef(function ClickOutside(
-  { children, onClickOutside, whitelistRefs, ...rest },
+  { children, onClickOutside, whitelistRefs = [], ...rest },
   ref
 ) {
   const containerRef = useRef(null);
@@ -19,7 +19,7 @@ export const ClickOutside = forwardRef(function ClickOutside(
       const hasClickedWhiteList = [containerRef, ...whitelistRefs].some(ref => {
         return ref.current && ref.current.contains(event.target);
       });
-      if (!hasClickedWhiteList) {
+      if (!hasClickedWhiteList && onClickOutside) {
         onClickOutside(event);
       }
     },

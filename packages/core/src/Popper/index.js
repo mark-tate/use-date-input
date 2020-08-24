@@ -59,7 +59,7 @@ const Popper = forwardRef(
 Popper.displayName = "Popper";
 Popper.propTypes = {
   /** Anchor element ref */
-  anchorEl: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  anchorEl: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   /** Popper content */
   children: PropTypes.node,
   /** Click outside white list, will not close the Popper, if clicked **/
