@@ -10,6 +10,7 @@ export default {
     "Getting Started",
     "State",
     "Theming",
+    "Composition",
     "Date Frameworks",
     "Localization",
     {
