@@ -5,12 +5,11 @@ import { Global } from "@emotion/core";
 import { jsx, Box } from "theme-ui";
 import { useMenus, useCurrentDoc } from "docz";
 
-import * as styles from './styles'
+import * as styles from "./styles";
 import { NavLink } from "gatsby-theme-docz/src/components/NavLink/index";
 import { NavGroup } from "gatsby-theme-docz/src/components/NavGroup/index";
 
 const filter = item => {
-  console.log('xxxxxx', item);
   return (
     !item.filepath ||
     (item.filepath.indexOf("components") === -1 &&

@@ -10,8 +10,7 @@ import { parse, isValid } from 'date-fns';
 
 # useDateRangeInput
 
-`useDateRangeInput` is a hook which will provide the props required to compose together a `Calendar`
-with a pair of`input` components of your choice.
+`useDateRangeInput` is a hook which will provide the props required to compose together a `Calendar` with a pair of`input` components of your choice.
 
 Like with `useDateInput` you can use an HTML `input`, or an `Input` or `Formfield` from your favourite UI framework, or even your own component.
 
@@ -40,6 +39,8 @@ Popper's are a portal which are only needed if you are open the Calendar from an
 ie. an Input when clicked display the Calendar in a portal, which overlays the rest of the page.  
 
 When your `input` components and `Calendar` are composed together by `useDateRangeInput` it should look like this
+
+## Example
 
 <Playground >
 {() => {
@@ -93,14 +94,15 @@ When your `input` components and `Calendar` are composed together by `useDateRan
                     onStateChange: handleStateChange
                 })}
             >
-                <Popper {...getPopperProps()}>
-                    <Calendar />
+                <Popper {...getPopperProps({ placement: "bottom-start" })}>
+                    <div style={{ background: "#1FB6FF", padding: "10px"}}>
+                        <Calendar />
+                    </div>
                 </Popper>
             </CalendarProvider>
         </>
     );
-}
-}
+}}
 </Playground>
 
 ## Actions 

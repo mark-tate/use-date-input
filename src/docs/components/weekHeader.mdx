@@ -2,11 +2,41 @@
 name: WeekHeader
 route: /weekHeader
 ---
-# WeekHeader
+import { Playground } from "docz";
+import { CalendarProvider, WeekHeader } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
 
+# WeekHeader
 The `WeekHeader` component renders the days of the week within the month header.
+
+## Example
+<Playground>
+{() => {
+    return (
+        <CalendarProvider adapter={dateAdapter}>
+            <WeekHeader/>
+        </CalendarProvider>
+    );
+}}
+</Playground>
 
 ## Props 
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | className| `string`| optional| | Class name of root element |
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { WeekHeader } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { WeekHeader } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  

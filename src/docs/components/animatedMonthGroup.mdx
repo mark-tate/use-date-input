@@ -2,15 +2,86 @@
 name: AnimatedMonthGroup
 route: /animatedMonthGroup
 ---
-# AnimatedMonthGroup
+import { useState, useRef } from 'react';
+import Button from '@material-ui/core/Button';
+import { Playground } from "docz";
+import { AnimatedMonthGroup, CalendarProvider } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
+import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
+import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
 
-The `AnimatedMonthGroup` component animates it's children.
+# AnimatedMonthGroup
+The `AnimatedMonthGroup` component animates it's children based on the change of the `visibleFromDate` and refs, applied to the first (`firstColumnRef`). and last column (`groupRef`).
+
+In the default implementation, [AnimatedMonthGroup](https://mark-tate.github.io/use-date-input/animatedMonthGroup) is the parent of `AnimatedMonth` and is used to manage
+scroll movement between columns based on the changes to `visibleFromDate`.
+
+## Example
+<Playground>
+{() => {
+    const { createDate, addMonths, subtractMonths } = dateAdapter();
+    const [ visibleFromDate, setVisibleFromDate ] = useState(createDate());
+    const column1Ref = useRef();
+    const groupRef = useRef();
+    function handleNextMonthClick() {
+        const nextMonth = addMonths(visibleFromDate, 1);
+        setVisibleFromDate(nextMonth);
+    }
+    function handlePreviousMonthClick() {
+        const previousMonth = subtractMonths(visibleFromDate, 1);
+        setVisibleFromDate(previousMonth);
+    }
+    function handleNextQuarterClick() {
+        const nextMonth = addMonths(visibleFromDate, 3);
+        setVisibleFromDate(nextMonth);
+    }
+    function handlePreviousQuarterClick() {
+        const nextMonth = subtractMonths(visibleFromDate, 3);
+        setVisibleFromDate(nextMonth);
+    }
+    return (
+        <CalendarProvider adapter={dateAdapter} numOfColumns={3}>
+            <DemoButtonBar>
+                <DemoButton onClick={handleNextMonthClick}>Next Month</DemoButton>
+                <DemoButton onClick={handlePreviousMonthClick}>Previous Month</DemoButton>              
+                <DemoButton onClick={handlePreviousQuarterClick}>Previous Quarter</DemoButton>
+                <DemoButton onClick={handleNextQuarterClick}>Next Quarter</DemoButton>
+            </DemoButtonBar>
+            <div style={{ width: "600px"}}>
+                <AnimatedMonthGroup firstColumnRef={column1Ref} groupRef={groupRef} visibleFromDate={visibleFromDate}>
+                    <div ref={groupRef}>
+                        <AddYourComponentHere style={{display: "inline-flex"}} ref={column1Ref}>Column 1</AddYourComponentHere>
+                        <AddYourComponentHere style={{display: "inline-flex"}} >Column 2</AddYourComponentHere>
+                        <AddYourComponentHere style={{display: "inline-flex"}} >Column 3</AddYourComponentHere>
+                    </div>
+                </AnimatedMonthGroup>
+            </div>
+        </CalendarProvider>
+    );
+}}
+</Playground>
 
 ## Props
-## AnimatedMonthGroup Props Table
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | children| `element`| optional| | Children|
-| firstColumnRef| `object`| optional| | Ref to the first column|
-| groupRef| `object`| optional| | Ref to the MonthGroup|
-| visibleFromDate| `object`| optional| | Visible from date, used to control animation between columns and MonthGroup|
+| firstColumnRef| `object`| required| | Ref to the first column|
+| groupRef| `object`| required| | Ref to the MonthGroup|
+| visibleFromDate| `object`| required| | Visible from date, used to control animation between columns and MonthGroup|
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { AnimatedMonthGroup } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableAnimatedMonthGroup } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  

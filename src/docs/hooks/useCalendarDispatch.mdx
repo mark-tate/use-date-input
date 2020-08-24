@@ -5,9 +5,10 @@ route: /useCalendarDispatch
 import { Playground } from 'docz'
 import { calendarActions, useCalendarDispatch, Calendar, CalendarProvider} from '@use-date-input/core';
 import dateAdapter from '@use-date-input/date-fns-adapter';
+import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
 
 # useCalendarDispatch
-
 `useCalendarDispatch` returns the configured reducers dispatcher, along with a helper API for common actions. 
 
 ```javascript
@@ -30,6 +31,7 @@ const {
 ```
 
 ## Using the dispatcher
+Using the dispatcher we can dispatch any action to the reducers.
 
 <Playground>
 {() => {
@@ -48,13 +50,18 @@ const {
 </Playground>
 
 ## Using the helper API
+Using the dispatcher we can dispatch the most common actions, through helper methods.
 
 <Playground>
 {() => {
-    const MyPanel = () => {
+    function MyPanel() {
         const { navigateNext } = useCalendarDispatch();
         const handleClick = () =>navigateNext();
-        return (<button onClick={handleClick}>navigateNext</button>);
+        return (
+            <DemoButtonBar>
+                <DemoButton onClick={handleClick} {...props}>navigateNext</DemoButton>
+            </DemoButtonBar>
+        );
     };
     return (
         <CalendarProvider adapter={dateAdapter}> 

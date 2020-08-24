@@ -17,32 +17,40 @@ import getDay from "date-fns/getDay";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 
 # Calendar
+The `Calendar` is the basic building block for all calendar controls.
+It supports  
 
-A`Calendar` can be used inline on a page and is also used by the `useDateInput` and `useDateRangeInput` hooks.  
-  
-Alternatively you could use to compose your own date picker components.
+- single or date ranges, via the  configured reducers
+- any date framework, via the date adapter
+- theming
+- localisation, via the format method of the date adapter
+- a11y support
 
-## Props
+In the default implementation `Calendar` is used by the `useDateInput` and `useDateRangeInput` hooks but you can also use inline.  
+Alternatively you could use to compose your own date picker components or dialogs.
 
-| Prop Name | Type | Is Required | Default Value | Description |
-|-|-|-|-|-|
-| adapter| `func`| optional| | Date API adapter|
-| allowRange| `bool`| optional| `false`| When `true` will select a date range|
-| clickOutsideWhiteList| `array`| optional| `[]`| Array of refs to ignore clicks, when determining whether the user clicked outside the Calendar|
-| initialSelectedDate| `object or array`| optional| | The initial selectedDate (for un-controlled use-case)|
-| initialVisibleFromMonth| `object`| optional| | The initial visible from calendar month (unless date is set)|
-| isDayDisabled| `func`| optional| | Callback to set days as disabled   @param day - Date to check        @returns true when disabled|
-| isRangeValid| `func`| optional| | Callback to determine whether the current selection is valid   @param day - startDate    @param day - endDate        @returns true when valid|
-| numOfColumns| `number`| optional| `1`| Number of columns|
-| numOfVisibleMonths| `number`| optional| `1`| Number of visible months|
-| onChange| `func`| optional| | Selected date change handler|
-| onStateChange| `func`| optional| | State change handler|
-| reducers| `array of funcs`| optional| | Reducer(s), to override default state|
-| theme| `object`| optional| | Theme|
-| weekOffset| `number`| optional| `0`| Start of week offset from date API's default|
+If you wrap your `Calendar` in a `CalendarProvider` it will use the state created by it, otherwise, it will internally rende 
+the `Calendar` contents within a `CalendarProvider`. This optimization saves you having to wrap `Calendars` inside `CalendarProvider`,
+if you don't need to.  
+
+The render tree of `Calendar`
+
+```
+Calendar
+|__ Root  
+    |__ Header  
+    |__ MonthGroup  
+        |__ AnimatedMonthGroup  
+            |__ AnimatedGroup  
+                |__ Month  
+                    |__ MonthHeader  
+                        |__ WeekHeader  
+                        |__ Week  
+                            |__ DayOfWeek  
+                            |__ Day  
+```
 
 ## Single Date
-
 By default the `Calendar` will select single dates.
 
 <Playground>
@@ -54,7 +62,6 @@ By default the `Calendar` will select single dates.
 </Playground>
 
 ## Date Range
-
 Using the `allowRange` prop the `Calendar` will select date ranges.
 
 <Playground>
@@ -67,7 +74,6 @@ Using the `allowRange` prop the `Calendar` will select date ranges.
 </Playground>
 
 ## Setting Initial State
-
 The basic component operates as un-controlled, although the reducer pattern enables you to control the final state.  
 This example shows the basic use-case of the initial state.
 
@@ -82,7 +88,7 @@ This example shows the basic use-case of the initial state.
         initialSelectedDate={createDate("2020-02-20")}
         initialVisibleFromMonth={createDate("2020-02-01")}
         numOfVisibleMonths={12}
-        numOfColumns={3}
+        numOfColumns={4}
         onChange={handleChange}
     />
     );
@@ -91,7 +97,6 @@ This example shows the basic use-case of the initial state.
 </Playground>
 
 ## Custom Day Renderers
-
 Add your own renderers for `Day`, to render specific date states with your own styles, using the `ccomponents` prop.  
 
 <Playground>
@@ -125,7 +130,6 @@ Add your own renderers for `Day`, to render specific date states with your own s
 </Playground>
 
 ## Block dates
-
 Block out dates using a custom renderer and the `isDayDisabled` prop.  
 
 <Playground>
@@ -163,7 +167,6 @@ Block out dates using a custom renderer and the `isDayDisabled` prop.
 </Playground>
 
 ## Validate Date Ranges
-
 Validate date ranges with your own rules using the `isRangeValid` prop.  
 
 <Playground>
@@ -199,3 +202,20 @@ Validate date ranges with your own rules using the `isRangeValid` prop.
 }
 </Playground>
 
+## Props
+| Prop Name | Type | Is Required | Default Value | Description |
+|-|-|-|-|-|
+| adapter| `func`| optional| | Date API adapter|
+| allowRange| `bool`| optional| `false`| When `true` will select a date range|
+| clickOutsideWhiteList| `array`| optional| `[]`| Array of refs to ignore clicks, when determining whether the user clicked outside the Calendar|
+| initialSelectedDate| `object or array`| optional| | The initial selectedDate (for un-controlled use-case)|
+| initialVisibleFromMonth| `object`| optional| | The initial visible from calendar month (unless date is set)|
+| isDayDisabled| `func`| optional| | Callback to set days as disabled   @param day - Date to check        @returns true when disabled|
+| isRangeValid| `func`| optional| | Callback to determine whether the current selection is valid   @param day - startDate    @param day - endDate        @returns true when valid|
+| numOfColumns| `number`| optional| `1`| Number of columns|
+| numOfVisibleMonths| `number`| optional| `1`| Number of visible months|
+| onChange| `func`| optional| | Selected date change handler|
+| onStateChange| `func`| optional| | State change handler|
+| reducers| `array of funcs`| optional| | Reducer(s), to override default state|
+| theme| `object`| optional| | Theme|
+| weekOffset| `number`| optional| `0`| Start of week offset from date API's default|

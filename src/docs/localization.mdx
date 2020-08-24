@@ -28,7 +28,7 @@ format(date, formatName)
 ```
 
 - `date` is the date object to format
-- `formatName` is an identifier for the formatted date required
+- `formatName` is an enum for the required format
 
 ##  Format Names
 
@@ -38,112 +38,116 @@ For convenience the format names can be imported from `@use-date-input/core`
 import { formatNames } from `@use-date-input/core`
 ```
 
-To change the text returned for a locale or too customize the labels, then modify the default `format`
-function provided by your adapter.
-
 The full list of `formatName` values
 
-| Format Name | Description |
-| ------- | ---------- |
-| ARIA_DAY_LABEL | Returns aria label for day component |
-| ARIA_START_LABEL | Returns aria label for start of range |
-| ARIA_END_LABEL | Returns aria label for end of range |
-| ISO | Returns date in ISO format |
-| HEADER | Returns header label |
-| DAY | Returns day label |
-| DAY_OF_WEEK_FULL | Returns day of week full label |
-| DAY_OF_WEEK_ABBREVIATED | Returns day of week short label |
-| MONTH | Returns month index |
-| MONTH_ABBREVIATED | Returns month short label |
-| MONTH_FULL | Returns month full label |
-| YEAR | Returns year |
+| Format Name | Description | Example |
+| ------- | ---------- | --- | 
+| ARIA_DAY_LABEL | Returns aria label for day component | 6th August 2020 |
+| ARIA_START_LABEL | Returns aria label for start of range | Selected 15th September 2020 as start date |
+| ARIA_END_LABEL | Returns aria label for end of range | Selected 15th September 2020 as end date |
+| ISO | Returns date in ISO format | 2020-01-17 |
+| HEADER | Returns header label | 2020 |
+| DAY | Returns day label | 17 |
+| DAY_OF_WEEK_FULL | Returns day of week full label | Monday |
+| DAY_OF_WEEK_ABBREVIATED | Returns day of week short label | Mo |
+| MONTH | Returns month index | 1 |
+| MONTH_ABBREVIATED | Returns month short label | Jan |
+| MONTH_FULL | Returns month full label | January |
+| YEAR | Returns year | 2020 |
 
-##  Date-Fns with a Russian locale
 
-As shown here, where we use `Date-Fns` to create a Russian calendar.
+To change the text returned for a locale or to customize the labels, modify the default `format function provided by your adapter.
+
+##  Date-fns with a Russian locale
+
+As shown here, where we use `date-dns` to create a Russian calendar.
 
 <Playground>
 { () => {
-        const russianDateFnsAdapter = adapterArgs => {
-            const dateFnsAPI = dateFnsAdapter(adapterArgs);
-            return {
-                ...dateFnsAPI,
-                format: (date, formatStr) => dateFnsAPI.format(date, formatStr, { locale: ru })
-            };
+    // import { Calendar } from "@use-date-input/core";
+    // import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+    const russianDateFnsAdapter = adapterArgs => {
+        const dateFnsAPI = dateFnsAdapter(adapterArgs);
+        return {
+            ...dateFnsAPI,
+            format: (date, formatStr) => dateFnsAPI.format(date, formatStr, { locale: ru })
         };
-        return (
-            <Calendar
-                adapter={russianDateFnsAdapter}
-                numOfColumns={3}
-                numOfVisibleMonths={12}
-            />
-        );
-    }
-}
+    };
+    return (
+        <Calendar
+            adapter={russianDateFnsAdapter}
+            numOfColumns={3}
+            numOfVisibleMonths={12}
+        />
+    );
+}}
 </Playground>
 
 ##  Dayjs with a Chinese locale
 
 <Playground>
 { () => {
-        const chineseDayJSAdapter = adapterArgs => {
-            const dayjsAPI = dayjsAdapter(adapterArgs);
-            return {
-                ...dayjsAPI,
-                createDate: dateArgs => dayjsAPI.createDate(dateArgs).locale("zh-cn")
-            };
+    // import { Calendar } from "@use-date-input/core";
+    // import dayjsAdapter from "@use-date-input/dayjs-adapter";
+    const chineseDayJSAdapter = adapterArgs => {
+        const dayjsAPI = dayjsAdapter(adapterArgs);
+        return {
+            ...dayjsAPI,
+            createDate: dateArgs => dayjsAPI.createDate(dateArgs).locale("zh-cn")
         };
-        return (
-            <Calendar
-                adapter={chineseDayJSAdapter}
-                numOfColumns={3}
-                numOfVisibleMonths={12}
-            />
-        );
-    }
-}
+    };
+    return (
+        <Calendar
+            adapter={chineseDayJSAdapter}
+            numOfColumns={3}
+            numOfVisibleMonths={12}
+        />
+    );
+}}
 </Playground>
 
 ##  Luxon with a French locale
 
 <Playground>
 { () => {
-        const frenchLuxonAdapter = adapterArgs => {
-          const luxonAPI = luxonAdapter(adapterArgs);
-          return {
-            ...luxonAPI,
-            createDate: date => luxonAPI.createDate(date).setLocale("fr")
-          };
-        };
-        return (
-            <Calendar
-                adapter={frenchLuxonAdapter}
-                numOfColumns={3}
-                numOfVisibleMonths={12}
-            />
-        );
-    }
-}
+    // import { Calendar } from "@use-date-input/core";
+    // import luxonAdapter from "@use-date-input/luxon-adapter";
+    const frenchLuxonAdapter = adapterArgs => {
+      const luxonAPI = luxonAdapter(adapterArgs);
+      return {
+        ...luxonAPI,
+        createDate: date => luxonAPI.createDate(date).setLocale("fr")
+      };
+    };
+    return (
+        <Calendar
+            adapter={frenchLuxonAdapter}
+            numOfColumns={3}
+            numOfVisibleMonths={12}
+        />
+    );
+}}
 </Playground>
 
 ##  Moment with a Spanish locale
 
 <Playground>
 { () => {
-        const spanishMomentAdapter = adapterArgs => {
-          const momentAPI = momentAdapter(adapterArgs);
-          return {
-            ...momentAPI,
-            createDate: dateArgs => momentAPI.createDate(dateArgs).locale("es")
-          };
-        };
-        return (
-            <Calendar
-                adapter={spanishMomentAdapter}
-                numOfColumns={3}
-                numOfVisibleMonths={12}
-            />
-        );
-    }
-}
+    // import { Calendar } from "@use-date-input/core";
+    // import momentAdapter from "@use-date-input/moment-adapter";
+    const spanishMomentAdapter = adapterArgs => {
+      const momentAPI = momentAdapter(adapterArgs);
+      return {
+        ...momentAPI,
+        createDate: dateArgs => momentAPI.createDate(dateArgs).locale("es")
+      };
+    };
+    return (
+        <Calendar
+            adapter={spanishMomentAdapter}
+            numOfColumns={3}
+            numOfVisibleMonths={12}
+        />
+    );
+}}
 </Playground>

@@ -11,7 +11,6 @@ export const NavGroup = ({ item, sidebarRef }) => {
   const currentDoc = useCurrentDoc();
   const currentDocRef = React.useRef();
   const { name, menu } = item;
-  console.log("YYYYYYYYY", currentDoc);
   const [subheadingsVisible, setShowsubheadings] = React.useState(false);
   const toggleSubheadings = () => setShowsubheadings(!subheadingsVisible);
   React.useEffect(() => {

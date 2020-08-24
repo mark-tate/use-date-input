@@ -6,37 +6,73 @@ import { useRef, useState } from 'react';
 import { useDocs, Link, Playground } from 'docz'
 import styled from "styled-components";
 import {
-  createDateAPI,
-  Calendar,
-  CalendarProvider,
-  Day,
-  useCalendarDispatch, 
-  useCalendarState,
-  Root 
+    calendarActions,
+    calendarReducer,
+    createDateAPI,
+    Calendar,
+    CalendarProvider,
+    Day,
+    useCalendarDispatch, 
+    useCalendarState,
+    singleDateReducer,
+    Root 
 } from "@use-date-input/core";
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import dateAdapter from "@use-date-input/date-fns-adapter";
-
 import getDay from "date-fns/getDay";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import sampleTheme from "../../stories/sampleTheme";
 
 # State
 
-## Approach
-
-The state of `use-date-input` components is created and overridable using reducers.
-Change the existing state or create new state, whatever your composed components need.
-
-`use-date-input` comes with a number of common reducers which are composed together to create
+`use-date-input` comes with a set of default reducers which are composed together to create
 the state for `useDateInput`, `useDateRangeInput` and `Calender`.
 
-- calendarReducer  
-Creates the state for a stand-alone `Calendar` with no associated input.
-Associated actions include
+You can override the default state or add additional state, whatever your components need, with the `reducers` prop.  
+The `reducers` prop can be provided to either `CalendarProvider` or `Calendar`.
+
+In this example we change the selection created by the default reducers, so that it adds 1 week to any date that is selected.  
+Any part of the default state can be modified in this way.
+
+<Playground>
+{() => {
+    // import { Calendar, calendarReducer, calendarActions, singleDateReducer } from "@use-date-input/core";
+    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    function handleStateChange(newState, changes) {
+        console.log('new state', newState.startDate, changes);
+    }
+    const myReducer = (state, action, dateAPI) => {
+       if (action.type === calendarActions.selectDate) {
+          return {...state, startDate: dateAPI.addWeeks(state.startDate, 1) }
+       }
+       return state;
+    };
+    return (
+        <Calendar 
+            adapter={dateAdapter} 
+            reducers={[ calendarReducer, singleDateReducer, myReducer]}
+            onStateChange={handleStateChange}
+        />
+    );
+}}
+</Playground>
+
+## Default Reducers  
+
+A brief description of the default reducers.
+
+
+### calendarReducer  
+```javascript
+import { calendarReducer, calendarActions } from "@use-date-input/core";
+```
+
+Creates the state for a stand-alone `Calendar` with no associated input.  
+ 
+Associated actions :  
 
 - focusDate - Focus a specific date
 - keyPress - Keyboard action
@@ -54,33 +90,86 @@ Associated actions include
 - setOpen - Open the visible state of the `Calendar`
 - setVisibleFromDate - Set the initial visible month
 
-- singleDateReducer
-Combines with `calendarReducer` to select a single date.  
+### singleDateReducer
+```javascript
+import { singleDateReducer, calendarActions } from "@use-date-input/core";
+```
 
-- dateRangeReducer
-Combines with `calendarReducer` to select a date Range.
+When combined with the `singleDateReducer` it selects single dates.  
 
-- dateInputReducer  
+Associated actions :  
+
+- Uses the `calendarReducer` actions
+
+### dateRangeReducer
+```javascript
+import { dateRangeReducer, calendarActions } from "@use-date-input/core";
+```
+
+When combined with the `calendarReducer` it selects a date range.   
+
+Associated actions :  
+
+- Uses the `calendarReducer` actions
+
+### dateInputReducer  
+```javascript
+import { dateInputReducer, dateInputActions } from "@use-date-input/core";
+```
+
 Combines with `calendarReducer` to select a single date from either the `Calendar` or an input.
-Associated actions  
+
+Associated actions :  
+
 - blurInput : Blur the associated input's focus
 - focusInput : Focus the associated input
 - focusLock : Enable/Disable the focus lock, so that tabbing behaviour links both input and `Calendar`
 
-- dateRangeInputReducer
-Combines with `calendarReducer` to select a date range from either the `Calendar` or 2 inputs, representing start and end date.
-Associated actions  
+### dateRangeInputReducer
+
+```javascript
+import { dateRangeInputReducer, dateRangeInputActions, dateRangeInputType } from "@use-date-input/core";
+```
+
+Combines with `calendarReducer` to select a date range from either the `Calendar` or 2 inputs, representing the start and end date.  
+
+Associated actions :  
+
 - blurStartDate : Blur the associated input's focus
 - blurEndDate : Blur the associated input's focus
 - focusStartDate : Focus the associated input
 - focusEndDate : Focus the associated input
 - focusLock : Enable/Disable the focus lock, so that tabbing behaviour links both input and `Calendar`
 
-## useCalendarDispatch
+## Reading State
 
-The actions are dispatched via the `useCalendarDispatch` hook.  
+Providing an `onStateChange` callback to the `CalendarProvider` enables you to respond to state change.
+ 
+In this example, `state` and `changes` are logged to the console.
 
-`useCalendarDispatch` returns an API to dispatch the actions.
+<Playground>
+{() => {
+    // import { Calendar } from "@use-date-input/core";
+    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    function handleStateChange(newState, changes) {
+        console.log('new state', newState, changes);
+    }
+    return (
+        <Calendar adapter={dateAdapter} onStateChange={handleStateChange}/>
+    );
+}}
+</Playground>
+
+## Changing State
+
+In addition to the reducers, state can be modified via the `useCalendarDispatch` hook or an `actions` ref.
+
+###  useCalendarDispatch
+
+Actions can be dispatched via an API returned by the `useCalendarDispatch` hook.  
+
+`useCalendarDispatch` can be used in any child of `CalendarProvider`.  
+
 
 ```javascript
 const {
@@ -101,89 +190,28 @@ const {
 } = useCalendarDispatch();
 ```
 
-Either use `dispatch` to dispatch actions for yourself or use the helper function, which wrap the dispatch method.  
+Use `dispatch` or use the helper functions, which wrap the dispatch method, they are equivalent.  
 
-## Example
+Refer to the [useCalendarDispatch](https://mark-tate.github.io/use-date-input/useCalendarDispatch) docs for examples.
 
-Here is an example of `Calendar` composed together with components from Material-UI to create an additional list of shorcuts.  
-This example uses a hook called `useCalendarDispatch`, to access dispatch methods, allowing you to dispatch actions to the reducer  
-from your custom Root.
+### Actions Ref
 
-<Playground>
-{() => {
-    const ShortcutList = () => {
-        const dateAPI = createDateAPI({ adapter: dateAdapter });
-        const useStyles = makeStyles(theme => ({
-            root: {
-                backgroundColor: theme.palette.background.paper,
-                color: theme.palette.primary.main,
-                display: 'inline-block',
-                marginTop: '40px',
-                verticalAlign: 'top',
-                width: 150
-            }
-        }));
-        const { startDate } = useCalendarState();
-        const { setEndDate, setVisibleFromDate } = useCalendarDispatch();
-        const classes = useStyles();
-        if (!startDate) {
-            return null;
-        }
-        const createNightsSelectHandler = numOfNights => () => {
-            setEndDate(dateAPI.addDays(startDate, numOfNights));
-            setVisibleFromDate(dateAPI.startOfMonth(startDate));
-        };
-        const handleTenNights = createNightsSelectHandler(10);
-        const handleSevenNights = createNightsSelectHandler(7);
-        const handleThreeNights = createNightsSelectHandler(3);
-        return (
-            <div className={classes.root}>
-                <List component="nav" dense aria-label="date range shortcuts">
-                    <ListItem button onClick={handleTenNights}>
-                        <ListItemText primary="Stay for 10 nights" />
-                    </ListItem>
-                    <ListItem button onClick={handleSevenNights}>
-                        <ListItemText primary="Stay for 7 nights" />
-                    </ListItem>
-                    <ListItem button onClick={handleThreeNights}>
-                        <ListItemText primary="Stay for 3 nights" />
-                    </ListItem>
-                </List>
-            </div>
-        );
-    }
-    const CustomRoot = (props) => (
-        <div>
-            <ShortcutList />
-            <Root {...props} />
-        </div>
-    );
-    return (
-        <Calendar
-            adapter={dateAdapter}
-            allowRange
-            components={{
-                Root: CustomRoot
-            }}
-            numOfVisibleMonths={12}
-            numOfColumns={4}
-        />
-    );
-}}
-</Playground>
+Providing an `actions` ref to the `CalendarProvider` enables you to control the Component state externally using either the helper functions or the dispatcher itself.
 
-## Changing State
+The ref will be assigned the `useCalendarDispatch` API that enables you to modify the state.
 
-Providing an `actions` ref to the `CalendarProvider` enables you to control the Component state externally using  
-either the helper functions or the dispatcher itself.
+An `actions` ref can be used anywhere, even outside the `CalendarProvider` hierachy and unlike the hook `useCalendarDispatch` can be called, as and when needed.  
 
 In this example, the date range is created by setting the endDate, upon selection of the start date. 
  
 <Playground>
 {() => {
+    // import { useRef, useState } from "react";
+    // import { Calendar, CalendarProvider } from "@use-date-input/core";
+    // imprt dateAdapter from "@use-date-input/date-fns-adapter";
     const [ storeDate, setStoreDate ] = useState();
     const actions = useRef();
-    const handleCalendarChange = value => {
+    function handleCalendarChange(value) {
         const [rangeStart, rangeEnd] = value;
         const { setStartDate, setEndDate, dateAPI } = actions.current;
         if (!dateAPI.isSameDay(storeDate, rangeStart)) {
@@ -191,7 +219,7 @@ In this example, the date range is created by setting the endDate, upon selectio
             setEndDate(endDate);
             setStoreDate(rangeStart);
         }
-    };
+    }
     return (
         <CalendarProvider
             actions={actions}
@@ -205,24 +233,3 @@ In this example, the date range is created by setting the endDate, upon selectio
 }}
 </Playground>
 
-## Reading State
-
-Providing an `onStateChange` callback to the `CalendarProvider` enables you to respond to state change.
- 
-In this example, `state` and `changes` are logged to the console.
-
-<Playground>
-{() => {
-    const handleStateChange = (newState, changes) => {
-        console.log('new state', newState, changes);
-    };
-    return (
-        <CalendarProvider
-            adapter={dateAdapter}
-            onStateChange={handleStateChange}
-        >
-            <Calendar />
-        </CalendarProvider>
-    );
-}}
-</Playground>

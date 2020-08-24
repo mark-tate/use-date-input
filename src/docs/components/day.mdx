@@ -2,15 +2,35 @@
 name: Day
 route: /day
 ---
-# Day
+import { Playground } from "docz";
+import { CalendarProvider, Day, useDateAPI } from "@use-date-input/core";
+import dateAdapter from '@use-date-input/date-fns-adapter';
 
+# Day
 The `Day` components renders a calendar day, based on the current `Calendar` state.
+
+In the default implementation, [Week](https://mark-tate.github.io/use-date-input/week) is the parent of `Day`.
+
+## Example
+<Playground>
+{() => {
+    function DayExample() {
+        const { createDate, toFormattedDate } = useDateAPI();
+        const day = createDate();
+        return (<Day day={day} toFormattedDate={toFormattedDate} />);
+    } 
+    return (
+        <CalendarProvider adapter={dateAdapter}>
+            <DayExample/>
+        </CalendarProvider>
+    );
+}}
+</Playground>
 
 ## Props 
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | activeCursor| `string`| optional| | Active cursor type, based on last user selection, defines any visible range |
-| children| `node`| optional| | Day label |
 | className| `string`| optional| | Class name of root element |
 | day| `object`| optional| | Day object |
 | disabled| `bool`| optional| | Flag indicating whether the day is disabled |
@@ -27,4 +47,20 @@ The `Day` components renders a calendar day, based on the current `Calendar` sta
 | onMouseOverDate| `func`| optional| | Callback called when mouse is over a Day |
 | onSelectDate| `func`| optional| | Callback called on date select |
 | tabIndex| `number`| optional| | The tab index|
-| toFormattedDate| `func`| optional| | Callback to format a date, usd by aria labels|
+| toFormattedDate| `func`| required | | Callback to format a date, used by aria labels|
+
+## Importing
+It can be imported as either the base component
+
+```javascript
+import { Day } from "@use-date-input/core";
+```
+
+or as an overridable component that can be replaced through the `components` prop in `CalendarProvider`.  
+Refer to [How to replace UI components](https://mark-tate.github.io/use-date-input/theming#how-to-replace-ui-components).
+
+```javascript
+import { CustomisableDay } from "@use-date-input/core";
+```
+
+If providing your own component, it can be useful to import the base component and use it within your composition.  
