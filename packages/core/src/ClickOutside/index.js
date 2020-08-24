@@ -23,17 +23,17 @@ export const ClickOutside = forwardRef(function ClickOutside(
 
   useEffect(() => {
     const ownerDocument =
-        (containerRef &&
-            containerRef.current &&
-            containerRef.current.ownerDocument) ||
-        document;
+      (containerRef &&
+        containerRef.current &&
+        containerRef.current.ownerDocument) ||
+      document;
     ownerDocument.addEventListener("mousedown", listener);
     ownerDocument.addEventListener("touchstart", listener);
     return () => {
       ownerDocument.removeEventListener("mousedown", listener);
       ownerDocument.removeEventListener("touchstart", listener);
     };
-  }, [listener]);
+  }, [containerRef, listener]);
 
   return (
     <div ref={handleRef} {...rest}>
