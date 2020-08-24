@@ -6,7 +6,6 @@ import components from "gatsby-theme-docz/src/components/index";
 
 const Theme = ({ children }) => {
   const config = useConfig();
-  console.log(config.themeConfig);
   return (
     <ThemeProvider theme={config.themeConfig}>
       <ComponentsProvider components={components}>
