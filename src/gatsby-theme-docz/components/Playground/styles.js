@@ -61,7 +61,6 @@ export const preview = {
 };
 
 export const buttons = {
-  zIndex: 9,
   display: "flex",
   position: "absolute",
   bottom: -20
