@@ -288,8 +288,8 @@ CalendarProvider.propTypes = {
   onCalendarChange: PropTypes.func,
   /** State change handler */
   onStateChange: PropTypes.func,
-  /** Reducer, to externalize control of state */
-  reducer: PropTypes.func,
+  /** Reducer(s), to override default state */
+  reducers: PropTypes.arrayOf(PropTypes.func),
   /** Start of week offset from date API's default */
   weekOffset: PropTypes.number
 };
