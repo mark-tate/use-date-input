@@ -8,11 +8,6 @@ export const ClickOutside = forwardRef(function ClickOutside(
 ) {
   const containerRef = useRef(null);
   const handleRef = useForkRef(ref, containerRef);
-  const ownerDocument =
-    (containerRef &&
-      containerRef.current &&
-      containerRef.current.ownerDocument) ||
-    document;
 
   const listener = useCallback(
     event => {
@@ -27,13 +22,18 @@ export const ClickOutside = forwardRef(function ClickOutside(
   );
 
   useEffect(() => {
+    const ownerDocument =
+        (containerRef &&
+            containerRef.current &&
+            containerRef.current.ownerDocument) ||
+        document;
     ownerDocument.addEventListener("mousedown", listener);
     ownerDocument.addEventListener("touchstart", listener);
     return () => {
       ownerDocument.removeEventListener("mousedown", listener);
       ownerDocument.removeEventListener("touchstart", listener);
     };
-  }, [listener, ownerDocument]);
+  }, [listener]);
 
   return (
     <div ref={handleRef} {...rest}>
