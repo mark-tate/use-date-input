@@ -1,12 +1,18 @@
 import styled from "styled-components";
 
 export const StyledRow = styled.div(props => {
-  const getComponentOverrides = props.theme.getCalendarOverrides("MonthRow");
-  return getComponentOverrides(props);
+  const componentOverrides =
+    props.theme && props.theme.getCalendarOverrides
+      ? props.theme.getCalendarOverrides("MonthRow")(props)
+      : {};
+  return componentOverrides;
 });
 
 export const StyledCell = styled.div(props => {
-  const getComponentOverrides = props.theme.getCalendarOverrides("MonthCell");
+  const componentOverrides =
+    props.theme && props.theme.getCalendarOverrides
+      ? props.theme.getCalendarOverrides("MonthCell")(props)
+      : {};
   return {
     display: "inline-block",
     verticalAlign: "top",
@@ -16,20 +22,21 @@ export const StyledCell = styled.div(props => {
     "&:last-child": {
       paddingRight: "0px"
     },
-    ...getComponentOverrides(props)
+    ...componentOverrides
   };
 });
 
 export function withStyledMonthGroup(component) {
   const StyledComponent = styled(component)(props => {
-    const getComponentOverrides = props.theme.getCalendarOverrides(
-      "MonthGroup"
-    );
+    const componentOverrides =
+      props.theme && props.theme.getCalendarOverrides
+        ? props.theme.getCalendarOverrides("MonthGroup")(props)
+        : {};
     return {
       paddingTop: "10px",
       paddingLeft: "5px",
       paddingRight: "5px",
-      ...getComponentOverrides(props)
+      ...componentOverrides
     };
   });
   return StyledComponent;

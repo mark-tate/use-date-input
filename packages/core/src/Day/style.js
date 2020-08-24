@@ -123,7 +123,10 @@ const getDayStyle = ({
 
 export function withStyledDay(component) {
   const StyledComponent = styled(component)(props => {
-    const getComponentOverrides = props.theme.getCalendarOverrides("Day");
+    const componentOverrides =
+      props.theme && props.theme.getCalendarOverrides
+        ? props.theme.getCalendarOverrides("Day")(props)
+        : {};
     return {
       outline: "none",
       boxSizing: "border-box",
@@ -133,7 +136,7 @@ export function withStyledDay(component) {
       padding: "2px",
       textAlign: "center",
       ...getDayStyle(props),
-      ...getComponentOverrides(props)
+      ...componentOverrides
     };
   });
   return StyledComponent;
