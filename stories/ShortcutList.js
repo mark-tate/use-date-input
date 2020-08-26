@@ -5,7 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useCalendarDispatch, useCalendarState } from '@use-date-input/core';
 import { createDateAPI } from '@use-date-input/core';
-import dateAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 
 const dateAPI = createDateAPI({ adapter: dateAdapter });
 

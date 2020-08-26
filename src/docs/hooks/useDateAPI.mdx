@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Playground } from 'docz'
 import { useDateAPI, Calendar, CalendarProvider} from '@use-date-input/core';
 import { formatNames } from '@use-date-input/common';
-import dateAdapter from '@use-date-input/date-fns-adapter';
+import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
 
 # useDateAPI
 
@@ -15,6 +15,10 @@ import dateAdapter from '@use-date-input/date-fns-adapter';
 ## Example
 <Playground>
 {() => {
+    // import { useState } from "react";
+    // import { formatNames } from '@use-date-input/common';
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
+    // import { CalendarProvider, calendar, useDateAPI } from "@use-date-input/core";
     const [selectedDate, setSelectedDate] = useState();
     const DateLabel = ({ selectedDate }) => {
         const { format, getDateFormat } = useDateAPI();

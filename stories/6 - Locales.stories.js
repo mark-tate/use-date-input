@@ -1,10 +1,10 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { Calendar } from "../packages/core";
-import dateFnsAdapter from "../packages/date-fns-adapter";
-import dayjsAdapter from "../packages/dayjs-adapter";
-import luxonAdapter from "../packages/luxon-adapter";
-import momentAdapter from "../packages/moment-adapter";
+import { adapter as dateFnsAdapter } from "../packages/date-fns-adapter";
+import { adapter as dayjsAdapter } from "../packages/dayjs-adapter";
+import { adapter as luxonAdapter } from "../packages/luxon-adapter";
+import { adapter as momentAdapter } from "../packages/moment-adapter";
 import "moment/locale/es";
 import "moment/locale/en-gb";
 import "dayjs/locale/zh-cn";

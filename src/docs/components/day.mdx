@@ -4,7 +4,7 @@ route: /day
 ---
 import { Playground } from "docz";
 import { CalendarProvider, Day, useDateAPI } from "@use-date-input/core";
-import dateAdapter from '@use-date-input/date-fns-adapter';
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 
 # Day
 The `Day` components renders a calendar day, based on the current `Calendar` state.

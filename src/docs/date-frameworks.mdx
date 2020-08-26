@@ -6,10 +6,10 @@ import {
     Calendar
 } from "@use-date-input/core";
 import { Playground } from "docz";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
-import luxonAdapter from "@use-date-input/luxon-adapter";
-import momentAdapter from "@use-date-input/moment-adapter"
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
+import { adapter as luxonAdapter } from "@use-date-input/luxon-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 
 # Date Frameworks
 
@@ -44,7 +44,7 @@ npm install -s @use-date-input/date-fns-adapter
 Import the adapter into your component
 
 ```javascript
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
 ```
 
 Use the `adapter` prop with the `use-date-input` components.
@@ -52,7 +52,7 @@ Use the `adapter` prop with the `use-date-input` components.
 <Playground>
 { () => {
     // import { Calendar } from "@use-date-input/core";
-    // import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
     return (
         <Calendar
             adapter={dateFnsAdapter}
@@ -81,7 +81,7 @@ npm install -s @use-date-input/dayjs-adapter
 Import the adapter into your component
 
 ```javascript
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
 ```
 
 Use the `adapter` prop with the `use-date-input` components.
@@ -118,7 +118,7 @@ npm install -s @use-date-input/luxon-adapter
 Import the adapter into your component
 
 ```javascript
-import luxonAdapter from "@use-date-input/dayjs-adapter";
+import { adapter as luxonAdapter } from "@use-date-input/dayjs-adapter";
 ```
 
 Use the `adapter` prop with the `use-date-input` components.
@@ -155,7 +155,7 @@ npm install -s @use-date-input/moment-adapter
 Import the adapter into your component
 
 ```javascript
-import momentAdapter from "@use-date-input/moment-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 ```
 
 Use the `adapter` prop with the `use-date-input` components.
@@ -163,7 +163,7 @@ Use the `adapter` prop with the `use-date-input` components.
 <Playground>
 { () => {
     // import { Calendar } from "@use-date-input/core";
-    // import momentAdapter from "@use-date-input/moment-adapter";
+    // import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
     return (
         <Calendar
             adapter={momentAdapter}
@@ -181,7 +181,7 @@ Date frameworks use different week offsets, so you can customize on `use-date-in
 <Playground>
 { () => {
     // import { Calendar } from "@use-date-input/core";
-    // import luxonAdapter from "@use-date-input/luxon-adapter";
+    // import { adapter as luxonAdapter } from "@use-date-input/luxon-adapter";
     return (
         <Calendar
             adapter={luxonAdapter}
@@ -199,7 +199,7 @@ To write your own adapter or customize the existing adapters, you need to build 
 through the `adapter` prop.
 
 ```javascript
-const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
+const adapter = ({ weekOffset = 0 } = {}) => ({
   addDays,
   addMonths,
   addWeeks,

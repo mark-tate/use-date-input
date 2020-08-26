@@ -10,7 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import dateAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 
 import getDay from "date-fns/getDay";
 
@@ -30,7 +30,7 @@ Common use-cases might be to build a composition of a `Calendar` and a shortcut 
 If you want to extend/replace components then redefine those components via their name, using the `components` prop.  
 
 ```javascript
-import dateAdapter from "../packages/date-fns-adapter";
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 import { Calendar } from "../packages/core";
 
 const myComponents = {
@@ -63,7 +63,7 @@ extend the current `Day` component
 <Playground>
 {() => {
     // import styled from "styled-components";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     // import getDay from "date-fns/getDay";
     // import { Calendar, Day } from "@use-date-input/core";
     const MONDAY = 1;
@@ -107,7 +107,7 @@ In the example below, select a startDate, to see a Material-UI List control appe
 <Playground>
 {() => {
     // import { createDateAPI, Calendar, CalendarProvider, useCalendarDispatch, useCalendarState, Root } from "@use-date-input/core";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     // import { makeStyles } from '@material-ui/core/styles';
     // import List from '@material-ui/core/List';
     // import ListItem from '@material-ui/core/ListItem';

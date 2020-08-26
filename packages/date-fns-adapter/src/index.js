@@ -44,7 +44,7 @@ const formats = {
   [formatNames.YEAR]: "yyyy"
 };
 
-const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
+export const adapter = ({ weekOffset = 0 } = {}) => ({
   addDays,
   addMonths,
   addWeeks,
@@ -77,5 +77,3 @@ const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
   subtractWeeks,
   subtractYears
 });
-
-export default adaptDateAPI;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { action } from "@storybook/addon-actions";
 import { Calendar, createDateAPI } from "../packages/core";
-import dateAdapter from "../packages/date-fns-adapter";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 
 export default {
   title: "1 - Date Range"

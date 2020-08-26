@@ -19,7 +19,7 @@ const formats = {
   [formatNames.YEAR]: "YYYY"
 };
 
-const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
+export const adapter = ({ weekOffset = 0 } = {}) => ({
   addDays: (date, daysToAdd) => date.clone().add(daysToAdd, "days"),
   addMonths: (date, daysToAdd) => date.clone().add(daysToAdd, "months"),
   addWeeks: (date, daysToAdd) => date.clone().add(daysToAdd, "weeks"),
@@ -67,5 +67,3 @@ const adaptDateAPI = ({ weekOffset = 0 } = {}) => ({
   subtractYears: (date, daysToSubtract) =>
     date.clone().subtract(daysToSubtract, "years")
 });
-
-export default adaptDateAPI;
