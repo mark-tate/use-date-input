@@ -241,7 +241,7 @@ function CalendarProvider(props) {
 }
 CalendarProvider.defaultProps = {
   allowRange: false,
-  clickOutsideWhiteList: [],
+  ignoreClickOutsideRefs: [],
   components: {},
   initialEnableKeyboardNavigation: false,
   numOfColumns: 1,
@@ -256,8 +256,6 @@ CalendarProvider.propTypes = {
   allowRange: PropTypes.bool,
   /** Calendar children */
   children: PropTypes.node,
-  /** Array of elements to ignore, when determining a click outside, used to link elements, like date inputs  */
-  clickOutsideWhiteList: PropTypes.array,
   /** Custom Component overrides */
   components: PropTypes.shape({
     AnimatedGroup: PropTypes.elementType,
@@ -270,6 +268,8 @@ CalendarProvider.propTypes = {
     Week: PropTypes.elementType,
     WeekHeader: PropTypes.elementType
   }),
+  /** Array of elements to ignore, when determining a click outside, used to link elements, like date inputs  */
+  ignoreClickOutsideRefs: PropTypes.array,
   /** Initial state of keyboard navigation */
   initialEnableKeyboardNavigation: PropTypes.bool,
   /** Initial selected date */

@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useDateInput, useDateRangeInput, Popper } from "../packages/core";
+import { useDateInput, useDateRangeInput } from "../packages/core";
+import { Popper } from "../packages/popper";
 import dateFnsAdapter from "../packages/date-fns-adapter";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';

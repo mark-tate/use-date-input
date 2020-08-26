@@ -1,7 +1,7 @@
 import React, { createRef } from "react";
 import { fireEvent, render } from "@testing-library/react";
 
-import ClickOutside from "../index";
+import ClickOutside from "../ClickOutside";
 
 describe("given ClickOutside", () => {
   it("passes the ref to the DOM", () => {
@@ -10,30 +10,29 @@ describe("given ClickOutside", () => {
     expect(ref.current).toBeInstanceOf(HTMLDivElement);
   });
 
-  it("calls onClickOutside on whitelist or child click event", () => {
+  it("calls onClickOutside on ignoreList or child click event", () => {
     const handleClickOutsideMock = jest.fn();
-    const insideWhitelistRef = createRef();
-    const outsideWhitelistRef = createRef();
-    const outsideBlacklistRef = createRef();
+    const insideIgnoreListRef = createRef();
+    const allowIgnoreListRef = createRef();
     const { getByText } = render(
       <>
-        <button ref={outsideBlacklistRef}>outside blacklist</button>
-        <button ref={outsideWhitelistRef}>outside whitelist</button>
+        <button>deny clicks</button>
+        <button ref={allowIgnoreListRef}>allow clicks</button>
         <ClickOutside
           onClickOutside={handleClickOutsideMock}
-          whitelistRefs={[outsideWhitelistRef]}
+          ignoreClickOutsideRefs={[allowIgnoreListRef]}
         >
-          <button ref={insideWhitelistRef}>inside whitelist</button>
+          <button ref={insideIgnoreListRef}>inside clickOutside</button>
         </ClickOutside>
       </>
     );
-    fireEvent.mouseDown(getByText("outside blacklist"));
+    fireEvent.mouseDown(getByText("deny clicks"));
     expect(handleClickOutsideMock).toHaveBeenCalled();
     handleClickOutsideMock.mockReset();
-    fireEvent.mouseDown(getByText("inside whitelist"));
+    fireEvent.mouseDown(getByText("allow clicks"));
     expect(handleClickOutsideMock).not.toHaveBeenCalled();
     handleClickOutsideMock.mockReset();
-    fireEvent.mouseDown(getByText("outside whitelist"));
+    fireEvent.mouseDown(getByText("inside clickOutside"));
     expect(handleClickOutsideMock).not.toHaveBeenCalled();
   });
 });

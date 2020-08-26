@@ -4,7 +4,7 @@ route: /clickOutside
 ---
 import { useRef } from "react";
 import { Playground } from "docz";
-import { ClickOutside } from "@use-date-input/core";
+import { ClickOutside } from "@use-date-input/popper";
 import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
 import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
 
@@ -16,12 +16,12 @@ Clicks within the `Calender` or on the associated inputs should not close the `C
 
 ## Example
 In this example when you click the buttons they log whether or not it considers it a click outside the rendered tree. 
-In addition an allow list of refs can be provided which are also classed as not outside the renderd tree.
+In addition an ignored list of refs can be provided which, when clicked, will not invoke `onClickOutside`.
 
 <Playground>
 {() => {
-    const allowRef = useRef();
-    const clickOutsideAllowList=[allowRef];
+    const ignoreRef = useRef();
+    const ignoreListRefs=[ignoreRef];
     function handleClickOutside() {
         console.log('you clicked outside the component');
     }
@@ -29,11 +29,11 @@ In addition an allow list of refs can be provided which are also classed as not 
         <>
             <DemoButtonBar>
                 <DemoButton>Click Outside</DemoButton>
-                <DemoButton ref={allowRef}>Click Outside (but in the allow list)</DemoButton>
+                <DemoButton ref={ignoreRef}>Click Outside (but in the allow list)</DemoButton>
             </DemoButtonBar>
             <ClickOutside
                 onClickOutside={handleClickOutside}
-                whitelistRefs={clickOutsideAllowList}
+                ignoreClickOutsideRefs={ignoreListRefs}
             >
                 <DemoButton>Click Inside</DemoButton>
             </ClickOutside>
@@ -46,5 +46,5 @@ In addition an allow list of refs can be provided which are also classed as not 
 | Prop Name | Type | Is Required | Default Value | Description |
 |-|-|-|-|-|
 | children| `node`| optional| | children to monitor for click outside events|
+| ignoreClickOutsideRefs| `array`| optional| | Additional array of refs, will ignore click outside from|
 | onClickOutside| `func`| optional| | Callback called when the mouse is clicked outside|
-| whitelistRefs| `array`| optional| | List of additional elements to ignore mouse clicks|

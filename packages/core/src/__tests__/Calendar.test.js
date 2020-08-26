@@ -40,14 +40,14 @@ describe("given Calendar", () => {
           numOfColumns,
           numOfVisibleMonths,
           allowRange,
-          clickOutsideWhiteList,
+          ignoreClickOutsideRefs,
           initialSelectedDate,
           initialVisibleFromMonth
         } = useCalendarProps();
         expect(numOfColumns).toEqual(3);
         expect(numOfVisibleMonths).toEqual(6);
         expect(allowRange).toEqual(false);
-        expect(clickOutsideWhiteList).toEqual(["some ref"]);
+        expect(ignoreClickOutsideRefs).toEqual(["some ref"]);
         expect(toFormattedDate(initialVisibleFromMonth)).toEqual("2019-08-01");
         expect(toFormattedDate(initialSelectedDate)).toEqual("2019-08-20");
 
@@ -67,8 +67,8 @@ describe("given Calendar", () => {
 
       render(
         <Calendar
-          clickOutsideWhiteList={["some ref"]}
           components={{ Root: MockSingleDateRoot }}
+          ignoreClickOutsideRefs={["some ref"]}
           initialSelectedDate={createDate("2019-08-20")}
           initialVisibleFromMonth={createDate("2019-08-01")}
           numOfColumns={3}
@@ -83,14 +83,14 @@ describe("given Calendar", () => {
       const reducer = jest.fn(state => state);
       const MockDateRangeRoot = () => {
         const {
-          clickOutsideWhiteList,
+          ignoreClickOutsideRefs,
           numOfColumns,
           numOfVisibleMonths,
           allowRange,
           initialSelectedDate,
           initialVisibleFromMonth
         } = useCalendarProps();
-        expect(clickOutsideWhiteList).toEqual(["some ref"]);
+        expect(ignoreClickOutsideRefs).toEqual(["some ref"]);
         expect(numOfColumns).toEqual(3);
         expect(numOfVisibleMonths).toEqual(6);
         expect(allowRange).toEqual(true);
@@ -113,7 +113,7 @@ describe("given Calendar", () => {
       };
       render(
         <Calendar
-          clickOutsideWhiteList={["some ref"]}
+          ignoreClickOutsideRefs={["some ref"]}
           components={{ Root: MockDateRangeRoot }}
           allowRange
           initialSelectedDate={[

@@ -1,8 +1,8 @@
 {
-  "name": "@use-date-input/core",
+  "name": "@use-date-input/popper",
   "version": "0.1.9-beta.0",
   "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
-  "description": "@use-date-input - Core component and hooks",
+  "description": "@use-date-input - Popper library",
   "license": "MIT",
   "main": "dist/index.js",
   "jsnext:main": "dist/index.esm.js",
@@ -25,31 +25,20 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mark-tate/use-date-input.git",
-    "directory": "packages/core"
+    "directory": "packages/popper"
   },
   "bugs": {
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
   "dependencies": {
-    "@seznam/compose-react-refs": "1.0.4",
+    "@popperjs/core": "^2.4.2",
     "@use-date-input/common": "^0.1.9-beta.0",
-    "clsx": "^1.0.2",
     "prop-types": "^15.7.2",
-    "react-focus-lock": "^2.2.1",
-    "react-transition-group": "^4.3.0",
-    "styled-components": "5.1.0",
-    "use-debounce": "^3.4.0"
-  },
-  "devDependencies": {
-    "date-fns": "^2.12.0",
-    "dayjs": "^1.8.24",
-    "luxon": "^1.23.0",
-    "moment": "^2.24.0"
+    "react-popper": "^2.2.3"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "styled-components": ">=5.1.0"
+    "react-dom": ">=16.8.0"
   },
   "publishConfig": {
     "access": "public"

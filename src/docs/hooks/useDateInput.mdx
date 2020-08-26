@@ -4,7 +4,8 @@ route: /useDateInput
 ---
 import { useCallback, useRef, useState } from 'react'
 import { Playground, Props } from 'docz'
-import { useDateInput, Popper } from '@use-date-input/core';
+import { useDateInput } from '@use-date-input/core';
+import { Popper } from '@use-date-input/popper';
 import dateAdapter from '@use-date-input/date-fns-adapter';
 import { parse, isValid } from 'date-fns';
 

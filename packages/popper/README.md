@@ -1,6 +1,6 @@
-# @use-date-input/common
+# @use-date-input/popper
 
-The commons package for [@use-date-input](https://github.com/mark-tate/use-date-input).  
+An optional popper package for [@use-date-input](https://github.com/mark-tate/use-date-input).  
 
 [@use-date-input](https://github.com/mark-tate/use-date-input) is a collection of React UI components and hooks to help compose date picker components.
 

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 
 function setRef(ref, value) {
   if (typeof ref === "function") {

@@ -1,9 +1,9 @@
 import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import useForkRef from "../useForkRef";
+import { useForkRef } from "@use-date-input/common";
 
 export const ClickOutside = forwardRef(function ClickOutside(
-  { children, onClickOutside, whitelistRefs = [], ...rest },
+  { children, onClickOutside, ignoreClickOutsideRefs = [], ...rest },
   ref
 ) {
   const containerRef = useRef(null);
@@ -11,14 +11,17 @@ export const ClickOutside = forwardRef(function ClickOutside(
 
   const listener = useCallback(
     event => {
-      const hasClickedWhiteList = [containerRef, ...whitelistRefs].some(ref => {
+      const hasClickedIgnoreList = [
+        containerRef,
+        ...ignoreClickOutsideRefs
+      ].some(ref => {
         return ref.current && ref.current.contains(event.target);
       });
-      if (!hasClickedWhiteList && onClickOutside) {
+      if (!hasClickedIgnoreList && onClickOutside) {
         onClickOutside(event);
       }
     },
-    [containerRef, onClickOutside, whitelistRefs]
+    [containerRef, onClickOutside, ignoreClickOutsideRefs]
   );
 
   useEffect(() => {
@@ -43,12 +46,12 @@ export const ClickOutside = forwardRef(function ClickOutside(
 });
 
 ClickOutside.propTypes = {
-  /** children to monitor for click outside events */
+  /** Children to monitor for click outside events */
   children: PropTypes.node,
   /** Callback called when the mouse is clicked outside */
   onClickOutside: PropTypes.func,
-  /** List of additional elements to ignore mouse clicks */
-  whitelistRefs: PropTypes.array
+  /** Additional array of refs, will ignore click outside from **/
+  ignoreClickOutsideRefs: PropTypes.array
 };
 
 export default ClickOutside;
