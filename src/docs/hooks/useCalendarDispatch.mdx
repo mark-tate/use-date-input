@@ -38,7 +38,11 @@ Using the dispatcher we can dispatch any action to the reducers.
     const MyPanel = () => {
         const { dispatch } = useCalendarDispatch();
         const handleClick = () => dispatch({ type: calendarActions.navigateNext });
-        return (<button onClick={handleClick}>Dispatch 'navigateNext'</button>);
+        return (
+            <DemoButtonBar>
+                <DemoButton onClick={handleClick}>NEXT MONTH</DemoButton>
+            </DemoButtonBar>
+        );
     };
     return (
         <CalendarProvider adapter={dateAdapter}> 
@@ -59,7 +63,7 @@ Using the dispatcher we can dispatch the most common actions, through helper met
         const handleClick = () =>navigateNext();
         return (
             <DemoButtonBar>
-                <DemoButton onClick={handleClick} {...props}>navigateNext</DemoButton>
+                <DemoButton onClick={handleClick}>NEXT MONTH</DemoButton>
             </DemoButtonBar>
         );
     };
