@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/popper",
-  "version": "0.1.9-beta.0",
+  "version": "0.1.10-beta.0",
   "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
   "description": "@use-date-input - Popper library",
   "license": "MIT",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.4.2",
-    "@use-date-input/common": "^0.1.9-beta.0",
+    "@use-date-input/common": "^0.1.10-beta.0",
     "prop-types": "^15.7.2",
     "react-popper": "^2.2.3"
   },
