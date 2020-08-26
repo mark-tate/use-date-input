@@ -62,7 +62,7 @@ A basic example of the `Calendar` component.
 <Playground>
 {() => {
     // import { Calendar } from '@use-date-input/core';
-    // import dateAdapter from '@use-date-input/date-fns-adapter';
+    // import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
     function handleCalendarChange (newSelectedDate) {
        console.log('calendar changed selected date', newSelectedDate);
     }
@@ -78,7 +78,7 @@ A basic example of the `useDateInput` hook, linking an HTML `input` and the `Cal
 {() => {
     // import { useRef, useState } from 'react';
     // import { useDateInput } from "@use-date-input/core";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     // import { parse } from 'date-fns';
     const defaultParseDate = value => parse(value, 'dd/MM/yyyy', new Date());
     const [date, setDate] = useState('');

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { createDateAPI, Calendar, Day } from "../packages/core";
-import dateAdapter from "../packages/date-fns-adapter";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 import isWeekend from "date-fns/isWeekend";
 import getDay from "date-fns/getDay";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";

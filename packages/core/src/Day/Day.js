@@ -1,8 +1,6 @@
 import React, { forwardRef, useCallback, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { formatNames } from "@use-date-input/common";
-
-import useForkRef from "../useForkRef";
+import { formatNames, useForkRef } from "@use-date-input/common";
 
 const Day = forwardRef(function Day(
   {

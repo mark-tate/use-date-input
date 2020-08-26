@@ -16,9 +16,9 @@ export const setNumOfVisibleMonths = value => (numOfVisibleMonths = value);
 let visibleFromDate;
 export const setVisibleFromDate = value => (visibleFromDate = value);
 
-let clickOutsideWhiteList;
-export const setClickOutsideWhiteList = value =>
-  (clickOutsideWhiteList = value);
+let ignoreClickOutsideRefs;
+export const setIgnoreClickOutsideRefs = value =>
+  (ignoreClickOutsideRefs = value);
 
 let enableKeyboardNavigation;
 export const setEnableKeyboardNavigation = value =>
@@ -44,7 +44,7 @@ let mouseCursor;
 export const setMouseCursor = value => (mouseCursor = value);
 
 export const useCalendarProps = jest.fn().mockImplementation(() => ({
-  clickOutsideWhiteList,
+  ignoreClickOutsideRefs,
   isDayDisabled,
   numOfColumns,
   numOfVisibleMonths

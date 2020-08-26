@@ -1,5 +1,5 @@
 import React from 'react';
-import dateAdapter from "../packages/date-fns-adapter";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 import { Calendar } from "../packages/core";
 import sampleTheme from './sampleTheme';
 import { action } from '@storybook/addon-actions';

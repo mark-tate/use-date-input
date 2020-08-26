@@ -4,7 +4,7 @@ route: /week
 ---
 import { Playground } from "docz";
 import { CalendarProvider, Week } from "@use-date-input/core";
-import dateAdapter from '@use-date-input/date-fns-adapter';
+import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
 
 # Week
 The `Week` components renders a week, as a row of `Day` components based on the current `Calendar` state.

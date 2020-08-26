@@ -4,8 +4,9 @@ route: /popper
 ---
 import { useState } from 'react';
 import { Playground } from "docz";
-import { CalendarProvider, Popper } from "@use-date-input/core";
-import dateAdapter from '@use-date-input/date-fns-adapter';
+import { CalendarProvider } from "@use-date-input/core";
+import { Popper } from "@use-date-input/popper";
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
 import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
 
@@ -29,7 +30,11 @@ Otherwise, you can use your own favourite Popper implementation in place of `Pop
         <>
             <DemoButton onClick={handleOpenClick} ref={setAnchorRef}>{open ? 'close' : 'open'}</DemoButton>
             <CalendarProvider adapter={dateAdapter}>
-                <Popper anchorEl={anchorRef} open={open} placement={"bottom-start"}>
+                <Popper 
+                    anchorEl={anchorRef} 
+                    onClickOutside={handleOpenClick} 
+                    open={open} 
+                    placement={"bottom-start"}>
                     <AddYourComponentHere/>
                 </Popper>
             </CalendarProvider>
@@ -43,6 +48,7 @@ Otherwise, you can use your own favourite Popper implementation in place of `Pop
 |-|-|-|-|-|
 | anchorEl| `func or object`| optional| | Anchor element |
 | children| `node`| optional| | Popper content|
-| clickOutsideWhiteList| `array`| optional| | Click outside white list, will not close the Popper, if clicked *|
-| onClickOutside| `func`| optional| | Callback on click outside *|
+| ignoreClickOutsideRefs| `array`| optional| | Array of refs, will not close the Popper, if clicked |
+| onClickOutside| `func`| optional| | Callback on click outside |
+| onEscapeKey| `func`| optional| | Callback on escape key press|
 | open| `bool`| optional| | Open/close popper|

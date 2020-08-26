@@ -30,6 +30,10 @@
   "bugs": {
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
   "publishConfig": {
     "access": "public"
   },

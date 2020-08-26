@@ -1,0 +1,68 @@
+{
+  "name": "@use-date-input/popper",
+  "version": "0.1.9-beta.0",
+  "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
+  "description": "@use-date-input - Popper library",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "jsnext:main": "dist/index.esm.js",
+  "module": "dist/index.esm.js",
+  "keywords": [
+    "calendar",
+    "date",
+    "datepicker",
+    "date-picker",
+    "date-input",
+    "date-range",
+    "hook",
+    "input",
+    "use-date-input",
+    "useDateInput",
+    "useDateRange",
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mark-tate/use-date-input.git",
+    "directory": "packages/popper"
+  },
+  "bugs": {
+    "url": "https://github.com/mark-tate/use-date-input/issues"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.4.2",
+    "@use-date-input/common": "^0.1.9-beta.0",
+    "prop-types": "^15.7.2",
+    "react-popper": "^2.2.3"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/index*.js"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "rollup -c",
+    "prettier": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
+    "test": "jest"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

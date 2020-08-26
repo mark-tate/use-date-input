@@ -1,6 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { useDateInput, useDateRangeInput, Popper } from "../packages/core";
-import dateFnsAdapter from "../packages/date-fns-adapter";
+import { useDateInput, useDateRangeInput } from "../packages/core";
+import { Popper } from "../packages/popper";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import { parse, isValid } from 'date-fns';
@@ -48,7 +49,7 @@ export const WithSingleDateInput = () => {
             <input {...getInputProps({ onChange: handleInputChange })} value={date} />
             <CalendarProvider
                 {...getCalendarProviderProps({
-                    adapter: dateFnsAdapter,
+                    adapter: dateAdapter,
                     onCalendarChange: handleCalendarChange,
                     onStateChange: handleStateChange
                 })}
@@ -115,7 +116,7 @@ export const WithDateRangeInput = () => {
             <input {...getEndDateProps({ onChange: handleEndDateInputChange })} value={endDate} />
             <CalendarProvider
                 {...getCalendarProviderProps({
-                    adapter: dateFnsAdapter,
+                    adapter: dateAdapter,
                     numOfColumns: 3,
                     numOfVisibleMonths: 6,
                     onCalendarChange: handleCalendarChange,
@@ -244,7 +245,7 @@ export const WithTextField = () => {
             />
             <CalendarProvider
                 {...getCalendarProviderProps({
-                    adapter: dateFnsAdapter,
+                    adapter: dateAdapter,
                     numOfColumns: 3,
                     numOfVisibleMonths: 6,
                     onCalendarChange: handleCalendarChange,

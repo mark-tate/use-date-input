@@ -46,7 +46,7 @@ const Calendar = forwardRef(function Calendar(props, ref) {
 
 Calendar.defaultProps = {
   allowRange: false,
-  clickOutsideWhiteList: [],
+  ignoreClickOutsideRefs: [],
   numOfColumns: 1,
   numOfVisibleMonths: 1,
   weekOffset: 0
@@ -58,7 +58,7 @@ Calendar.propTypes = {
   /**  When `true` will select a date range */
   allowRange: PropTypes.bool,
   /** Array of refs to ignore clicks, when determining whether the user clicked outside the Calendar */
-  clickOutsideWhiteList: PropTypes.array,
+  ignoreClickOutsideRefs: PropTypes.array,
   /** The initial selectedDate (for un-controlled use-case) */
   initialSelectedDate: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   /** The initial visible from calendar month (unless date is set) */

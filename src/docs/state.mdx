@@ -21,7 +21,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import dateAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 import getDay from "date-fns/getDay";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import sampleTheme from "../../stories/sampleTheme";
@@ -40,7 +40,7 @@ Any part of the default state can be modified in this way.
 <Playground>
 {() => {
     // import { Calendar, calendarReducer, calendarActions, singleDateReducer } from "@use-date-input/core";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     function handleStateChange(newState, changes) {
         console.log('new state', newState.startDate, changes);
     }
@@ -150,7 +150,7 @@ In this example, `state` and `changes` are logged to the console.
 <Playground>
 {() => {
     // import { Calendar } from "@use-date-input/core";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     function handleStateChange(newState, changes) {
         console.log('new state', newState, changes);
     }

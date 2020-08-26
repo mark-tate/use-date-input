@@ -1,8 +1,8 @@
 import { formatNames } from "@use-date-input/common";
 
-import adaptDateAPI from "../index";
+import { adapter } from "../index";
 
-const { createDate, format, getDateFormat } = adaptDateAPI();
+const { createDate, format, getDateFormat } = adapter();
 
 const toFormattedDate = (date, formatName) => {
   const formatter = getDateFormat(formatName);

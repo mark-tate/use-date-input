@@ -1,4 +1,4 @@
-# @use-date-common
+# @use-date-input/common
 
 The commons package for [@use-date-input](https://github.com/mark-tate/use-date-input).  
 

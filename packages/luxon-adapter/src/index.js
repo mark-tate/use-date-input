@@ -24,7 +24,7 @@ const roundDown = value => {
   return roundingMethod(value);
 };
 
-const adaptDateAPI = ({ weekOffset } = {}) => ({
+export const adapter = ({ weekOffset } = {}) => ({
   addDays: (date, daysToAdd) => date.plus({ days: daysToAdd }),
   addMonths: (date, monthsToAdd) => date.plus({ months: monthsToAdd }),
   addWeeks: (date, weeksToAdd) => date.plus({ weeks: weeksToAdd }),
@@ -79,5 +79,3 @@ const adaptDateAPI = ({ weekOffset } = {}) => ({
   subtractYears: (date, yearsToSubtract) =>
     date.minus({ years: yearsToSubtract })
 });
-
-export default adaptDateAPI;

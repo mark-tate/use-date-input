@@ -6,12 +6,12 @@ import React, {
   useState
 } from "react";
 import PropTypes from "prop-types";
+import { useForkRef } from "@use-date-input/common";
 import { useCalendarProps, useDateAPI } from "../CalendarProvider";
 
 import { StyledCell, StyledRow } from "./style";
 import { CustomisableMonth } from "../Month";
 import AnimatedMonthGroup from "../AnimatedMonthGroup/AnimatedMonthGroup";
-import useForkRef from "../useForkRef";
 
 const chunk = (values, chunkSize = 1) => {
   const valueCopy = [...values];

@@ -4,12 +4,12 @@ import dateFnsAdapter from "@use-date-input/date-fns-adapter";
 import dayjsAdapter from "@use-date-input/dayjs-adapter";
 import luxonAdapter from "@use-date-input/luxon-adapter";
 import momentAdapter from "@use-date-input/moment-adapter";
+import { Popper } from "@use-date-input/popper";
 import createDateAPI from "../createDateAPI";
 import { parse } from "date-fns";
 import dayjs from "dayjs";
 import { DateTime } from "luxon";
 import moment from "moment";
-import Popper from "../Popper";
 import { dateRangeInputType } from "../reducers/dateRangeInputReducer";
 
 import useDateRangeInput from "../useDateRangeInput";

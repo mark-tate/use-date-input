@@ -6,10 +6,10 @@ import {
     Calendar
 } from "@use-date-input/core";
 import { Playground } from "docz";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
-import luxonAdapter from "@use-date-input/luxon-adapter";
-import momentAdapter from "@use-date-input/moment-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
+import { adapter as luxonAdapter } from "@use-date-input/luxon-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 import { dummy_zhcn }  from "dayjs/locale/zh-cn";
 import { dummy_es }  from "moment/locale/es";
 import { dummy_engb } from "moment/locale/en-gb";
@@ -65,7 +65,7 @@ As shown here, where we use `date-dns` to create a Russian calendar.
 <Playground>
 { () => {
     // import { Calendar } from "@use-date-input/core";
-    // import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
     const russianDateFnsAdapter = adapterArgs => {
         const dateFnsAPI = dateFnsAdapter(adapterArgs);
         return {

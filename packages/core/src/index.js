@@ -11,13 +11,11 @@ export {
   CustomisableAnimatedMonthGroup,
   default as AnimatedMonthGroup
 } from "./AnimatedMonthGroup";
-export { default as ClickOutside } from "./ClickOutside";
 export { CustomisableDay, default as Day } from "./Day";
 export { CustomisableDayOfWeek, default as DayOfWeek } from "./DayOfWeek";
 export { CustomisableHeader, default as Header } from "./Header";
 export { CustomisableMonth, default as Month } from "./Month";
 export { CustomisableMonthGroup, default as MonthGroup } from "./MonthGroup";
-export { default as Popper } from "./Popper";
 export { CustomisableRoot, default as Root } from "./Root";
 export { CustomisableWeek, default as Week } from "./Week";
 export { CustomisableWeekHeader, default as WeekHeader } from "./WeekHeader";

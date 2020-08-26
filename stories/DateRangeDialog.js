@@ -7,7 +7,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { createDateAPI } from '@use-date-input/core';
-import dateAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateAdapter } from "../packages/date-fns-adapter";
 import { formatNames } from '@use-date-input/common';
 
 const { toFormattedDate } = createDateAPI({ adapter: dateAdapter });

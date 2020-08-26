@@ -87,6 +87,11 @@ const useDateRangeInput = (props = {}) => {
     mouseClickOutside();
   };
 
+  const handleEscapeKey = () => {
+    const { setOpen } = actionsRef.current;
+    setOpen(false);
+  };
+
   const handleMouseDown = () => {
     const { setOpen } = actionsRef.current;
     if (!open) {
@@ -146,7 +151,7 @@ const useDateRangeInput = (props = {}) => {
 
   const handleKeyDown = event => {
     const { dispatch, setOpen } = actionsRef.current;
-    if (event.key === "Tab") {
+    if (event.key === "Tab" || event.key === "Escape") {
       setOpen(false);
     } else if (event.key === "ArrowDown") {
       setOpen(true);
@@ -229,13 +234,20 @@ const useDateRangeInput = (props = {}) => {
     };
   };
 
-  const clickOutsideWhiteListRef = useRef([startDateInputRef, endDateInputRef]);
+  const ignoreClickOutsideRefs = useRef([startDateInputRef, endDateInputRef]);
 
-  const getPopperProps = ({ anchorEl, onClickOutside, ref, ...rest } = {}) => ({
+  const getPopperProps = ({
+    anchorEl,
+    onClickOutside,
+    onEscapeKey,
+    ref,
+    ...rest
+  } = {}) => ({
     open,
     anchorEl: anchorEl || startDateInputRef.current,
-    clickOutsideWhiteList: clickOutsideWhiteListRef.current,
+    ignoreClickOutsideRefs: ignoreClickOutsideRefs.current,
     onClickOutside: callAll(onClickOutside, handleClickOutside),
+    onEscapeKey: callAll(onEscapeKey, handleEscapeKey),
     ref: composeRefs(popperRef, ref),
     ...rest
   });

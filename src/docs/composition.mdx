@@ -10,8 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import dateAdapter from "@use-date-input/date-fns-adapter";
-
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
+import DemoHeader from "../gatsby-theme-docz/components/DemoHeader";
 import getDay from "date-fns/getDay";
 
 # Composition
@@ -30,7 +30,7 @@ Common use-cases might be to build a composition of a `Calendar` and a shortcut 
 If you want to extend/replace components then redefine those components via their name, using the `components` prop.  
 
 ```javascript
-import dateAdapter from "../packages/date-fns-adapter";
+import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 import { Calendar } from "../packages/core";
 
 const myComponents = {
@@ -63,7 +63,7 @@ extend the current `Day` component
 <Playground>
 {() => {
     // import styled from "styled-components";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     // import getDay from "date-fns/getDay";
     // import { Calendar, Day } from "@use-date-input/core";
     const MONDAY = 1;
@@ -98,16 +98,21 @@ extend the current `Day` component
 }
 </Playground>
 
-Here is an example of `Calendar` composed together with components from Material-UI to create an additional list of shorcuts. 
+Here is an example of `Calendar` composed together with components from Material-UI.  
+
+- A custom header has been added to add Month and Year dropdowns using Material-UI's Formfield component. 
+- A set of shortcuts have been added using Material-UI's List component.
+
 This example uses a hook called `useCalendarDispatch`, to access dispatch methods, allowing you to dispatch actions to the reducer 
 from your custom Root.
 
-In the example below, select a startDate, to see a Material-UI List control appear.
+For brevity, additional source for the custom Header can be found [here](https://github.com/mark-tate/use-date-input/tree/master/src/gatsby-theme-docz/components/DemoHeader.js)
 
+In the example below, select a startDate, to see a list of shortcuts appear.
 <Playground>
 {() => {
     // import { createDateAPI, Calendar, CalendarProvider, useCalendarDispatch, useCalendarState, Root } from "@use-date-input/core";
-    // import dateAdapter from "@use-date-input/date-fns-adapter";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
     // import { makeStyles } from '@material-ui/core/styles';
     // import List from '@material-ui/core/List';
     // import ListItem from '@material-ui/core/ListItem';
@@ -164,6 +169,7 @@ In the example below, select a startDate, to see a Material-UI List control appe
             adapter={dateAdapter}
             allowRange
             components={{
+                Header: DemoHeader,
                 Root: CustomRoot
             }}
             numOfVisibleMonths={12}
