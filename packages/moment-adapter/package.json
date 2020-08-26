@@ -1,6 +1,6 @@
 {
   "name": "@use-date-input/moment-adapter",
-  "version": "0.1.9-beta.0",
+  "version": "0.2.0-beta.0",
   "author": "Mark Tate <143323+mark-tate@users.noreply.github.com>",
   "description": "@use-date-input - moment adapter",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "url": "https://github.com/mark-tate/use-date-input/issues"
   },
   "dependencies": {
-    "@use-date-input/common": "^0.1.9-beta.0"
+    "@use-date-input/common": "^0.2.0-beta.0"
   },
   "peerDependencies": {
     "moment": ">=2.24.0"
