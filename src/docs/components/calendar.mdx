@@ -5,12 +5,8 @@ route: /calendar
 import styled from "styled-components";
 import { useState } from "react";
 import { Playground } from "docz";
-import {
-  default as Calendar,
-} from "@/core/src/Calendar";
-import {
-  Day
-} from "@use-date-input/core";
+import { Calendar } from "@use-date-input/core";
+import { Day } from "@use-date-input/core";
 import isWeekend from "date-fns/isWeekend";
 import { createDate, dateAdapter } from "../../gatsby-theme-docz/createDate";
 import getDay from "date-fns/getDay";

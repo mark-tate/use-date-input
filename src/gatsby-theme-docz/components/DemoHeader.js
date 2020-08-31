@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import Dropdown from "./DemoDropdown";
+import { Dropdown } from "./Dropdown";
 import { makeStyles } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -51,7 +51,7 @@ const createYearSource = (
     };
   });
 };
-export default function DemoHeader() {
+export function DemoHeader() {
   const classes = useStyles();
   const { visibleFromDate } = useCalendarState();
   const dateAPI = useDateAPI();

@@ -3,13 +3,12 @@ name: AnimatedMonthGroup
 route: /animatedMonthGroup
 ---
 import { useState, useRef } from 'react';
-import Button from '@material-ui/core/Button';
 import { Playground } from "docz";
 import { AnimatedMonthGroup, CalendarProvider } from "@use-date-input/core";
 import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
 import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
-import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
-import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
+import { Button } from "../../gatsby-theme-docz/components/Button";
+import { ButtonBar } from "../../gatsby-theme-docz/components/ButtonBar";
 
 # AnimatedMonthGroup
 The `AnimatedMonthGroup` component animates it's children based on the change of the `visibleFromDate` and refs, applied to the first (`firstColumnRef`). and last column (`groupRef`).
@@ -42,12 +41,12 @@ scroll movement between columns based on the changes to `visibleFromDate`.
     }
     return (
         <CalendarProvider adapter={dateAdapter} numOfColumns={3}>
-            <DemoButtonBar>
-                <DemoButton onClick={handleNextMonthClick}>Next Month</DemoButton>
-                <DemoButton onClick={handlePreviousMonthClick}>Previous Month</DemoButton>              
-                <DemoButton onClick={handlePreviousQuarterClick}>Previous Quarter</DemoButton>
-                <DemoButton onClick={handleNextQuarterClick}>Next Quarter</DemoButton>
-            </DemoButtonBar>
+            <ButtonBar>
+                <Button onClick={handleNextMonthClick}>Next Month</Button>
+                <Button onClick={handlePreviousMonthClick}>Previous Month</Button>              
+                <Button onClick={handlePreviousQuarterClick}>Previous Quarter</Button>
+                <Button onClick={handleNextQuarterClick}>Next Quarter</Button>
+            </ButtonBar>
             <div style={{ width: "600px"}}>
                 <AnimatedMonthGroup firstColumnRef={column1Ref} groupRef={groupRef} visibleFromDate={visibleFromDate}>
                     <div ref={groupRef}>

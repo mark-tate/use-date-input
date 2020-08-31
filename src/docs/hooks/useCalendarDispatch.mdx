@@ -5,8 +5,8 @@ route: /useCalendarDispatch
 import { Playground } from 'docz'
 import { calendarActions, useCalendarDispatch, Calendar, CalendarProvider} from '@use-date-input/core';
 import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
-import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
-import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
+import { Button } from "../../gatsby-theme-docz/components/Button";
+import { ButtonBar } from "../../gatsby-theme-docz/components/ButtonBar";
 
 # useCalendarDispatch
 `useCalendarDispatch` returns the configured reducers dispatcher, along with a helper API for common actions. 
@@ -39,9 +39,9 @@ Using the dispatcher we can dispatch any action to the reducers.
         const { dispatch } = useCalendarDispatch();
         const handleClick = () => dispatch({ type: calendarActions.navigateNext });
         return (
-            <DemoButtonBar>
-                <DemoButton onClick={handleClick}>NEXT MONTH</DemoButton>
-            </DemoButtonBar>
+            <ButtonBar>
+                <Button onClick={handleClick}>NEXT MONTH</Button>
+            </ButtonBar>
         );
     };
     return (
@@ -62,9 +62,9 @@ Using the dispatcher we can dispatch the most common actions, through helper met
         const { navigateNext } = useCalendarDispatch();
         const handleClick = () =>navigateNext();
         return (
-            <DemoButtonBar>
-                <DemoButton onClick={handleClick}>NEXT MONTH</DemoButton>
-            </DemoButtonBar>
+            <ButtonBar>
+                <Button onClick={handleClick}>NEXT MONTH</Button>
+            </ButtonBar>
         );
     };
     return (

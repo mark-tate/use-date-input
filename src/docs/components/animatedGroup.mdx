@@ -3,12 +3,11 @@ name: AnimatedGroup
 route: /animatedGroup
 ---
 import { useState } from 'react';
-import Button from '@material-ui/core/Button';
 import { Playground } from "docz";
 import { AnimatedGroup } from "@use-date-input/core";
 import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
-import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
-import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
+import { Button } from "../../gatsby-theme-docz/components/Button";
+import { ButtonBar } from "../../gatsby-theme-docz/components/ButtonBar";
 
 # AnimatedGroup
 The `AnimatedGroup` component animates it's children by the specified `movement` in `direction` for `durationMsecs`.
@@ -36,10 +35,10 @@ In the default implementation, `AnimatedGroup` scrolls it's children, `forward` 
     }
     return (
         <>
-            <DemoButtonBar>
-                <DemoButton onClick={handleForwardClick} variant="contained" color="primary">Back</DemoButton>
-                <DemoButton onClick={handleBackClick} variant="contained" color="primary">Forward</DemoButton>
-            </DemoButtonBar>
+            <ButtonBar>
+                <Button onClick={handleForwardClick} variant="contained" color="primary">Back</Button>
+                <Button onClick={handleBackClick} variant="contained" color="primary">Forward</Button>
+            </ButtonBar>
             <div style={{ width: "200px"}}>
                 <AnimatedGroup 
                     direction={direction} 

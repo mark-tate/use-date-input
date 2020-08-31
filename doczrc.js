@@ -4,9 +4,10 @@ export default {
   editBranch: "https://github.com/mark-tate/use-date-input",
   dest: './docs',
   propsParser: false,
+  public: '/public',
   src: './src',
   menu: [
-    "Home",
+    "Home",  
     "Getting Started",
     "State",
     "Theming",
