@@ -5,8 +5,8 @@ route: /clickOutside
 import { useRef } from "react";
 import { Playground } from "docz";
 import { ClickOutside } from "@use-date-input/popper";
-import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
-import { DemoButtonBar } from "../../gatsby-theme-docz/components/DemoButtonBar";
+import { Button } from "../../gatsby-theme-docz/components/Button";
+import { ButtonBar } from "../../gatsby-theme-docz/components/ButtonBar";
 
 # ClickOutside
 The `ClickOutside` component is used to detect when the mouse is clicked outside the calendar.
@@ -27,15 +27,15 @@ In addition an ignored list of refs can be provided which, when clicked, will no
     }
     return (
         <>
-            <DemoButtonBar>
-                <DemoButton>Click Outside</DemoButton>
-                <DemoButton ref={ignoreRef}>Click Outside (but in the allow list)</DemoButton>
-            </DemoButtonBar>
+            <ButtonBar>
+                <Button>Click Outside</Button>
+                <Button ref={ignoreRef}>Click Outside (but in the allow list)</Button>
+            </ButtonBar>
             <ClickOutside
                 onClickOutside={handleClickOutside}
                 ignoreClickOutsideRefs={ignoreListRefs}
             >
-                <DemoButton>Click Inside</DemoButton>
+                <Button>Click Inside</Button>
             </ClickOutside>
         </>
     );

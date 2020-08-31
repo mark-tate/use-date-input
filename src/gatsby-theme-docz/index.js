@@ -11,7 +11,6 @@ const Theme = ({ children }) => {
       <ComponentsProvider components={components}>
         <Styled.root>{children}</Styled.root>
       </ComponentsProvider>
-      ); }}
     </ThemeProvider>
   );
 };
@@ -21,8 +20,26 @@ const themeConfig = {
   initialColorMode: "dark",
   showDarkModeSwitch: false,
   showMarkdownEditButton: false,
+  colors: {
+    ...defaultTheme.colors,
+    modes: {
+      ...defaultTheme.colors.modes,
+      dark: {
+        ...defaultTheme.colors.modes.dark,
+        sidebar: {
+          ...defaultTheme.colors.modes.dark.sidebar,
+          navGroup: "lightslategrey",
+          tocLink: "lightgrey"
+        }
+      }
+    }
+  },
   styles: {
     ...defaultTheme.styles,
+    h1: {
+      color: '#1FB6FF',
+      marginTop: 0
+    },
     p: {
       maxWidth: "800px",
       fontSize: 2,

@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dropdown({
+export function Dropdown({
   label,
   labelId,
   onChange,

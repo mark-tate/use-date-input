@@ -1,14 +1,64 @@
 ---
 name: Home
 route: /
+fullPage: true
 ---
 
-<h1>BUILD</h1><h2>your own datepicker, in minutes not days</h2>
+import { Carousel } from "../gatsby-theme-docz/components/Carousel";
+import { Heading } from "../gatsby-theme-docz/components/Heading";
+import { HeroWrapper } from "../gatsby-theme-docz/components/HeroWrapper";
+import { Hero1 } from "../gatsby-theme-docz/components/Hero1";
+import { Hero2 } from "../gatsby-theme-docz/components/Hero2";
+import { Hero3 } from "../gatsby-theme-docz/components/Hero3";
+import { Hero4 } from "../gatsby-theme-docz/components/Hero4";
+import { Hero5 } from "../gatsby-theme-docz/components/Hero5";
+import { Hero6 } from "../gatsby-theme-docz/components/Hero6";
 
-`use-date-input` is designed to be composable, use your theme, compose your own UI elements.  
+import Paper from "@material-ui/core/Paper";
 
-## Features
-
-## Roadmap
-
-
+<Heading>use-date-input</Heading>
+<Carousel>
+  <HeroWrapper
+    href="https://mark-tate.github.io/use-date-input/calendar"
+    linkText="Show Me"
+    title="Calendar"
+    description="Use as a single or date range calendar component"
+    showBackground
+  >
+    <Hero1 />
+  </HeroWrapper>
+  <HeroWrapper
+    href="https://mark-tate.github.io/use-date-input/composition"
+    linkText="Show Me"
+    title="Composable"
+    description="Compose into your own UI component"
+    showBackground
+  >
+    <Hero2 />
+  </HeroWrapper>
+  <HeroWrapper
+    href="https://mark-tate.github.io/use-date-input/useDateInput"
+    linkText="Show Me"
+    title="useDateInput Hook"
+    description="Compose with an input for single dates"
+  >
+    <Hero3 />
+  </HeroWrapper>
+  <HeroWrapper
+    href="https://mark-tate.github.io/use-date-input/useDateRangeInput"
+    linkText="Show Me"
+    title="useDateRangeInput Hook"
+    description="Compose with an input for date ranges"
+  >
+    <Hero4 />
+  </HeroWrapper>
+  <HeroWrapper
+    href="https://mark-tate.github.io/use-date-input/theming"
+    linkText="Show Me"
+    title="Themable"
+    description="Style it with your own theme"
+  >
+    <Hero5 />
+  </HeroWrapper>
+  <Hero6 />
+</Carousel>

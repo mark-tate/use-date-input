@@ -7,7 +7,7 @@ import { Playground } from "docz";
 import { CalendarProvider } from "@use-date-input/core";
 import { Popper } from "@use-date-input/popper";
 import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
-import { DemoButton } from "../../gatsby-theme-docz/components/DemoButton";
+import { Button } from "../../gatsby-theme-docz/components/Button";
 import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
 
 ## Popper
@@ -28,7 +28,7 @@ Otherwise, you can use your own favourite Popper implementation in place of `Pop
     }
     return (
         <>
-            <DemoButton onClick={handleOpenClick} ref={setAnchorRef}>{open ? 'close' : 'open'}</DemoButton>
+            <Button onClick={handleOpenClick} ref={setAnchorRef}>{open ? 'Close' : 'Open'}</Button>
             <CalendarProvider adapter={dateAdapter}>
                 <Popper 
                     anchorEl={anchorRef} 
