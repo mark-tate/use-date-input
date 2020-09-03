@@ -7,7 +7,6 @@ export default {
   public: '/public',
   src: './src',
   menu: [
-    "Home",  
     "Getting Started",
     "State",
     "Theming",
