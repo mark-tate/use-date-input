@@ -1,0 +1,120 @@
+---
+name: Getting Started
+route: /
+---
+import { useRef, useState } from 'react';
+import { Playground } from "docz";
+import { Calendar, useDateInput } from '@use-date-input/core';
+import { dateAdapter } from "../gatsby-theme-docz/createDate";
+import { parse } from 'date-fns';
+
+## Getting Started
+
+A Date Picker can consist of an `input` and a `Calendar` or just a `Calendar`.  
+`use-date-input` uses an adapter API so that it can be used with any date framework.  
+`use-date-input` provides pre-made adapters for the most popular frameworks or you can write your own.
+
+- <a href="https://date-fns.org/" target="__blank__">date-fns</a>
+- <a href="https://day.js.org/" target="__blank__">dayjs</a>
+- <a href="https://moment.github.io/luxon/" target="__blank__">luxon</a>
+- <a href="https://momentjs.com/" target="__blank__">moment</a>
+
+### For date-fns users
+
+```
+yarn add date-fns 
+yarn add @use-date-input/core
+yarn add @use-date-input/date-fns-adapter 
+yarn add styled-components 
+```
+
+### For dayjs users
+
+```
+yarn add dayjs 
+yarn add @use-date-input/core
+yarn add @use-date-input/dayjs-adapter 
+yarn add styled-components 
+```
+
+### For luxon users
+
+```
+yarn add luxon 
+yarn add @use-date-input/core
+yarn add @use-date-input/luxon-adapter 
+yarn add styled-components 
+```
+
+### For moment users
+
+```
+yarn add moment 
+yarn add @use-date-input/core
+yarn add @use-date-input/moment-adapter 
+yarn add styled-components 
+```
+
+## Calendar Example  
+
+A basic example of the `Calendar` component.
+
+<Playground>
+{() => {
+    // import { Calendar } from '@use-date-input/core';
+    // import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
+    function handleCalendarChange (newSelectedDate) {
+       console.log('calendar changed selected date', newSelectedDate);
+    }
+    return (<Calendar adapter={dateAdapter} onCalendarChange={handleCalendarChange}/>);
+}}
+</Playground>
+
+## Input & Calendar Example  
+
+A basic example of the `useDateInput` hook, linking an HTML `input` and the `Calendar` component.
+
+<Playground>
+{() => {
+    // import { useRef, useState } from 'react';
+    // import { useDateInput } from "@use-date-input/core";
+    // import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
+    // import { parse } from 'date-fns';
+    const defaultParseDate = value => parse(value, 'dd/MM/yyyy', new Date());
+    const [date, setDate] = useState('');
+    const actions = useRef();
+    function handleInputChange(event) {
+        const { value } = event.target;
+        console.log('input changed to', value);
+        setDate(event.target.value);
+    }
+    function handleCalendarChange(newSelectedDate) {
+        console.log('calendar changed selected date', newSelectedDate);
+        const { dateAPI } = actions.current;
+        setDate(dateAPI.format(newSelectedDate, 'dd/MM/yyyy'));
+    }
+    const {
+        Calendar,
+        CalendarProvider,
+        getCalendarProviderProps,
+        getInputProps
+    } = useDateInput({
+        actions,
+        parse: defaultParseDate
+    });
+    return (
+        <>
+            <input {...getInputProps({ onChange: handleInputChange })} value={date} />
+            <CalendarProvider
+                {...getCalendarProviderProps({
+                    adapter: dateAdapter,
+                    onCalendarChange: handleCalendarChange,
+                })}
+            >
+                <Calendar />
+            </CalendarProvider>
+        </>
+    );
+}}
+</Playground>
+
