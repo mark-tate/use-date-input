@@ -57,7 +57,7 @@ const sampleTheme = {
     Day: {
         color: 'white',
         margin: '5px',
-        padding: '9px',
+        padding: '8px',
         border: 'solid',
         borderRadius: '40px',
         width: '40px',
