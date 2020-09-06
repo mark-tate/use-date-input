@@ -17,7 +17,7 @@ export const Layout = ({ children, doc }) => {
       <Global styles={global} />
       <Main sx={styles.main}>
         {!doc.value.fullPage && <Header onOpen={() => setOpen(s => !s)} />}
-        <div sx={styles.wrapper}>
+        <div data-testid="wrapper" sx={doc.value.fullPage ? styles.fullPageWrapper : styles.wrapper}>
           {!doc.value.fullPage && (
             <Sidebar
               ref={nav}
