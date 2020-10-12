@@ -14,6 +14,8 @@ import getDay from "date-fns/getDay";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import { dateAdapter } from "../gatsby-theme-docz/createDate";
 import sampleTheme from "../../stories/sampleTheme";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 
 # Theming
 
@@ -25,22 +27,36 @@ the component, for every `use-date-input` element.
 Using the `theme` prop, go from the default styles
 
 <Playground>
-  <Calendar 
-    adapter={dateAdapter} 
-    numOfColumns={2} 
-    numOfVisibleMonths={2} 
-  />
+{() => {
+  const theme = useTheme();
+  const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+  const numOfColumns = isSmallBreakpoint ? 1 : 2;
+  return (
+    <Calendar 
+        adapter={dateAdapter} 
+        numOfColumns={numOfColumns} 
+        numOfVisibleMonths={numOfColumns} 
+    />
+  );
+}}
 </Playground>
 
 to this, with just one `theme` prop
 
-<Playground>
-  <Calendar 
-    adapter={dateAdapter} 
-    numOfColumns={2} 
-    numOfVisibleMonths={2} 
-    theme={sampleTheme}  
-   />
+<Playground style={{ padding: 0, background: 'none' }}>
+{() => {
+  const theme = useTheme();
+  const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+  const numOfColumns = isSmallBreakpoint ? 1 : 2;
+  return (
+    <Calendar 
+        adapter={dateAdapter} 
+        numOfColumns={numOfColumns} 
+        numOfVisibleMonths={numOfColumns} 
+        theme={sampleTheme}  
+    />
+   );
+}}
 </Playground>
 
 

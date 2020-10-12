@@ -6,7 +6,8 @@ import { useRef, useState } from 'react';
 import { Playground } from 'docz'
 import styled from "styled-components";
 import { createDateAPI, Calendar, CalendarProvider, Day, useCalendarDispatch, useCalendarState, Root } from "@use-date-input/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -117,6 +118,10 @@ In the example below, select a startDate, to see a list of shortcuts appear.
     // import List from '@material-ui/core/List';
     // import ListItem from '@material-ui/core/ListItem';
     // import ListItemText from '@material-ui/core/ListItemText';
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 4;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 12;
     const ShortcutList = () => {
         const dateAPI = createDateAPI({ adapter: dateAdapter });
         const useStyles = makeStyles(theme => ({
@@ -172,8 +177,8 @@ In the example below, select a startDate, to see a list of shortcuts appear.
                 Header: DemoHeader,
                 Root: CustomRoot
             }}
-            numOfVisibleMonths={12}
-            numOfColumns={4}
+            numOfVisibleMonths={numOfVisibleMonths}
+            numOfColumns={numOfColumns}
         />
     );
 }}

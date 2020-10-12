@@ -7,6 +7,8 @@ import { useState } from "react";
 import { Playground } from "docz";
 import { Calendar } from "@use-date-input/core";
 import { Day } from "@use-date-input/core";
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 import isWeekend from "date-fns/isWeekend";
 import { createDate, dateAdapter } from "../../gatsby-theme-docz/createDate";
 import getDay from "date-fns/getDay";
@@ -52,8 +54,7 @@ By default the `Calendar` will select single dates.
 <Playground>
     <Calendar 
         adapter={dateAdapter} 
-        numOfColumns={4} 
-        numOfVisibleMonths={12} 
+        numOfVisibleMonths={1} 
     />
 </Playground>
 
@@ -64,8 +65,8 @@ Using the `allowRange` prop the `Calendar` will select date ranges.
     <Calendar 
         adapter={dateAdapter}
         allowRange
-        numOfColumns={4}
-        numOfVisibleMonths={12}
+        numOfColumns={1}
+        numOfVisibleMonths={1}
     />
 </Playground>
 
@@ -78,13 +79,17 @@ This example shows the basic use-case of the initial state.
     const handleChange = selectedDate => {
         console.log("changed selected date", selectedDate);
     };
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 4;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 12;
     return (
     <Calendar
         adapter={dateAdapter}
         initialSelectedDate={createDate("2020-02-20")}
         initialVisibleFromMonth={createDate("2020-02-01")}
-        numOfVisibleMonths={12}
-        numOfColumns={4}
+        numOfColumns={numOfColumns}
+        numOfVisibleMonths={numOfVisibleMonths}
         onChange={handleChange}
     />
     );
@@ -97,6 +102,10 @@ Add your own renderers for `Day`, to render specific date states with your own s
 
 <Playground>
 {() => {
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 4;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 12;
     /** Add your own renderer(s) for Days to show your required state */
     function JustWeekdaysRenderer(props) {
         const disableWeekendProps = isWeekend(props.day) && {
@@ -116,8 +125,8 @@ Add your own renderers for `Day`, to render specific date states with your own s
             Day: JustWeekdaysRenderer
             }}
             onChange={handleChange}
-            numOfVisibleMonths={12}
-            numOfColumns={4}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
             weekOffset={1}
         />
     );
@@ -130,6 +139,10 @@ Block out dates using a custom renderer and the `isDayDisabled` prop.
 
 <Playground>
 {() => {
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 4;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 12;
     const UnavailableDay = styled(Day)(props => ({
         background: 'url("/public/cross.svg")',
         backgroundRepeat: "no-repeat",
@@ -154,8 +167,8 @@ Block out dates using a custom renderer and the `isDayDisabled` prop.
             Day: BlockoutMondaysRenderer
         }}
         isDayDisabled={isMonday}
-        numOfVisibleMonths={12}
-        numOfColumns={4}
+        numOfColumns={numOfColumns}
+        numOfVisibleMonths={numOfVisibleMonths}
         weekOffset={1}
     />);
     }
@@ -167,7 +180,11 @@ Validate date ranges with your own rules using the `isRangeValid` prop.
 
 <Playground>
 {() => {
-  /** Add your own validators to validate ranges */
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 4;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 12;
+    /** Add your own validators to validate ranges */
     const doesNotOverlapWeekendValidator = (startDate, endDate) => {
         if (!startDate || !endDate || startDate === endDate) {
             return true;
@@ -189,8 +206,8 @@ Validate date ranges with your own rules using the `isRangeValid` prop.
             allowRange
             isRangeValid={doesNotOverlapWeekendValidator}
             onChange={handleChange}
-            numOfVisibleMonths={12}
-            numOfColumns={4}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
             weekOffset={1}
         />
     );

@@ -36,6 +36,12 @@ const useStyles = makeStyles(theme => ({
     "& a": {
       marginTop: "20px"
     }
+  },
+  [theme.breakpoints.down("xs")]: {
+    root: {
+      width: "100%",
+        padding: 0
+    }
   }
 }));
 

@@ -42,7 +42,7 @@ const transformCode = code => {
   return `<React.Fragment>${code}</React.Fragment>`;
 };
 
-export const Playground = ({ code, scope, language, useScoping = false }) => {
+export const Playground = ({ code, scope, style, language, useScoping = false }) => {
   const {
     themeConfig: { showPlaygroundEditor, showLiveError, showLivePreview }
   } = useConfig();
@@ -78,7 +78,7 @@ export const Playground = ({ code, scope, language, useScoping = false }) => {
             showingCode={showingCode}
           >
             {showLivePreview && (
-              <LivePreview sx={styles.preview} data-testid="live-preview" />
+              <LivePreview sx={{...styles.preview, padding: '4px', ...style}} data-testid="live-preview" />
             )}
           </Wrapper>
         </div>

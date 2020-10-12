@@ -4,8 +4,12 @@ import { useDateRangeInput } from "@use-date-input/core";
 import { Popper } from "@use-date-input/popper";
 import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
 import { parse } from "date-fns";
+import {useTheme} from "@material-ui/core";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 
 export function Hero4() {
+  const theme = useTheme();
+  const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const actions = useRef();
@@ -53,8 +57,8 @@ export function Hero4() {
       <CalendarProvider
         {...getCalendarProviderProps({
           adapter: dateAdapter,
-          numOfColumns: 3,
-          numOfVisibleMonths: 6,
+          numOfColumns: isSmallBreakpoint ? 2 : 3,
+          numOfVisibleMonths: isSmallBreakpoint ? 2 : 6,
           onCalendarChange: handleCalendarChange,
           onStateChange: handleStateChange
         })}

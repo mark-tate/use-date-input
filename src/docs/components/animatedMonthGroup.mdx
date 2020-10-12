@@ -4,9 +4,11 @@ route: /animatedMonthGroup
 ---
 import { useState, useRef } from 'react';
 import { Playground } from "docz";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import { AnimatedMonthGroup, CalendarProvider } from "@use-date-input/core";
 import { adapter as dateAdapter } from '@use-date-input/date-fns-adapter';
-import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
+import { DemoContent, DemoContentSmall } from "../../gatsby-theme-docz/components/DemoContent";
 import { Button } from "../../gatsby-theme-docz/components/Button";
 import { ButtonBar } from "../../gatsby-theme-docz/components/ButtonBar";
 
@@ -19,6 +21,9 @@ scroll movement between columns based on the changes to `visibleFromDate`.
 ## Example
 <Playground>
 {() => {
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const AddYourComponentHere = isSmallBreakpoint ? DemoContentSmall : DemoContent; 
     const { createDate, addMonths, subtractMonths } = dateAdapter();
     const [ visibleFromDate, setVisibleFromDate ] = useState(createDate());
     const column1Ref = useRef();
@@ -39,15 +44,16 @@ scroll movement between columns based on the changes to `visibleFromDate`.
         const nextMonth = subtractMonths(visibleFromDate, 3);
         setVisibleFromDate(nextMonth);
     }
+    const width = isSmallBreakpoint ? "300px" : "600px";
     return (
         <CalendarProvider adapter={dateAdapter} numOfColumns={3}>
             <ButtonBar>
-                <Button onClick={handleNextMonthClick}>Next Month</Button>
-                <Button onClick={handlePreviousMonthClick}>Previous Month</Button>              
-                <Button onClick={handlePreviousQuarterClick}>Previous Quarter</Button>
-                <Button onClick={handleNextQuarterClick}>Next Quarter</Button>
+                <Button onClick={handlePreviousMonthClick}>{isSmallBreakpoint ? '-1' : 'Previous Month'}</Button>              
+                <Button onClick={handleNextMonthClick}>{isSmallBreakpoint ? '+1' : 'Next Month'}</Button>
+                <Button onClick={handlePreviousQuarterClick}>{isSmallBreakpoint ? '-3' : 'Prevous Quarter'}</Button>
+                <Button onClick={handleNextQuarterClick}>{isSmallBreakpoint ? '+3' : 'Next Quarter'}</Button>
             </ButtonBar>
-            <div style={{ width: "600px"}}>
+            <div style={{ width }}>
                 <AnimatedMonthGroup firstColumnRef={column1Ref} groupRef={groupRef} visibleFromDate={visibleFromDate}>
                     <div ref={groupRef}>
                         <AddYourComponentHere style={{display: "inline-flex"}} ref={column1Ref}>Column 1</AddYourComponentHere>

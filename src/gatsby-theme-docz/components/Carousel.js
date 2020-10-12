@@ -6,6 +6,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 const useStyles = makeStyles(() => ({
   root: {
     minHeight: "100vh",
+    overflow: "inherit",
     paddingBottom: "30px",
     width: "100%"
   },
