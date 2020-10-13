@@ -6,6 +6,8 @@ import {
     Calendar
 } from "@use-date-input/core";
 import { Playground } from "docz";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
 import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
 import { adapter as luxonAdapter } from "@use-date-input/luxon-adapter";
@@ -66,8 +68,12 @@ As shown here, where we use `date-dns` to create a Russian calendar.
 { () => {
     // import { Calendar } from "@use-date-input/core";
     // import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 1 : 3;
+    const numOfVisibleMonths = isSmallBreakpoint ? 1 : 12;
     const russianDateFnsAdapter = adapterArgs => {
-        const dateFnsAPI = dateFnsAdapter(adapterArgs);
+    const dateFnsAPI = dateFnsAdapter(adapterArgs);
         return {
             ...dateFnsAPI,
             format: (date, formatStr) => dateFnsAPI.format(date, formatStr, { locale: ru })
@@ -76,8 +82,8 @@ As shown here, where we use `date-dns` to create a Russian calendar.
     return (
         <Calendar
             adapter={russianDateFnsAdapter}
-            numOfColumns={3}
-            numOfVisibleMonths={12}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
         />
     );
 }}
@@ -89,6 +95,10 @@ As shown here, where we use `date-dns` to create a Russian calendar.
 { () => {
     // import { Calendar } from "@use-date-input/core";
     // import dayjsAdapter from "@use-date-input/dayjs-adapter";
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 1 : 3;
+    const numOfVisibleMonths = isSmallBreakpoint ? 1 : 12;
     const chineseDayJSAdapter = adapterArgs => {
         const dayjsAPI = dayjsAdapter(adapterArgs);
         return {
@@ -99,8 +109,8 @@ As shown here, where we use `date-dns` to create a Russian calendar.
     return (
         <Calendar
             adapter={chineseDayJSAdapter}
-            numOfColumns={3}
-            numOfVisibleMonths={12}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
         />
     );
 }}
@@ -112,18 +122,22 @@ As shown here, where we use `date-dns` to create a Russian calendar.
 { () => {
     // import { Calendar } from "@use-date-input/core";
     // import luxonAdapter from "@use-date-input/luxon-adapter";
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 1 : 3;
+    const numOfVisibleMonths = isSmallBreakpoint ? 1 : 12;
     const frenchLuxonAdapter = adapterArgs => {
-      const luxonAPI = luxonAdapter(adapterArgs);
-      return {
-        ...luxonAPI,
-        createDate: date => luxonAPI.createDate(date).setLocale("fr")
-      };
+        const luxonAPI = luxonAdapter(adapterArgs);
+        return {
+            ...luxonAPI,
+            createDate: date => luxonAPI.createDate(date).setLocale("fr")
+        };
     };
     return (
         <Calendar
             adapter={frenchLuxonAdapter}
-            numOfColumns={3}
-            numOfVisibleMonths={12}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
         />
     );
 }}
@@ -135,6 +149,10 @@ As shown here, where we use `date-dns` to create a Russian calendar.
 { () => {
     // import { Calendar } from "@use-date-input/core";
     // import momentAdapter from "@use-date-input/moment-adapter";
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 1 : 3;
+    const numOfVisibleMonths = isSmallBreakpoint ? 1 : 12;
     const spanishMomentAdapter = adapterArgs => {
       const momentAPI = momentAdapter(adapterArgs);
       return {
@@ -145,8 +163,8 @@ As shown here, where we use `date-dns` to create a Russian calendar.
     return (
         <Calendar
             adapter={spanishMomentAdapter}
-            numOfColumns={3}
-            numOfVisibleMonths={12}
+            numOfColumns={numOfColumns}
+            numOfVisibleMonths={numOfVisibleMonths}
         />
     );
 }}

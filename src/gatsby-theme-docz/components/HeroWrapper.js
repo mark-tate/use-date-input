@@ -66,15 +66,12 @@ const useStyles = makeStyles(theme => ({
   [theme.breakpoints.down("xs")]: {
     example: {
       marginTop: 0,
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1)
+      padding: 0,
     },
     exampleText: {
-      paddingLeft: "16px",
-      paddingRight: "16px"
+      padding: 0
     },
     root: {
-      alignItems: "center",
       padding: 0,
       width: "100%"
     }

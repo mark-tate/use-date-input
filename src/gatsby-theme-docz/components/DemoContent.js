@@ -27,3 +27,13 @@ export const DemoContent = forwardRef(({ style, ...rest }, ref) => {
     </div>
   );
 });
+
+export const DemoContentSmall = forwardRef(({ style, ...rest }, ref) => {
+    return (
+        <DemoContent
+            style={{ ...style, width: "100px", height: "100px" }}
+            ref={ref}
+            {...rest}
+        />
+    );
+});

@@ -4,6 +4,8 @@ route: /useDateRangeInput
 ---
 import { useCallback, useRef, useState } from 'react'
 import { Props, Playground } from 'docz';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
 import { useDateRangeInput } from '@use-date-input/core';
 import { Popper } from '@use-date-input/popper';
 import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
@@ -45,6 +47,10 @@ When your `input` components and `Calendar` are composed together by `useDateRan
 
 <Playground >
 {() => {
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const numOfColumns = isSmallBreakpoint ? 2 : 3;
+    const numOfVisibleMonths = isSmallBreakpoint ? 2 : 6;
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     const actions = useRef();
@@ -89,8 +95,8 @@ When your `input` components and `Calendar` are composed together by `useDateRan
             <CalendarProvider
                 {...getCalendarProviderProps({
                     adapter: dateAdapter,
-                    numOfColumns: 3,
-                    numOfVisibleMonths: 6,
+                    numOfColumns,
+                    numOfVisibleMonths,
                     onCalendarChange: handleCalendarChange,
                     onStateChange: handleStateChange
                 })}

@@ -26,8 +26,7 @@ const style = theme => ({
       width: "100%"
     },
     h1: {
-      fontSize: "40px",
-      paddingLeft: "16px"
+      fontSize: "40px"
     }
   }
 });
