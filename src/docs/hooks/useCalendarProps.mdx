@@ -26,7 +26,7 @@ This hook can be used to add yuor own props to the context.
             const formatter = getDateFormat(formatNames.ARIA_DAY_LABEL);
             dateLabel = format(selectedDate, formatter);
         }
-        return (<><i>{props.myExtraLabel}</i><p>{dateLabel}</p></>);
+        return (<div style={{ padding: "8px"}}><i>{props.myExtraLabel}</i><p>{dateLabel}</p></div>);
     };
     return (
         <CalendarProvider

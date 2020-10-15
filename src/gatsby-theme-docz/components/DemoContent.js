@@ -14,7 +14,6 @@ export const DemoContent = forwardRef(({ style, ...rest }, ref) => {
         flexDirection: "column",
         height: "200px",
         justifyContent: "center",
-        marginTop: "10px",
         textAlign: "center",
         width: "200px",
         ...style
@@ -29,6 +28,16 @@ export const DemoContent = forwardRef(({ style, ...rest }, ref) => {
 });
 
 export const DemoContentSmall = forwardRef(({ style, ...rest }, ref) => {
+    return (
+        <DemoContent
+            style={{ ...style, width: "150px", height: "187px" }}
+            ref={ref}
+            {...rest}
+        />
+    );
+});
+
+export const DemoContentXSmall = forwardRef(({ style, ...rest }, ref) => {
     return (
         <DemoContent
             style={{ ...style, width: "100px", height: "100px" }}

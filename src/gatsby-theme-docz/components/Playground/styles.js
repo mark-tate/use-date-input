@@ -3,7 +3,6 @@ import * as mixins from "~utils/mixins";
 export const editor = theme => ({
   p: 2,
   background: theme.plain.backgroundColor,
-  borderTop: 0,
   fontFamily: "monospace",
   fontSize: 16,
   "* > textarea:focus": {
@@ -44,8 +43,6 @@ export const wrapperBorder = (content, showingCode) => {
 
   return {
     border: t => `1px solid ${t.colors.playground.border}`,
-    borderTop: content === "editor" ? 0 : undefined,
-    borderRadius
   };
 };
 
@@ -53,9 +50,8 @@ export const preview = {
   background: "white",
   color: "initial",
   display: "table",
-  fontFamily: "initial",
   fontSize: "12px",
-  lineHeight: "initial",
+  lineHeight: "1.4em",
   margin: 0,
   padding: "20px"
 };

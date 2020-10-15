@@ -78,7 +78,7 @@ export const Playground = ({ code, scope, style, language, useScoping = false })
             showingCode={showingCode}
           >
             {showLivePreview && (
-              <LivePreview sx={{...styles.preview, padding: '4px', ...style}} data-testid="live-preview" />
+              <LivePreview sx={{...styles.preview, padding: '0px', ...style}} data-testid="live-preview" />
             )}
           </Wrapper>
         </div>

@@ -27,7 +27,7 @@ import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
             const formatter = getDateFormat(formatNames.ARIA_DAY_LABEL);
             dateLabel = format(selectedDate, formatter);
         }
-        return (<p>{dateLabel}</p>);
+        return (<p style={{ padding: "8px"}}>{dateLabel}</p>);
     };
     return (
         <CalendarProvider
