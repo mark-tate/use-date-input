@@ -3,9 +3,11 @@ name: Root
 route: /root
 ---
 import { Playground } from "docz";
+import useMediaQuery from "@material-ui/core/useMediaQuery/useMediaQuery";
+import { useTheme } from "@material-ui/core/styles";
 import { Calendar, CalendarProvider, Root } from "@use-date-input/core";
 import { adapter as dateAdapter } from "@use-date-input/date-fns-adapter";
-import { DemoContent as AddYourComponentHere } from "../../gatsby-theme-docz/components/DemoContent";
+import { DemoContent, DemoContentSmall } from "../../gatsby-theme-docz/components/DemoContent";
 
 # Root
 The `Root` component is the root component of the `Calendar`.
@@ -16,6 +18,9 @@ Refer to [Composition](https://mark-tate.github.io/use-date-input/composition).
 ## Example
 <Playground>
 {() => {
+    const theme = useTheme();
+    const isSmallBreakpoint = useMediaQuery(theme.breakpoints.down("sm"));
+    const AddYourComponentHere = isSmallBreakpoint ? DemoContentSmall : DemoContent; 
     function MyRoot(props) {
         return (
              <>

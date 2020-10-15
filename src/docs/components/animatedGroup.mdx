@@ -39,7 +39,7 @@ In the default implementation, `AnimatedGroup` scrolls it's children, `forward` 
                 <Button onClick={handleForwardClick} variant="contained" color="primary">Back</Button>
                 <Button onClick={handleBackClick} variant="contained" color="primary">Forward</Button>
             </ButtonBar>
-            <div style={{ width: "200px"}}>
+            <div style={{ width: "200px", padding: "8px" }}>
                 <AnimatedGroup 
                     direction={direction} 
                     durationMsecs={5000} movement={200} 
