@@ -1,6 +1,7 @@
 export default {
   base: '/use-date-input/',
   title: 'use-date-input - Build Your Own Date Picker',
+  shortTitle: 'use-date-input',
   editBranch: "https://github.com/mark-tate/use-date-input",
   dest: './docs',
   propsParser: false,
