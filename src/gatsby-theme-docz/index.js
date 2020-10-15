@@ -3,15 +3,26 @@ import { theme, useConfig, ComponentsProvider } from "docz";
 import { Styled, ThemeProvider } from "theme-ui";
 import defaultTheme from "gatsby-theme-docz/src/theme/index";
 import components from "gatsby-theme-docz/src/components/index";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+    font-family: "Roboto, Helvetica, Arial, sans-serif";
+  }
+`;
 
 const Theme = ({ children }) => {
   const config = useConfig();
   return (
-    <ThemeProvider theme={config.themeConfig}>
-      <ComponentsProvider components={components}>
-        <Styled.root>{children}</Styled.root>
-      </ComponentsProvider>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={config.themeConfig}>
+        <ComponentsProvider components={components}>
+          <Styled.root>{children}</Styled.root>
+        </ComponentsProvider>
+      </ThemeProvider>
+    </>
   );
 };
 
@@ -26,6 +37,10 @@ const themeConfig = {
       ...defaultTheme.colors.modes,
       dark: {
         ...defaultTheme.colors.modes.dark,
+        playground: {
+          ...defaultTheme.colors.modes.dark.sidebar,
+          bg: "transparent"
+        },
         sidebar: {
           ...defaultTheme.colors.modes.dark.sidebar,
           navGroup: "lightslategrey",
@@ -37,7 +52,7 @@ const themeConfig = {
   styles: {
     ...defaultTheme.styles,
     h1: {
-      color: '#1FB6FF',
+      color: "#1FB6FF",
       marginTop: 0
     },
     p: {

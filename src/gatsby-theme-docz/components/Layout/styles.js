@@ -7,6 +7,7 @@ export const main = {
 };
 
 export const wrapper = {
+  fontFamily: "Roboto, Helvetica, Arial, sans-serif",
   py: 0,
   flex: 1,
   display: "grid",
