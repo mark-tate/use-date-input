@@ -5,6 +5,8 @@ import defaultTheme from "gatsby-theme-docz/src/theme/index";
 import components from "gatsby-theme-docz/src/components/index";
 import { createGlobalStyle } from "styled-components";
 
+const BRAND_COLOR = "#1FB6FF";
+
 const GlobalStyle = createGlobalStyle`
   body {
     @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
@@ -31,15 +33,21 @@ const themeConfig = {
   initialColorMode: "dark",
   showDarkModeSwitch: false,
   showMarkdownEditButton: false,
+  prism: {
+    ...defaultTheme.prism,
+    border: `1px solid ${BRAND_COLOR}`,
+  },
   colors: {
     ...defaultTheme.colors,
+    border: BRAND_COLOR,
     modes: {
       ...defaultTheme.colors.modes,
       dark: {
         ...defaultTheme.colors.modes.dark,
         playground: {
-          ...defaultTheme.colors.modes.dark.sidebar,
-          bg: "transparent"
+          ...defaultTheme.colors.modes.dark.playground,
+          bg: "transparent",
+          border: BRAND_COLOR
         },
         sidebar: {
           ...defaultTheme.colors.modes.dark.sidebar,
@@ -52,7 +60,7 @@ const themeConfig = {
   styles: {
     ...defaultTheme.styles,
     h1: {
-      color: "#1FB6FF",
+      color: BRAND_COLOR,
       marginTop: 0
     },
     p: {
@@ -76,7 +84,7 @@ const themeConfig = {
       borderCollapse: "separate",
       borderSpacing: 0,
       [["th"]]: {
-        color: "#1FB6FF"
+        color: BRAND_COLOR
       },
       [["td"]]: {
         fontSize: 2

@@ -10,7 +10,7 @@ const style = theme => ({
     width: "75%"
   },
   h1: {
-    fontSize: "100px",
+    fontSize: "80px",
     height: "100%",
     margin: 0,
     padding: 0
