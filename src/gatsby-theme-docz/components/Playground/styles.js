@@ -3,6 +3,7 @@ import * as mixins from "~utils/mixins";
 export const editor = theme => ({
   p: 2,
   background: theme.plain.backgroundColor,
+  borderRadius: "0px 4px 4px 4px",
   fontFamily: "monospace",
   fontSize: 16,
   "* > textarea:focus": {
@@ -29,20 +30,21 @@ export const wrapper = () => ({
   height: "auto",
   display: "block",
   minHeight: "100%",
-  width: "calc(100% - 2px)",
+  width: "100%",
   bg: "playground.bg",
   marginTop: "20px",
   marginBottom: "20px"
 });
 
-export const wrapperBorder = (content, showingCode) => {
-  let borderRadius = 4;
-  if (showingCode) {
-    borderRadius = content === "preview" ? "4px 4px 0 0" : "0 0 4px 4px";
+export const wrapperBorder = (content) => {
+  if (content === 'editor') {
+    return {
+      border: t => `1px solid ${t.colors.playground.border}`,
+      borderRadius: "0px 4px 4px 4px"
+    };
   }
-
   return {
-    border: t => `1px solid ${t.colors.playground.border}`,
+    border: "none"
   };
 };
 
@@ -69,8 +71,10 @@ export const button = {
   py: 1,
   p: 2,
   bg: "border",
-  color: "muted",
-  borderRadius: "0 0 3px 3px",
+  color: t => t.colors.playground.border,
+  border: t => `1px solid ${t.colors.playground.border}`,
+  borderRadius: "4px 4px 0px 0px",
+  borderBottom: "0px",
   "& ~ &": {
     ml: 1
   }
