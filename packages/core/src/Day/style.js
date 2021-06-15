@@ -65,12 +65,6 @@ const disabledStyle = {
   pointerEvents: "none"
 };
 
-const outsideOfMonthStyle = {
-  cursor: "not-allowed",
-  opacity: 0.3,
-  pointerEvents: "none"
-};
-
 const getDayStyle = ({
   activeCursor,
   allowRange,
@@ -92,7 +86,7 @@ const getDayStyle = ({
     (activeCursor === "keyboard" && isKeyboardCursorValid);
 
   if (isOutsideOfMonth) {
-    dayStyle = { ...dayStyle, ...outsideOfMonthStyle };
+    dayStyle = { ...dayStyle, ...disabledStyle };
   } else if (disabled) {
     dayStyle = { ...dayStyle, ...disabledStyle };
   } else if (
