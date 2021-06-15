@@ -8,10 +8,10 @@ import {
   setMouseCursorMock,
   setWeekOffset
 } from "../../CalendarProvider";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
-import luxonAdapter from "@use-date-input/luxon-adapter";
-import momentAdapter from "@use-date-input/moment-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
+import { adapter as  luxonAdapter } from "@use-date-input/luxon-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 import createDateAPI from "../../createDateAPI";
 
 import Month from "../Month";
@@ -45,7 +45,7 @@ describe("given Month", () => {
     });
 
     it("renders a month, including visible days of the week from the previous month", () => {
-      const numOfWeekdaysVisible = 35;
+      const numOfWeekdaysVisible = 42;
       const { getAllByRole } = render(<Month month={month} />);
       const calendar = getAllByRole("gridcell");
       expect(calendar.length).toEqual(numOfWeekdaysVisible);

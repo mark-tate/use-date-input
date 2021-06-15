@@ -6,7 +6,7 @@ import { CustomisableRoot } from "../index";
 import TestUtils from "../../test-utils";
 import { setVisibleFromDate } from "../../CalendarProvider";
 import createDateAPI from "../../createDateAPI";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
 
 jest.mock("../../CalendarProvider");
 

@@ -1,5 +1,5 @@
 import createDateAPI from "../createDateAPI";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
 
 let animating = false;
 export const setAnimating = value => (animating = value);

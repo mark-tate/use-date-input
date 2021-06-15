@@ -1,7 +1,7 @@
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
-import luxonAdapter from "@use-date-input/luxon-adapter";
-import momentAdapter from "@use-date-input/moment-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
+import { adapter as  luxonAdapter } from "@use-date-input/luxon-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 
 import createDateAPI from "../createDateAPI";
 
