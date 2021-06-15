@@ -40,15 +40,6 @@ const slideOutRight = movement => keyframes`
 export const StyledPage = styled.div`
   animation-duration: ${({ durationMsecs }) => `${durationMsecs}ms`};
   animation-timing-function: ease-in-out;
-  background: ${({ theme }) =>
-    `${
-      theme &&
-      theme.calendarOverrides &&
-      theme.calendarOverrides.Root &&
-      theme.calendarOverrides.Root.background
-        ? theme.calendarOverrides.Root.background
-        : "white"
-    }`};
   &.page-enter {
     pointer-events: none;
   }

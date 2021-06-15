@@ -1,6 +1,6 @@
 import { formatNames } from "@use-date-input/common";
 
-import adapter from "../index";
+import { adapter } from "../index";
 
 const { createDate, format, getDateFormat } = adapter();
 

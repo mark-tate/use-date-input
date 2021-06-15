@@ -15,21 +15,21 @@ describe("given luxon formats", () => {
   it("can format ARIA Day Labels", () => {
     const testDate = createDate("2020-02-01");
     expect(toFormattedDate(testDate, formatNames.ARIA_DAY_LABEL)).toEqual(
-      "Saturday, 1 February 2020"
+      "Saturday, February 1, 2020"
     );
   });
 
   it("can format ARIA Start Date Labels", () => {
     const testDate = createDate("2020-02-01");
     expect(toFormattedDate(testDate, formatNames.ARIA_START_LABEL)).toEqual(
-      "Selected Saturday, 1 February 2020 as start date"
+      "Selected Saturday, February 1, 2020 as start date"
     );
   });
 
   it("can format ARIA End Date Labels", () => {
     const testDate = createDate("2020-02-01");
     expect(toFormattedDate(testDate, formatNames.ARIA_END_LABEL)).toEqual(
-      "Selected Saturday, 1 February 2020 as end date"
+      "Selected Saturday, February 1, 2020 as end date"
     );
   });
 

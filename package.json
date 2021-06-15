@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "docz": "^2.3.1",
+    "gatsby-theme-docz": "2.3.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "gatsby-theme-docz": "2.3.1"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.1",
@@ -60,12 +60,12 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.2.0",
-    "gatsby-plugin-material-ui":"^2.1.10",
+    "gatsby-plugin-material-ui": "^2.1.10",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "lerna": "^3.22.0",
-    "react-material-ui-carousel": "^1.8.2",
     "prettier": "^1.18.2",
+    "react-material-ui-carousel": "^1.8.2",
     "regenerator-runtime": "^0.13.5",
     "rollup": "^2.13.1",
     "rollup-plugin-filesize": "^9.0.0",

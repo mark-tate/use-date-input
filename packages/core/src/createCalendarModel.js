@@ -48,5 +48,15 @@ export default function createCalendarModel(
       addDays(currentMonthDays[currentMonthDays.length - 1], day + 1)
     );
   }
-  return chunk([...prevMonthDays, ...currentMonthDays, ...nextMonthDays], 7);
+
+  const visibleDays = [...prevMonthDays, ...currentMonthDays, ...nextMonthDays];
+  const numOfVisibleWeeks = Math.floor(visibleDays.length / 7);
+
+  let equalizeNumOfRows = [];
+  if (numOfVisibleWeeks !== 6) {
+    equalizeNumOfRows = [...new Array(7)].map((value, day) =>
+      addDays(visibleDays[visibleDays.length - 1], day + 1)
+    );
+  }
+  return chunk([...visibleDays, ...equalizeNumOfRows], 7);
 }

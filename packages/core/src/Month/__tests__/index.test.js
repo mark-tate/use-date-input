@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import createDateAPI from "../../createDateAPI";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
 import { setComponents } from "../../CalendarProvider";
 import { CustomisableMonth } from "../index";
 import TestUtils from "../../test-utils";

@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent, render } from "test-utils";
-import dateFnsAdapter from "@use-date-input/date-fns-adapter";
-import dayjsAdapter from "@use-date-input/dayjs-adapter";
-import luxonAdapter from "@use-date-input/luxon-adapter";
-import momentAdapter from "@use-date-input/moment-adapter";
+import { adapter as dateFnsAdapter } from "@use-date-input/date-fns-adapter";
+import { adapter as dayjsAdapter } from "@use-date-input/dayjs-adapter";
+import { adapter as  luxonAdapter } from "@use-date-input/luxon-adapter";
+import { adapter as momentAdapter } from "@use-date-input/moment-adapter";
 import createDateAPI from "../../createDateAPI";
 import {
   resetMocks,
@@ -68,7 +68,7 @@ describe("given Root", () => {
       setIsDayDisabled(isDayDisabled);
       const { getAllByRole } = render(<Root />);
       const cells = getAllByRole("gridcell");
-      expect(cells.length).toEqual(35);
+      expect(cells.length).toEqual(42);
       const previousMonthOffset = 28;
       for (let dayIndex = 0; dayIndex <= 3; dayIndex++) {
         const day = cells[dayIndex];
