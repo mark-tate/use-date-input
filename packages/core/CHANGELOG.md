@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-beta.0](https://github.com/mark-tate/use-date-input/compare/@use-date-input/core@0.2.0-beta.0...@use-date-input/core@0.2.1-beta.0) (2021-06-15)
+
+
+### Bug Fixes
+
+* ensure each `Month` has equal row count to avoid animation mis-alignment ([88f1fe8](https://github.com/mark-tate/use-date-input/commit/88f1fe8413993a5ad742c74df72e03519ccf22cf))
+
+
+
+
+
 # [0.2.0-beta.0](https://github.com/mark-tate/use-date-input/compare/@use-date-input/core@0.1.9-beta.0...@use-date-input/core@0.2.0-beta.0) (2020-08-26)
 
 
